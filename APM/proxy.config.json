@@ -1,0 +1,20 @@
+{
+    "/user/*":{
+        "target":"http://localhost:8080",
+        "secure":false,
+        "logLevel":"debug"
+    },
+
+    "/car/*":{
+        "target":"http://localhost:8080",
+        "secure":false,
+        "logLevel":"debug"
+    },
+
+    "/search/*":{
+        "target":"http://localhost:8080",
+        "secure":false,
+        "logLevel":"debug"
+    }
+
+}
