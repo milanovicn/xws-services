@@ -52,15 +52,15 @@ export class LoginComponent implements OnInit {
 
                 console.log(this.korisnik.rola);
 
-                if (this.korisnik.rola == "PACIJENT") {
-                    this.router.navigate(["/homePagePacijent"]);
+                if (this.korisnik.rola == "ADMIN") {
+                    this.router.navigate(["/admin"]);
                 }
-                else if (this.korisnik.rola == "ADMINKLINIKE") {
+                /*else if (this.korisnik.rola == "ADMINKLINIKE") {
                     this.router.navigate(["/adminKlinike"]);
                 }
                 else if (this.korisnik.rola == "LEKAR") {
                     this.router.navigate(["/lekar"]);
-                }
+                }*/
                 else {
                     this.router.navigate(["/signup"]);
                 }

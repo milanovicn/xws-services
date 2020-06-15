@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
 
 	onSubmit() {
 
-		this.user.rola = "CLIENT";
+		this.user.rola = "ADMIN";
 		this.user.blokiran = false;
 		this.user.brojObjavljenihOglasa = 0;
 		this.user.brojOtkazanihOglasa = 0;

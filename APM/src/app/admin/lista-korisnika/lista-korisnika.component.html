@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-body">
+    <h1>Lista korisnika</h1>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Ime korisnika</th>
+            <th>Prezime korisnika</th>
+            <th>Email korisnika</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let user of korisnici'>
+            <td>{{ user.ime }}</td>
+            <td>{{ user.prezime }}</td>
+            <td>{{ user.email}}</td>
+            <td><button class="btn btn-info"
+                      (click)='blokiraj(user)'>Blokiraj korisnika</button></td>
+            <td><button class="btn btn-info"
+                      (click)='ukloni(user)'>Ukloni korisnika</button></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class='card'>
+  <div class='card-body'>
+    <button (click)='onBack()'
+            class="btn btn-info">Back</button>
+  </div>
+</div>

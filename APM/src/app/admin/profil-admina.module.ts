@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 import { ProfilAdminaComponent } from './profil-admina.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AdminService } from './profil-admina.services';
+import { ListaKorisnikaComponent } from './lista-korisnika/lista-korisnika.component';
+import { SifrarniciComponent } from './sifrarnici/sifrarnici.component';
+import { KorisnikService } from './lista-korisnika/korisnici.services';
 
 
 
 @NgModule({
-  declarations: [ProfilAdminaComponent],
+  declarations: [ProfilAdminaComponent, ListaKorisnikaComponent, SifrarniciComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'adminKlinike', component: ProfilAdminaComponent },
-      // { path: 'adminKlinike/profilKlinike', component: ProfilKlinikeComponent },
-      // { path: 'adminKlinike/tipoviPregleda', component: TipoviPregledaComponent },
+      { path: 'admin', component: ProfilAdminaComponent },
+      { path: 'admin/korisnici', component: ListaKorisnikaComponent },
+      { path: 'admin/sifrarnici', component: SifrarniciComponent },
       // { path: 'adminKlinike/lekari', component: LekarComponent },
       // { path: 'adminKlinike/sale', component: SaleComponent },
       // { path: 'adminKlinike/pregledi', component: PreglediComponent },
@@ -27,6 +31,9 @@ import { RouterModule } from '@angular/router';
 
     ]),
     FormsModule
-  ]
+  ],
+   providers: [
+     AdminService, KorisnikService,
+   ]
 })
 export class ProfilAdminaModule { }

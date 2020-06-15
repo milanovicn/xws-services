@@ -1,1 +1,40 @@
-<p>profil-admina works!</p>
+<div class="card">
+    <div class="card-body">
+        <h1>Profil administratora</h1>
+        <h3>Dobro dosli: "{{admin.ime}} {{admin.prezime}}"</h3>
+        <div class="topnav">
+            <a [routerLink]="['./korisnici']">Lista korisnika</a>
+            <a [routerLink]="['./sifrarnici']">Rad sa sifrarnicima</a>
+
+            <a href="#" (click)='odjaviSe()'>Odjavi se</a>
+        </div>
+    </div>
+</div>
+
+<div class='card'>
+    <div class='card-body'>
+      <h1>Moji podaci:</h1>
+      <div class='table-responsive'>
+        <table class="table">
+            <tr>
+                <td>Ime</td>
+                <td>{{admin.ime}}</td>
+            </tr>
+            <tr>
+                <td>Prezime</td>
+                <td>{{admin.prezime}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{admin.email}}</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>{{admin.password}}</td>
+            </tr>
+
+        </table>
+      </div>
+    </div>
+
+</div>
