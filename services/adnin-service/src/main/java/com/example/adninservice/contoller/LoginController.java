@@ -1,8 +1,10 @@
 package com.example.adninservice.contoller;
 
 
+import com.example.adninservice.model.Admin;
 import com.example.adninservice.model.Client;
 import com.example.adninservice.model.LoginZahtev;
+import com.example.adninservice.service.AdminService;
 import com.example.adninservice.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,8 @@ public class LoginController {
     @Autowired
     private ClientService korisnikService;
 
+    @Autowired
+    private AdminService adminService;
 
    /* @RequestMapping(method = POST, value = "/regKorisnika")
     public ResponseEntity<?> dodajKorisnika(@RequestBody KorisnikDTO korisnikRequest) throws Exception {
@@ -62,15 +66,15 @@ public class LoginController {
                 return new ResponseEntity<Client>(ak, HttpStatus.CREATED);
             }
 
-       /* } else {
-            Korisnik korisnik = korisnikService.findByEmail(zahtev.getEmail());
-            if (korisnik != null) {
-                if(checkIntegrity(zahtev.getPassword(), korisnik.getPassword())){
+        } else {
+            Admin admin = adminService.findByEmail(zahtev.getEmail());
+            if (admin != null) {
+                if(zahtev.getPassword().equals(admin.getPassword())){
                     HttpSession session = request.getSession();
-                    session.setAttribute("korisnik", korisnik);
-                    return new ResponseEntity<Korisnik>(korisnik, HttpStatus.CREATED);
+                    session.setAttribute("admin", admin);
+                    return new ResponseEntity<>(admin, HttpStatus.CREATED);
                 }
-            }*/
+            }
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -104,10 +108,9 @@ public class LoginController {
         if (korisnik != null) {
             return korisnik;
         }
-        /*else {
-            return (Korisnik) session.getAttribute("korisnik");
-        }*/
-        return korisnik;
+        else {
+            return (Admin) session.getAttribute("admin");
+        }
     }
     @GetMapping(value = "/returnId")
     public Long vratiIdUlogovanog(@Context HttpServletRequest request) {
