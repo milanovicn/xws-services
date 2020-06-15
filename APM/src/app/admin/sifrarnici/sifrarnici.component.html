@@ -1,1 +1,158 @@
-<p>sifrarnici works!</p>
+<div class="card">
+	<div class="card-body">
+		<h1 style="text-align: center;">Rad sa sifrarnicima</h1>
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		<h3>Marke i modeli vozila:</h3>
+
+		<div class='table-responsive'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Naziv marke vozila</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let marka of markeVozila'>
+						<td>{{ marka.naziv }}</td>
+						<td><button class="btn btn-info" (click)='obrisiMarku(marka.id)'>Obrisi marku</button></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Dodavanje nove marke vozila:</h3>
+		<form class="dodaj" (ngSubmit) = "onSubmitMarka()" #markaForm="ngForm">
+			<label>Naziv marke vozila</label>
+			<input type="text" placeholder="Naziv marke" required name="naziv" #naziv="ngModel" [(ngModel)] = "novaMarka.naziv">
+			<input type="submit" value="Dodaj" class="btn btn-info">
+		</form>
+
+		<br><br><br>
+
+		<div class='table-responsive'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Naziv modela vozila</th>
+						<th>Naziv marke ovog modela</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let model of sviModeliVozila'>
+						<td>{{ model.naziv }}</td>
+						<td>{{ model.marka }}</td>
+						<td><button class="btn btn-info" (click)='obrisiModel(model.id)'>Obrisi model</button></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Dodavanje novog modela vozila:</h3>
+		<form class="dodaj" (ngSubmit) = "onSubmitModel()" #modelForm="ngForm">
+			<label>Naziv modela</label>
+			<input type="text" placeholder="Naziv modela" required name="nazivModelaVozila" #nazivModelaVozila="ngModel" [(ngModel)] = "noviModel.naziv">
+			<br>
+			<label>Naziv marke ovog modela</label>
+			<input type="text" placeholder="Naziv marke" required name="nazivMarkeVozila" #nazivMarkeVozila="ngModel" [(ngModel)] = "noviModel.marka">
+			<input type="submit" value="Dodaj" class="btn btn-info">
+		</form>
+
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		<h3>Klase vozila:</h3>
+
+		<div class='table-responsive'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Naziv klase vozila</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let klasa of klaseVozila'>
+						<td>{{ klasa.naziv }}</td>
+						<td><button class="btn btn-info" (click)='obrisiKlasu(klasa.id)'>Obrisi klasu</button></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Dodavanje nove klase vozila:</h3>
+		<form class="dodaj" (ngSubmit) = "onSubmitKlasa()" #klasaForm="ngForm">
+			<label>Naziv klase vozila</label>
+			<input type="text" placeholder="Naziv klase" required name="nazivKlaseVozila" #nazivKlaseVozila="ngModel" [(ngModel)] = "novaKlasaVozila.naziv">
+			<input type="submit" value="Dodaj" class="btn btn-info">
+		</form>
+
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		<h3>Tipovi menjaca:</h3>
+
+		<div class='table-responsive'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Naziv tipa menjaca</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let tip of tipoviMenjaca'>
+						<td>{{ tip.naziv }}</td>
+						<td><button class="btn btn-info" (click)='obrisiTipMenjaca(tip.id)'>Obrisi tip</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Dodavanje novog tipa menjaca:</h3>
+		<form class="dodaj" (ngSubmit) = "onSubmitTipMenjaca()" #tipMForm="ngForm">
+			<label>Naziv tipa menjaca</label>
+			<input type="text" placeholder="Naziv tipa menjaca" required name="nazivTipaM" #nazivTipaM="ngModel" [(ngModel)] = "noviTipMenjaca.naziv">
+			<input type="submit" value="Dodaj" class="btn btn-info">
+		</form>
+
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		<h3>Tipovi goriva:</h3>
+
+		<div class='table-responsive'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Naziv tipa goriva</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let tip of tipoviGoriva'>
+						<td>{{ tip.naziv }}</td>
+						<td><button class="btn btn-info" (click)='obrisiTipGoriva(tip.id)'>Obrisi tip</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Dodavanje novog tipa goriva:</h3>
+		<form class="dodaj" (ngSubmit) = "onSubmitTipGoriva()" #tipGForm="ngForm">
+			<label>Naziv tipa goriva</label>
+			<input type="text" placeholder="Naziv tipa goriva" required name="nazivTipaG" #nazivTipaG="ngModel" [(ngModel)] = "noviTipGoriva.naziv">
+			<input type="submit" value="Dodaj" class="btn btn-info">
+		</form>
+
+	</div>
+</div>

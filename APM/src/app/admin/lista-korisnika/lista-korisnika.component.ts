@@ -14,7 +14,9 @@ export class ListaKorisnikaComponent implements OnInit {
   korisnici: Korisnik[] = [];
   admin: Korisnik;
 
-  constructor(private router:Router, private loginService: LoginServces, private korisniciServis: KorisnikService ) { }
+  constructor(private router:Router, private loginService: LoginServces, private korisniciServis: KorisnikService ) {
+    this.admin = new Korisnik();
+  }
 
   ngOnInit(): void {
     this.loginService.getKorisnika().subscribe({

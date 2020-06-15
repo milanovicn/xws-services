@@ -10,6 +10,7 @@ import { ProfilAdminaModule } from './admin/profil-admina.module';
 import { LoginComponent } from './login/login.component';
 import { LoginServces } from './login/login.services';
 import { SignupComponent } from './login/signup.component';
+import { ProfilKorisnikaModule } from './korisnik/profil-korisnika.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SignupComponent } from './login/signup.component';
 
     ]),
     FormsModule,
-    ProfilAdminaModule
+    ProfilAdminaModule,
+    ProfilKorisnikaModule
   ],
   providers:[LoginServces,],
   bootstrap: [AppComponent]

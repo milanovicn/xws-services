@@ -28,6 +28,10 @@ export class WelcomeComponent implements OnInit{
           //this.loginService.IzlogujSe(this.request).subscribe(result => this.kraj());
           this._router.navigate(["/admin"]);
         }
+        if (this.user != null && this.user.rola == "CLIENT") {
+          //this.loginService.IzlogujSe(this.request).subscribe(result => this.kraj());
+          this._router.navigate(["/korisnik"]);
+        }
       }
     });
     
