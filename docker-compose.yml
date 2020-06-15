@@ -46,6 +46,17 @@ services:
       - static-network
     depends_on:
       - consul-server
+
+  zahtev-sevices:
+    image: zahtev-sevices
+    build:
+      context: ./services/zahtev-sevices
+      dockerfile: Dockerfile
+    tty: true
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
  
   gateway:
     image: gateway

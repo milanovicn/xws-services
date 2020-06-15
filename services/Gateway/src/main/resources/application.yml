@@ -28,3 +28,9 @@ spring:
             - Path=/search/**
           filters:
             - RewritePath=/search/(?<path>.*), /$\{path}
+	- id: zahtev
+          uri: lb://zahtev
+          predicates:
+            - Path=/zahtev/**
+          filters:
+            - RewritePath=/zahtev/(?<path>.*), /$\{path}
