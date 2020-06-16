@@ -1,0 +1,7 @@
+com/example/searchservice/Controller/AdvancedSearchController.class
+com/example/searchservice/Service/AdvancedSearchServiceImpl.class
+com/example/searchservice/Model/Dto/SearchDTO.class
+com/example/searchservice/Model/AdvancedSearch.class
+com/example/searchservice/Service/AdvancedSearchService.class
+com/example/searchservice/Repository/AdvancedSearchRepository.class
+com/example/searchservice/SearchServiceApplication.class

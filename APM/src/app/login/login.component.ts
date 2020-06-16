@@ -55,10 +55,10 @@ export class LoginComponent implements OnInit {
                 if (this.korisnik.rola == "ADMIN") {
                     this.router.navigate(["/admin"]);
                 }
-                /*else if (this.korisnik.rola == "ADMINKLINIKE") {
-                    this.router.navigate(["/adminKlinike"]);
+                else if (this.korisnik.rola == "CLIENT") {
+                    this.router.navigate(["/korisnik"]);
                 }
-                else if (this.korisnik.rola == "LEKAR") {
+                /*else if (this.korisnik.rola == "LEKAR") {
                     this.router.navigate(["/lekar"]);
                 }*/
                 else {

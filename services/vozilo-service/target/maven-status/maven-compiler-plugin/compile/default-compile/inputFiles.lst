@@ -1,0 +1,14 @@
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/VoziloService.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Controller/VoziloController.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Client/UserClient.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/model/Vozilo.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/model/ZauzeceVozila.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/model/SearchWithIdDTO.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/VoziloServiceImpl.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Repository/ZauzeceVozilaRepository.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/ZauzeceVozilaService.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/VoziloServiceApplication.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Repository/VoziloRepository.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/ZauzeceVozilaServiceImpl.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/model/Cenovnik.java
+/home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Repository/CenovnikRepository.java

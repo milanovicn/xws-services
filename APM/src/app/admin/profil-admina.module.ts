@@ -7,6 +7,7 @@ import { AdminService } from './profil-admina.services';
 import { ListaKorisnikaComponent } from './lista-korisnika/lista-korisnika.component';
 import { SifrarniciComponent } from './sifrarnici/sifrarnici.component';
 import { KorisnikService } from './lista-korisnika/korisnici.services';
+import { SifrarnikService } from './sifrarnici/sifrarnici.services';
 
 
 
@@ -18,22 +19,12 @@ import { KorisnikService } from './lista-korisnika/korisnici.services';
       { path: 'admin', component: ProfilAdminaComponent },
       { path: 'admin/korisnici', component: ListaKorisnikaComponent },
       { path: 'admin/sifrarnici', component: SifrarniciComponent },
-      // { path: 'adminKlinike/lekari', component: LekarComponent },
-      // { path: 'adminKlinike/sale', component: SaleComponent },
-      // { path: 'adminKlinike/pregledi', component: PreglediComponent },
-
-      // { path: 'adminKlinike/listaZahtevaZaPreglede', component: ListaZahtevaComponent },
-      // { path: 'adminKlinike/listaZahtevaZaPreglede/odobrenjeZahteva', component: OdobrenjeZahtevaComponent },
-
-      // { path: 'adminKlinike/zahteviZaOdsustvo', component: ZahteviZaOdsustvoComponent },
-
-      // { path: 'adminKlinike/izvestajiPoslovanjaKlinike', component: IzvestajiPoslovanjaComponent },
 
     ]),
     FormsModule
   ],
    providers: [
-     AdminService, KorisnikService,
+     AdminService, KorisnikService, SifrarnikService,
    ]
 })
 export class ProfilAdminaModule { }
