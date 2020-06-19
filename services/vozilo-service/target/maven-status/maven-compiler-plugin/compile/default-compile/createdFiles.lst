@@ -4,10 +4,14 @@ com/example/voziloservice/Controller/VoziloController.class
 com/example/voziloservice/Service/VoziloService.class
 com/example/voziloservice/Service/ZauzeceVozilaService.class
 com/example/voziloservice/VoziloServiceApplication.class
+com/example/voziloservice/Service/ImageModelService.class
+com/example/voziloservice/Service/ImageModelServiceImpl.class
 com/example/voziloservice/model/ZauzeceVozila.class
+com/example/voziloservice/Repository/ImageRepository.class
 com/example/voziloservice/Service/VoziloServiceImpl.class
 com/example/voziloservice/Client/UserClient.class
 com/example/voziloservice/Repository/CenovnikRepository.class
+com/example/voziloservice/model/ImageModel.class
 com/example/voziloservice/model/Cenovnik.class
 com/example/voziloservice/Service/ZauzeceVozilaServiceImpl.class
 com/example/voziloservice/model/SearchWithIdDTO.class

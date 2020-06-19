@@ -38,7 +38,7 @@ export class ListaVozilaComponent implements OnInit{
                 });
                 }
                
-            })
+            });
             
         }
 
