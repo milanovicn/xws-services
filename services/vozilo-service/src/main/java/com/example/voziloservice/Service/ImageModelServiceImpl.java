@@ -1,5 +1,4 @@
 package com.example.voziloservice.Service;
-
 import com.example.voziloservice.model.ImageModel;
 import com.example.voziloservice.Repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;

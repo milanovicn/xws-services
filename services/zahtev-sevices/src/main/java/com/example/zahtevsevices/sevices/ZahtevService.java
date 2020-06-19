@@ -11,4 +11,6 @@ public interface ZahtevService {
     List<Zahtev> findAll();
     void prihvatiZahtev(Long id) throws Exception;
     void otkaziZahtev(Long id);
+    void platiZahtev(Long id);
+    void komentarisiZahtev(Long id);
 }

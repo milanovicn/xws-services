@@ -67,4 +67,23 @@ public class ZahtevContorller {
 
 
     }
+
+    @PostMapping(value = "/plati/{idZahteva}")
+    public void platiZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
+
+
+        zahtevService.platiZahtev(idZahteva);
+
+
+    }
+
+    //promena statusa zahteva u REVIEWED
+    @PostMapping(value = "/komentarisi/{idZahteva}")
+    public void komentarisiZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
+
+
+        zahtevService.komentarisiZahtev(idZahteva);
+
+
+    }
 }
