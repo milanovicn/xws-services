@@ -25,6 +25,9 @@ export class ZahtevSerivces{
 public vratiZahtevePoKorisniku(idKorisnika:number):Observable<ZahtevRezervacije[]>{
       return this.http.get<ZahtevRezervacije[]>("/zahtev/zahtev/izdavalac/"+idKorisnika);
   }
+  public vratiZahtevePoPodnosiocu(idKorisnika:number):Observable<ZahtevRezervacije[]>{
+    return this.http.get<ZahtevRezervacije[]>("/zahtev/zahtev/"+idKorisnika);
+}
   public odobriZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
     return this.http.post<ZahtevRezervacije>("/zahtev/odobri/"+zahtev.id,zahtev);
 }

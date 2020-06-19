@@ -15,7 +15,7 @@
               <td>{{product.price | currency:'USD':'symbol':'1.2-2'}}</td>
               <td><pm-star [rating] = 'product.starRating'
                       (ratingClicked) = 'onRatingClicked($event)'></pm-star></td>-->
-                      <td><a [routerLink]="['/mojiOglasi/',vozilo.id]">{{vozilo.marka}}</a></td>
+                      <td><a [routerLink]="['/mojiOglasi',vozilo.id]">{{vozilo.marka}}</a></td>
                       <td>{{vozilo.model}}</td>
           </tr>
       </tbody>

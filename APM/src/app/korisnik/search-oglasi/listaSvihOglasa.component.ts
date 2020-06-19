@@ -56,10 +56,10 @@ export class SearchComponent implements OnInit{
     nazivtipoviGoriva:string[]=[];
     nazivtipoviMenjaca:string[]=[];
 
-    izabranoGorivo:string;
-    izabraniMenjac:string;
-    izabranaMarka:string;
-    izabraniModel:string;
+    izabranoGorivo:TipGoriva;
+    izabraniMenjac:TipMenjaca;
+    izabranaMarka:Marka;
+    izabraniModel:Model;
 
     
     constructor(private route:ActivatedRoute,private router:Router,private voziloService:VoziloSerivces,private login:KorisnikService,
@@ -140,38 +140,43 @@ export class SearchComponent implements OnInit{
           this.sifarniciService.getSveModele().subscribe({
             next: modeli => {
                 this.modeliVozila = modeli;
-            }
+           
+              /*  for(let naziv of this.modeliVozila){
+                    this.nazivModeliVozila.push(naziv.naziv);}*/
+                     }
           });
-                for(let naziv of this.modeliVozila){
-                    this.nazivModeliVozila.push(naziv.naziv);}
         }
         ucitajMarke(){
            this.sifarniciService.getMarkeVozila().subscribe({
             next: marke => {
-                this.markeVozila = marke;}
-            });
-                for(let naziv of this.markeVozila){
-                    this.nazivmarkeVozila.push(naziv.naziv);}
+                this.markeVozila = marke;
+            
+               /* for(let naziv of this.markeVozila){
+                    this.nazivmarkeVozila.push(naziv.naziv);}*/
+                }
+                  });
+                
         }
         ucitajMenjace(){
           this.sifarniciService.getTipveMenjaca().subscribe({
             next: menjaci => {
                 this.tipoviMenjaca = menjaci;
-            }
-          });
-                for(let naziv of this.tipoviMenjaca){
-                    this.nazivtipoviMenjaca.push(naziv.naziv);}
-      
+         
+                /*for(let naziv of this.tipoviMenjaca){
+                    this.nazivtipoviMenjaca.push(naziv.naziv);}*/
+                  }
+                });
         }
         
         ucitajGoriva(){
           this.sifarniciService.getTipoveGoriva().subscribe({
             next: goriva => {
                 this.tipoviGoriva = goriva;
-            }
-          });
-                for(let naziv of this.tipoviGoriva){
-                    this.nazivtipoviGoriva.push(naziv.naziv);}
+            
+               /* for(let naziv of this.tipoviGoriva){
+                    this.nazivtipoviGoriva.push(naziv.naziv);}*/
+                  }
+                });
                 }
         
 
@@ -197,20 +202,21 @@ export class SearchComponent implements OnInit{
           this.zahtev.idVozila=vozilo.id;
           this.zahtevService.napraviZahtev(this.zahtev).subscribe();
         }
-          /*  pretrazi(){
+            pretrazi(){
                   this.pretraga.datumOd=this.zauzmiOd;
                   this.pretraga.datumDo=this.zauzmiDo;
-                  this.pretraga.marka=this.izabranaMarka;
-                  this.pretraga.model=this.izabraniModel;
-                  this.pretraga.tipGoriva=this.izabranoGorivo;
-                  this.pretraga.tipMenjaca=this.izabraniMenjac;
-                  this.pretraga.mesto=this.mesto;
-                  this.pretraga.brojSedistaZaDecu=this.sedista;
-                  if(this.protection)
+                  this.pretraga.marka=this.izabranaMarka.naziv;
+                  this.pretraga.model=this.izabraniModel.naziv;
+
+                  this.pretraga.tipGoriva=this.izabranoGorivo.naziv;
+                  this.pretraga.tipMenjaca=this.izabraniMenjac.naziv;
+                 /* this.pretraga.mesto=this.mesto;
+                  this.pretraga.brojSedistaZaDecu=this.sedista;*/
+                  if(this.protection==true)
                     this.pretraga.CDWProtection="DA";
                   else
                     this.pretraga.CDWProtection="NE";
-
+                    console.log(this.pretraga);
                     this.searchService.pretrazi(this.pretraga).subscribe({
                       next: idovi => {
                           this.idVozila = idovi;
@@ -225,7 +231,7 @@ export class SearchComponent implements OnInit{
                               })
                       }
                   });
-            }*/
+            }
         }
 
     
