@@ -1,5 +1,6 @@
 package com.example.searchservice.Model.Dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class SearchDTO {
@@ -8,10 +9,10 @@ public class SearchDTO {
     private String mesto;
 
 
-    private Date datumOd;
+    private LocalDateTime datumOd;
 
 
-    private Date datumDo;
+    private LocalDateTime datumDo;
 
 
     private String marka;
@@ -43,19 +44,19 @@ public class SearchDTO {
         this.mesto = mesto;
     }
 
-    public Date getDatumOd() {
+    public LocalDateTime getDatumOd() {
         return datumOd;
     }
 
-    public void setDatumOd(Date datumOd) {
+    public void setDatumOd(LocalDateTime datumOd) {
         this.datumOd = datumOd;
     }
 
-    public Date getDatumDo() {
+    public LocalDateTime getDatumDo() {
         return datumDo;
     }
 
-    public void setDatumDo(Date datumDo) {
+    public void setDatumDo(LocalDateTime datumDo) {
         this.datumDo = datumDo;
     }
 
@@ -112,7 +113,7 @@ public class SearchDTO {
     public SearchDTO() {
     }
 
-    public SearchDTO(String mesto, Date datumOd, Date datumDo, String marka, String tipMenjaca, String model, String tipGoriva, int brojSedistaZaDecu, String CDWProtection) {
+    public SearchDTO(String mesto, LocalDateTime datumOd, LocalDateTime datumDo, String marka, String tipMenjaca, String model, String tipGoriva, int brojSedistaZaDecu, String CDWProtection) {
         this.mesto = mesto;
         this.datumOd = datumOd;
         this.datumDo = datumDo;

@@ -25,10 +25,10 @@ public class VoziloController {
     @Autowired
     private ZauzeceVozilaService zauzeceVozilaService;
 
-    @PostMapping( value = "/addVozilo/{id}")
-    public ResponseEntity<?> addVozilo(@RequestBody Vozilo vozilo,@PathVariable("id") Long id) throws Exception {
+    @PostMapping( value = "/addVozilo")
+    public ResponseEntity<?> addVozilo(@RequestBody Vozilo vozilo) throws Exception {
 
-        Vozilo newVozilo=voziloService.addVozilo(vozilo,id);
+        Vozilo newVozilo=voziloService.addVozilo(vozilo);
 
         if(newVozilo!=null)
             return new ResponseEntity<>(newVozilo, HttpStatus.CREATED);
@@ -61,5 +61,13 @@ public class VoziloController {
         Vozilo car=voziloService.findById(idVozila);
 
         return new ResponseEntity<>(car, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/vratiPoKorisniku/{idIzdavaca}")
+    public ResponseEntity<List<Vozilo>> getCarByIdIzavaca(@PathVariable("idIzdavaca") Long idIzdavaca) throws Exception {
+
+        List<Vozilo> cars=voziloService.findByIznajmljivacId(idIzdavaca);
+
+        return new ResponseEntity<>(cars, HttpStatus.CREATED);
     }
 }

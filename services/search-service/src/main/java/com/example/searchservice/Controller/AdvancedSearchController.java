@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -19,15 +20,12 @@ public class AdvancedSearchController {
     private AdvancedSearchService advancedSearchService;
 
 
-    @PostMapping(value = "/dodaj")
-    public ResponseEntity<?> addVozilo(@RequestBody AdvancedSearch as) throws Exception {
+    @PostMapping(value = "/search")
+    public void addVozilo(@RequestBody AdvancedSearch vozilo) throws Exception {
 
-        AdvancedSearch newAdvancedSearch = advancedSearchService.addAdvancedReplica(as);
+        AdvancedSearch newAdvancedSearch = advancedSearchService.addAdvancedReplica(vozilo);
 
-        if(newAdvancedSearch!=null)
-            return new ResponseEntity<>(newAdvancedSearch, HttpStatus.CREATED);
-        else
-            return new ResponseEntity<>("fejl", HttpStatus.CREATED);
+
     }
 
     @GetMapping(value = "/search")

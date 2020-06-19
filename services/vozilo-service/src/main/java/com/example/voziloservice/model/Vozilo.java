@@ -1,6 +1,9 @@
 package com.example.voziloservice.model;
 
+
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -45,10 +48,10 @@ public class Vozilo {
     private Long iznajmljivacId;
 
     @Column(name = "VaziOd", nullable = false)
-    private Date vaziOd;
+    private LocalDateTime vaziOd;
 
     @Column(name = "VaziDo", nullable = false)
-    private Date vaziDo;
+    private LocalDateTime vaziDo;
 
     @Column(name = "Mesto", nullable = false)
     private String mesto;
@@ -58,7 +61,7 @@ public class Vozilo {
 
     }
 
-    public Vozilo(String marka, String model, String tipGoriva, String tipMenjaca, String klasaVozila, String cenovnikId, double redjenaKilometraza, String ogranicenaKilometraza, boolean CDWProtection, int brojSedistaDeca, Date vaziOd, Date vaziDo, String mesto,Long oglasavacId) {
+    public Vozilo(String marka, String model, String tipGoriva, String tipMenjaca, String klasaVozila, String cenovnikId, double redjenaKilometraza, String ogranicenaKilometraza, boolean CDWProtection, int brojSedistaDeca, LocalDateTime vaziOd, LocalDateTime vaziDo, String mesto,Long oglasavacId) {
         this.marka = marka;
         this.model = model;
         this.tipGoriva = tipGoriva;
@@ -171,19 +174,19 @@ public class Vozilo {
         this.iznajmljivacId = iznajmljivacId;
     }
 
-    public Date getVaziOd() {
+    public LocalDateTime getVaziOd() {
         return vaziOd;
     }
 
-    public void setVaziOd(Date vaziOd) {
+    public void setVaziOd(LocalDateTime vaziOd) {
         this.vaziOd = vaziOd;
     }
 
-    public Date getVaziDo() {
+    public LocalDateTime getVaziDo() {
         return vaziDo;
     }
 
-    public void setVaziDo(Date vaziDo) {
+    public void setVaziDo(LocalDateTime vaziDo) {
         this.vaziDo = vaziDo;
     }
 

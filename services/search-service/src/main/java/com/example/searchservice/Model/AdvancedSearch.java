@@ -1,6 +1,7 @@
 package com.example.searchservice.Model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -14,10 +15,10 @@ public class AdvancedSearch {
     private String mesto;
 
     @Column(name = "DatumOd", nullable = false)
-    private Date datumOd;
+    private LocalDateTime datumOd;
 
     @Column(name = "DatumDo", nullable = false)
-    private Date datumDo;
+    private LocalDateTime datumDo;
 
     @Column(name = "Marka", nullable = false)
     private String marka;
@@ -44,7 +45,7 @@ public class AdvancedSearch {
     private Long idVozila;
 
 
-    public AdvancedSearch(String mesto, Date datumOd, Date datumDo, String marka, String tipMenjaca, String model, String tipGoriva, int brojSedistaZaDecu, boolean CDWProtection, Long idVozila) {
+    public AdvancedSearch(String mesto, LocalDateTime datumOd, LocalDateTime datumDo, String marka, String tipMenjaca, String model, String tipGoriva, int brojSedistaZaDecu, boolean CDWProtection, Long idVozila) {
         this.mesto = mesto;
         this.datumOd = datumOd;
         this.datumDo = datumDo;
@@ -77,19 +78,19 @@ public class AdvancedSearch {
         this.mesto = mesto;
     }
 
-    public Date getDatumOd() {
+    public LocalDateTime getDatumOd() {
         return datumOd;
     }
 
-    public void setDatumOd(Date datumOd) {
+    public void setDatumOd(LocalDateTime datumOd) {
         this.datumOd = datumOd;
     }
 
-    public Date getDatumDo() {
+    public LocalDateTime getDatumDo() {
         return datumDo;
     }
 
-    public void setDatumDo(Date datumDo) {
+    public void setDatumDo(LocalDateTime datumDo) {
         this.datumDo = datumDo;
     }
 

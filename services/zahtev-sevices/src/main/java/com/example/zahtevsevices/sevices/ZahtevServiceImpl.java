@@ -19,7 +19,8 @@ public class ZahtevServiceImpl implements ZahtevService {
     @Override
     public Zahtev create(Zahtev zahtev) {
         LocalDateTime sad=LocalDateTime.now();
-        Zahtev novi=new Zahtev(zahtev.getIdVozila(),zahtev.getDatumOd(),zahtev.getDatumDo(),zahtev.getPodnosilac(),zahtev.getIzdavac(),sad);
+        Zahtev novi=new Zahtev(zahtev.getIdVozila(),zahtev.getDatumOd(),zahtev.getDatumDo(),zahtev.getPodnosilac(),zahtev.getIzdavac());
+        novi.setVremeKreiranja(sad);
 
         zahtevRepository.save(novi);
         return novi;

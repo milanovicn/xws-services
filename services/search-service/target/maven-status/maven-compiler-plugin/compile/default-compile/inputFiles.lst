@@ -1,7 +1,7 @@
-/home/student/Desktop/xml/projekat-xws/xws-services/services/search-service/src/main/java/com/example/searchservice/SearchServiceApplication.java
-/home/student/Desktop/xml/projekat-xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Service/AdvancedSearchServiceImpl.java
-/home/student/Desktop/xml/projekat-xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Service/AdvancedSearchService.java
-/home/student/Desktop/xml/projekat-xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Model/AdvancedSearch.java
-/home/student/Desktop/xml/projekat-xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Repository/AdvancedSearchRepository.java
-/home/student/Desktop/xml/projekat-xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Model/Dto/SearchDTO.java
-/home/student/Desktop/xml/projekat-xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Controller/AdvancedSearchController.java
+/home/student/Desktop/xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Model/AdvancedSearch.java
+/home/student/Desktop/xws/xws-services/services/search-service/src/main/java/com/example/searchservice/SearchServiceApplication.java
+/home/student/Desktop/xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Model/Dto/SearchDTO.java
+/home/student/Desktop/xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Repository/AdvancedSearchRepository.java
+/home/student/Desktop/xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Service/AdvancedSearchService.java
+/home/student/Desktop/xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Service/AdvancedSearchServiceImpl.java
+/home/student/Desktop/xws/xws-services/services/search-service/src/main/java/com/example/searchservice/Controller/AdvancedSearchController.java
