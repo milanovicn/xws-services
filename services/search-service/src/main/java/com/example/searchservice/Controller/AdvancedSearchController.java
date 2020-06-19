@@ -28,7 +28,7 @@ public class AdvancedSearchController {
 
     }
 
-    @GetMapping(value = "/search")
+    @PostMapping(value = "/pretrazi")
     public ResponseEntity<?> searchCar(@RequestBody SearchDTO sDTO) throws Exception {
 
         List<Long> ids = advancedSearchService.findByAdvancedSearch(sDTO);

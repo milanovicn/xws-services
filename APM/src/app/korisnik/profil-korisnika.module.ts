@@ -13,6 +13,8 @@ import { SearchComponent } from './search-oglasi/listaSvihOglasa.component';
 import { ZahtevComponent } from './zahtevi/zahtevi.component';
 import { ZahtevSerivces } from './search-oglasi/zahtev.service';
 import { SearchSerivces } from './search-oglasi/search.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PlacanjeComponent } from './placanje/placanje.component';
 
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { NoviCenovnikComponent } from './cenovnik/novi-cenovnik.component';
@@ -33,18 +35,23 @@ import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
     ListaCenovnikaComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
+
     RouterModule.forChild([
       { path: 'korisnik', component: ProfilKorisnikaComponent },
       { path: 'korisnik/vozilo', component: VoziloComponent },
       { path: 'korisnik/mojiOglasi', component: ListaVozilaComponent },
       { path: 'korisnik/search', component: SearchComponent },
       { path: 'korisnik/zahteviZaMene', component: ZahtevComponent },
+      { path: 'korisnik/placanje', component: PlacanjeComponent },
       {
         path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent
       },
       { path: 'korisnik/novi-cenovnik', component: NoviCenovnikComponent },
       { path: 'korisnik/cenovnik/:id', component: CenovnikComponent },
       { path: 'korisnik/cenovnik', component: ListaCenovnikaComponent }
+        path: 'mojiOglasi/:id', component: DetaljiOglasaComponent
+      }
      
 
       //{ path: 'admin/korisnici', component: ListaKorisnikaComponent },
