@@ -1,0 +1,102 @@
+<div class='card'>
+    <div class='card-body'>
+    <h1>Napravi novi oglas</h1>
+    <form (ngSubmit)="napraviOglas()" #pacijentForm="ngForm">
+        <table>
+            <h3>Slika</h3>
+ 
+            
+            <div>
+                <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+            </div>
+            <input type="file" name="imgs" multiple (change)="detectFiles($event)">
+     
+            <tr>
+                <td>Zuzeto od</td>
+                    <td><input type="datetime-local" name="ZauzetoOd" #ZauzetoOd="ngModel" [(ngModel)] = "vozilo.vaziOd"> </td>
+            </tr>
+
+            <tr>
+                <td>Zuzeto do</td>
+                    <td><input type="datetime-local" name="ZauzetoDo" #ZauzetoDo="ngModel" [(ngModel)] = "vozilo.vaziDo"> </td>
+            </tr>
+
+
+            <tr>
+                <td>Mesto</td>
+                    <td><input type="text" name="Mesto" #CN="ngModel" [(ngModel)] = "vozilo.mesto"> </td>
+                </tr>
+                <tr>
+                <td>Marka Automobila</td>
+                    <td>
+                        <select name="MarkaAutomobila"  #MarkaAutomobila="ngModel" [(ngModel)] = "izabranaMarka">
+                            <option *ngFor='let mar of markeVozila' [ngValue]="mar">{{mar.naziv}}</option>
+
+                            </select>
+                            </td>
+                </tr>
+                <tr>
+                <td>Model Automobila</td>
+                <td><select name="Model"  #MOdel="ngModel" [(ngModel)] = "izabraniModel">
+                    <option *ngFor='let mod of modeliVozila' [ngValue]="mod" >{{mod.naziv}}</option>
+              
+                </select>
+                </td>
+                </tr>
+                <tr>
+                    <td>Tip Menjaca</td>
+                    <td>
+                        <select name="TipMenjaca"  #TipMenjaca="ngModel" [(ngModel)] = "izabraniMenjac">
+                            <option *ngFor='let menjac of tipoviMenjaca' [ngValue]="menjac">{{menjac.naziv}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tip Goriva</td>
+                    <td>
+                        <select name="TipGoriva"  #TipGoriva="ngModel" [(ngModel)] = "izabranoGorivo">
+                            <option *ngFor='let gorivo of tipoviGoriva' [ngValue]="gorivo" >{{gorivo.naziv}}</option>
+                        </select>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <td>Klasa Automobila</td>
+                    <td>
+                        <select name="KlasaAutomobila"  #KlasaAutomobila="ngModel" [(ngModel)] = "izabranaKlasa">
+                            <option *ngFor='let klasa of klaseVozila' [ngValue]="klasa">{{klasa.naziv}}</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cena</td>
+                        <td><input type="text" name="Cena" #Cena="ngModel" [(ngModel)] = "vozilo.cenovnikId"> </td>
+                    </tr>
+                    <tr>
+                        <td>Predjena Kilometraza</td>
+                            <td><input type="number" name="PredjenaKilometraza" #PredjenaKilometraza="ngModel" [(ngModel)] = "vozilo.redjenaKilometraza"> </td>
+                        </tr>
+                        <tr>
+                            <td>Planirano Za Preci</td>
+                                <td><input type="text" name="PlaniranoZaPreci" #PlaniranoZaPreci="ngModel" [(ngModel)] = "vozilo.ogranicenaKilometraza"> </td>
+                            </tr>
+                
+                            <tr>
+                                <td>CWD</td>
+                                    <td><input type="checkbox" name="CWD" #CWD="ngModel" [(ngModel)] = "vozilo.CDWProtection"> </td>
+                                </tr>
+                                <tr>
+                                    <td>Broj sedista za decu</td>
+                                        <td><input type="number" name="BrojSedistaZaDecu" #BrojSedistaZaDecu="ngModel" [(ngModel)] = "vozilo.brojSedistaDeca"> </td>
+                                    </tr>
+                                    
+
+
+                            <tr>
+                            <td><input type="submit" class="btn btn-info" value="Confirm"></td>
+                                </tr>
+        </table>
+    </form>
+    </div>
+</div>

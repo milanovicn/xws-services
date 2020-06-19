@@ -1,0 +1,26 @@
+<div class="listaZahteva">
+    <div class='table-responsive'>
+      <table class='table' *ngIf='zahtevi'>
+        <thead>
+          <tr>
+            <th>Marka</th>
+            <th>MOdel</th>
+            <th>Klasa</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let ser of zahtevi'>
+            <td>{{ser.datumOd}}</td>
+            <td>{{ser.datumDo}}</td>
+            <td>{{ser.idVozila}}</td>
+            <td>{{ser.stanje}}</td>
+            <td><button class="btn btn-info" (click)='odobriZahtev(ser)'>Odobri</button></td>
+            <td><button class="btn btn-info" (click)='ponistiZahtev(ser)'>Ponisti</button></td>
+
+           
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>

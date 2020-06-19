@@ -39,14 +39,14 @@ public class Zahtev {
     public Zahtev() {
     }
 
-    public Zahtev(Long idVozila, LocalDateTime datumOd, LocalDateTime datumDo, Long podnosilac, Long izdavac,LocalDateTime vremeKreiranja) {
+    public Zahtev(Long idVozila, LocalDateTime datumOd, LocalDateTime datumDo, Long podnosilac, Long izdavac) {
         this.idVozila = idVozila;
         this.stanje = Stanje.PENDING;
         this.datumOd = datumOd;
         this.datumDo = datumDo;
         this.podnosilac = podnosilac;
         this.izdavac= izdavac;
-        this.vremeKreiranja=vremeKreiranja;
+       // this.vremeKreiranja=vremeKreiranja;
     }
 
     public Long getId() {

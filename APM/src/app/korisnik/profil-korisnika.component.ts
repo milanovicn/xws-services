@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pm-profil-korisnika',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilKorisnikaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit(): void {
   }

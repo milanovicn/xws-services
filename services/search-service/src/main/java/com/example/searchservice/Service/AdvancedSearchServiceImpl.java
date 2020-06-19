@@ -3,10 +3,15 @@ package com.example.searchservice.Service;
 import com.example.searchservice.Model.AdvancedSearch;
 import com.example.searchservice.Model.Dto.SearchDTO;
 import com.example.searchservice.Repository.AdvancedSearchRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,9 +21,10 @@ public class AdvancedSearchServiceImpl implements AdvancedSearchService {
     private AdvancedSearchRepository advancedSearchRepository;
 
     @Override
-    public AdvancedSearch addAdvancedReplica(AdvancedSearch as){
-        AdvancedSearch newVozilo=new AdvancedSearch(as.getMesto(),as.getDatumOd(),as.getDatumDo(),as.getMarka(),as.getTipMenjaca(),
-                as.getModel(),as.getTipGoriva(),as.getBrojSedistaZaDecu(),as.isCDWProtection(),as.getIdVozila()
+    public AdvancedSearch addAdvancedReplica(AdvancedSearch vozilo){
+
+        AdvancedSearch newVozilo=new AdvancedSearch(vozilo.getMesto(),vozilo.getDatumOd(),vozilo.getDatumDo(),vozilo.getMarka(),vozilo.getTipMenjaca(),
+                vozilo.getModel(),vozilo.getTipGoriva(),vozilo.getBrojSedistaZaDecu(),vozilo.isCDWProtection(),vozilo.getIdVozila()
         );
 
         advancedSearchRepository.save(newVozilo);
@@ -101,8 +107,8 @@ public class AdvancedSearchServiceImpl implements AdvancedSearchService {
 
                     }
                 }
-            } else if(!(search.getDatumOd().before(as.getDatumOd()) && search.getDatumOd().after(as.getDatumDo()))) {
-                if((search.getDatumDo().before(as.getDatumOd()) && search.getDatumDo().after(as.getDatumDo()))) {
+            } else if(!(search.getDatumOd().isBefore(as.getDatumOd()) && search.getDatumOd().isAfter(as.getDatumDo()))) {
+                if((search.getDatumDo().isBefore(as.getDatumOd()) && search.getDatumDo().isAfter(as.getDatumDo()))) {
 
                     if (retIDs.contains(as.getIdVozila())) {
                         retIDs.remove(as.getIdVozila());

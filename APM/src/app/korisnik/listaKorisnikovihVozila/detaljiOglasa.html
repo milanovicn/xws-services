@@ -1,0 +1,65 @@
+<div class='card-body'>
+    <div class='row'>
+      <div class='col-md-8'>
+        <div class='row'>
+          <div class='col-md-4'>Marka:</div>
+          <div class='col-md-8'>{{vozilo.marka}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>Model:</div>
+          <div class='col-md-8'>{{vozilo.model}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>Klasa automobila:</div>
+          <div class='col-md-8'>{{vozilo.klasaVozila}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>Ukupno predjeno:</div>
+          <div class='col-md-8'>{{vozilo.redjenaKilometraza}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>Planirano za preci:</div>
+          <div class='col-md-8'>{{vozilo.ogranicenaKilometraza}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>Tip menjaca:</div>
+          <div class='col-md-8'>{{vozilo.tipMenjaca}}</div>
+        </div>
+        <div class='row'>
+            <div class='col-md-4'>Tip goriva:</div>
+            <div class='col-md-8'>{{vozilo.tipGoriva}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Broj sedista za decu:</div>
+            <div class='col-md-8'>{{vozilo.brojSedistaDeca}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Mesto odakle se preuzima auto:</div>
+            <div class='col-md-8'>{{vozilo.mesto}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Poseduje CWD:</div>
+            <div class='col-md-8'>{{vozilo.CDWProtection}}</div>
+          </div>
+          
+    
+    </div>
+    </div>
+</div>
+
+<div class='card-footer'>
+    <button class='btn btn-outline-secondary'
+            (click)='prikaziRezervaciju()'
+            style='width:80px'>
+      <i class='fa fa-chevron-left'></i> Rezervisi Vozilo
+    </button>
+  </div>
+
+  <div *ngIf='zauzmiVozilo'>
+    <div>Zauzmi vozilo</div>
+    <input type="date" [(ngModel)]='zauzmiOd'>
+    <input type="date" [(ngModel)]='zauzmiDo'>
+    <button class='btn btn-outline-secondary'
+            (click)='rezervisi()'>Rezervisi</button>
+
+        </div>

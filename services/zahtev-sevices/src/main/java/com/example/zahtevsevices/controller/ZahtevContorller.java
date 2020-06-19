@@ -51,19 +51,19 @@ public class ZahtevContorller {
         return new ResponseEntity<>(zahtevi, HttpStatus.CREATED);
     }
     @PostMapping(value = "/odobri/{idZahteva}")
-    public void odobriZahtev(@PathVariable("izZahteva") Long izZahteva) throws Exception {
+    public void odobriZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
 
 
-        zahtevService.prihvatiZahtev(izZahteva);
+        zahtevService.prihvatiZahtev(idZahteva);
 
 
     }
 
     @PostMapping(value = "/otkazi/{idZahteva}")
-    public void otkaziZahtev(@PathVariable("izZahteva") Long izZahteva) throws Exception {
+    public void otkaziZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
 
 
-        zahtevService.otkaziZahtev(izZahteva);
+        zahtevService.otkaziZahtev(idZahteva);
 
 
     }
