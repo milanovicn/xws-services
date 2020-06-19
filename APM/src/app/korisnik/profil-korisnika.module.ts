@@ -13,6 +13,8 @@ import { SearchComponent } from './search-oglasi/listaSvihOglasa.component';
 import { ZahtevComponent } from './zahtevi/zahtevi.component';
 import { ZahtevSerivces } from './search-oglasi/zahtev.service';
 import { SearchSerivces } from './search-oglasi/search.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PlacanjeComponent } from './placanje/placanje.component';
 
 
 
@@ -20,15 +22,18 @@ import { SearchSerivces } from './search-oglasi/search.service';
   declarations: [ProfilKorisnikaComponent,VoziloComponent,ListaVozilaComponent,DetaljiOglasaComponent,SearchComponent,ZahtevComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
+
     RouterModule.forChild([
       { path: 'korisnik', component: ProfilKorisnikaComponent },
       { path: 'korisnik/vozilo', component: VoziloComponent },
       { path: 'korisnik/mojiOglasi', component: ListaVozilaComponent },
       { path: 'korisnik/search', component: SearchComponent },
       { path: 'korisnik/zahteviZaMene', component: ZahtevComponent },
+      { path: 'korisnik/placanje', component: PlacanjeComponent },
       {
-        path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent
-      },
+        path: 'mojiOglasi/:id', component: DetaljiOglasaComponent
+      }
      
 
       //{ path: 'admin/korisnici', component: ListaKorisnikaComponent },

@@ -25,7 +25,7 @@ export class SearchSerivces{
   }
 
 public pretrazi(search:Pretraga):Observable<number[]>{
-      return this.http.get<number[]>("/search/search");
+      return this.http.post<number[]>("/search/pretrazi",search);
   }
  
 

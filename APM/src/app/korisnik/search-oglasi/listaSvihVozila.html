@@ -1,28 +1,28 @@
 <div>Pretraga vozila</div>
           <input type="datetime-local" [(ngModel)]='zauzmiOd'>
           <input type="datetime-local" [(ngModel)]='zauzmiDo'>
-           <!-- <input type="text" [(ngModel)]='mesto'>
-          <input type="number" [(ngModel)]='sedista'>
-          <input type="checkbox" [(ngModel)]='protection'>
+           <input type="text" name="Mesto"  #Mesto="ngModel" [(ngModel)]="pretraga.mesto">
+          <input type="number" name="Sedista"  #Sedista="ngModel" [(ngModel)]="pretraga.brojSedistaZaDecu">
+          <input type="checkbox" name="CWD"  #CWD="ngModel" [(ngModel)]="protection">
         
           <select name="MarkaAutomobila"  #MarkaAutomobila="ngModel" [(ngModel)] = "izabranaMarka">
-            <option *ngFor='let mar of nazivmarkeVozila' [ngValue]="mar">{{mar}}</option>
+            <option *ngFor='let mar of markeVozila' [ngValue]="mar">{{mar.naziv}}</option>
 
             </select>
             <select name="ModelAutomobila"  #ModelAutomobila="ngModel" [(ngModel)] = "izabraniModel">
-              <option *ngFor='let mod of nazivModeliVozila' [ngValue]="mod">{{mod}}</option>
+              <option *ngFor='let mod of modeliVozila' [ngValue]="mod">{{mod.naziv}}</option>
 
               </select>
               <select name="TipGoriva"  #TipGoriva="ngModel" [(ngModel)] = "izabranoGorivo">
-                <option *ngFor='let ngorivo of nazivtipoviGoriva' [ngValue]="ngorivo">{{ngorivo}}</option>
+                <option *ngFor='let ngorivo of tipoviGoriva' [ngValue]="ngorivo">{{ngorivo.naziv}}</option>
 
                 </select>
                 <select name="TipMenjaca"  #TipMenjaca="ngModel" [(ngModel)] = "izabraniMenjac">
-                  <option *ngFor='let nmenjac of nazivtipoviMenjaca' [ngValue]="nmenjac">{{nmenjac}}</option>
+                  <option *ngFor='let nmenjac of tipoviMenjaca' [ngValue]="nmenjac">{{nmenjac.naziv}}</option>
 
-                  </select>-->
-        <!-- <button class='btn btn-outline-secondary'
-                  (click)='pretrazi()'>Pretrazi</button>-->
+                  </select>
+        <button class='btn btn-outline-secondary'
+                  (click)='pretrazi()'>Pretrazi</button>
       
             
 
