@@ -6,6 +6,8 @@ import { Vozilo } from '../vozilo/Vozilo';
 import { VoziloSerivces } from '../vozilo/vozilo.services';
 
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import {Komentar} from 'src/app/admin/komentari/Komentar';
+import { KomentariServices } from 'src/app/admin/komentari/komentari.services';
 
 @Component({
   templateUrl: './detaljiOglasa.html',
@@ -29,6 +31,8 @@ export class DetaljiOglasaComponent implements OnInit {
   retrieveResonse: any;
   message: string;
 
+  komentari: Komentar[]=[];
+
 
   get zauzmiOd(): Date {
     return this._zauzmiOd;
@@ -46,7 +50,9 @@ export class DetaljiOglasaComponent implements OnInit {
     this._zauzmiDo = value;
   }
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private voziloService: VoziloSerivces) {
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, 
+    private router: Router, private voziloService: VoziloSerivces, 
+    private komentariService: KomentariServices) {
 
     this.vozilo = new Vozilo();
     this.zauzece = new Zauzece();
@@ -78,6 +84,8 @@ export class DetaljiOglasaComponent implements OnInit {
         }
 
       );
+      
+      this.listaKomentara();
   }
 
 
@@ -90,5 +98,13 @@ export class DetaljiOglasaComponent implements OnInit {
     this.zauzece.idVozila = this.id;
     this.voziloService.rezervisiVozilo(this.zauzece).subscribe();
 
+  }
+
+  listaKomentara() {
+    this.komentariService.vratiKomentareVozila(this.id).subscribe(
+      komentari => {
+        this.komentari = komentari;
+      }
+    );
   }
 }

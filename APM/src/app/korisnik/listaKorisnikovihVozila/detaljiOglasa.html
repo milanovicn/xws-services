@@ -70,3 +70,9 @@
           (click)='rezervisi()'>Rezervisi</button>
 
 </div>
+
+<div class='card-body'>
+  <div class='row' *ngFor='let k of komentari'>
+    <div class='col-md-4'>{{k.komentar}}</div>
+  </div>
+</div>

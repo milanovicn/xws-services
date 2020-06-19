@@ -7,8 +7,12 @@ import java.util.Collection;
 
 public interface KomentarService {
 
-    Collection<Komentar> findAll();
-    Collection<Komentar> findByIdVozila(Long id);
-    Komentar findById(Long id);
-    void create(Long idVozila, String komentar) throws Exception;
+
+    public Collection<Komentar> findAll();
+    public Collection<Komentar> findByIdVozila(Long id);
+    public Komentar findById(Long id);
+    public Komentar create(Long idVozila, String komentar) throws Exception;
+    public void odbij(Long id);
+    public void odobri(Long id);
+    public Collection<Komentar> findApprovedByIdVozila(Long id);
 }

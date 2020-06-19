@@ -58,13 +58,13 @@ public class ZahtevServiceImpl implements ZahtevService {
         for(Zahtev zahtev:zahtevi) {
             if (zahtev.getStanje().equals("RESERVED")) {
                 if (trenutnoVreme.isAfter(zahtev.getVremeOdobrenja().plusHours(12)) && !zahtev.getStanje().equals("PAID")) {
-                    zahtev.setStanje(Stanje.CANDELED);
+                    zahtev.setStanje(Stanje.CANCELED);
                     zahtevRepository.save(zahtev);
                 }else if (zahtev.getStanje().equals("PAID")) {
                     List<Zahtev> zahteviNovi = zahtevRepository.findByIdVozila(zahtev.getIdVozila());
                     for (Zahtev z : zahteviNovi) {
                         if (z.getDatumOd().isBefore(zahtev.getDatumDo()) && zahtev.getDatumOd().isBefore(z.getDatumDo())) {
-                            z.setStanje(Stanje.CANDELED);
+                            z.setStanje(Stanje.CANCELED);
                             zahtevRepository.save(z);
                         }
                     }
@@ -84,7 +84,7 @@ public class ZahtevServiceImpl implements ZahtevService {
         LocalDateTime trenutnoVreme=LocalDateTime.now();
         for(Zahtev z:zahtevi){
             if(z.getVremeKreiranja().plusHours(24).isBefore(trenutnoVreme) && z.getStanje().equals("PENDING")){
-                z.setStanje(Stanje.CANDELED);
+                z.setStanje(Stanje.CANCELED);
                 zahtevRepository.save(z);
             }
         }
@@ -92,16 +92,45 @@ public class ZahtevServiceImpl implements ZahtevService {
 
         }
 
-
-
-
-
     @Override
     public void otkaziZahtev(Long id) {
         Zahtev zaIzemnu=zahtevRepository.findById(id).orElseGet(null);
 
-        zaIzemnu.setStanje(Stanje.CANDELED);
+        zaIzemnu.setStanje(Stanje.CANCELED);
         zahtevRepository.save(zaIzemnu);
 
     }
+
+    @Override
+    public void platiZahtev(Long id) {
+        Zahtev zaIzemnu=zahtevRepository.findById(id).orElseGet(null);
+
+        zaIzemnu.setStanje(Stanje.PAID);
+        zahtevRepository.save(zaIzemnu);
+
+    }
+
+    @Override
+    public void komentarisiZahtev(Long id) {
+        Zahtev zaIzemnu=zahtevRepository.findById(id).orElseGet(null);
+
+        zaIzemnu.setStanje(Stanje.REVIEWED);
+        zahtevRepository.save(zaIzemnu);
+
+    }
+    @Scheduled(initialDelayString = "3000", fixedDelayString = "30000")
+    public void zavrsenoIznajmljivanje() throws Exception {
+        List<Zahtev> zahtevi=zahtevRepository.findAll();
+        LocalDateTime trenutnoVreme=LocalDateTime.now();
+        for(Zahtev z:zahtevi){
+            if(z.getDatumDo().isBefore(trenutnoVreme) && z.getStanje().equals("PAID")){
+                z.setStanje(Stanje.WAITING_REVIEW);
+                zahtevRepository.save(z);
+            }
+        }
+
+
+    }
+
+
 }

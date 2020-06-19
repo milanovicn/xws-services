@@ -1,5 +1,4 @@
 package com.example.voziloservice.model;
-
 import javax.persistence.*;
 
 @Entity

@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-body">
+    <h1>Novi komentari za odobravanje</h1>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Vozilo id:</th>
+            <th>Sadrzaj komentara:</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let komentar of komentariZaPregled'>
+            <td>{{ komentar.idVozila }}</td>
+            <td>{{ komentar.komentar }}</td>
+            <td><button class="btn btn-info"
+                      (click)='odobri(komentar)'>Odobri</button></td>
+            <td><button class="btn btn-info"
+                      (click)='odbij(komentar)'>Odbij</button></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class='card'>
+  <div class='card-body'>
+    <button (click)='onBack()'
+            class="btn btn-info">Back</button>
+  </div>
+</div>

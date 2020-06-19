@@ -35,4 +35,12 @@ public otkaziZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
     return this.http.post<ZahtevRezervacije>("/zahtev/otkazi/"+zahtev.id,zahtev);
 }
 
+public platiZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
+  return this.http.post<ZahtevRezervacije>("/zahtev/plati/"+zahtev.id, zahtev);
+}
+
+public komentarisi(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
+  return this.http.post<ZahtevRezervacije>("/zahtev/komentarisi/"+zahtev.id, zahtev);
+}
+
 }

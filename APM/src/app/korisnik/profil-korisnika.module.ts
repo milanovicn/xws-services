@@ -49,7 +49,8 @@ import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
       },
       { path: 'korisnik/novi-cenovnik', component: NoviCenovnikComponent },
       { path: 'korisnik/cenovnik/:id', component: CenovnikComponent },
-      { path: 'korisnik/cenovnik', component: ListaCenovnikaComponent }
+      { path: 'korisnik/cenovnik', component: ListaCenovnikaComponent },
+      {
         path: 'mojiOglasi/:id', component: DetaljiOglasaComponent
       }
      

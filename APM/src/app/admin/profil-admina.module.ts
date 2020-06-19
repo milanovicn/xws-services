@@ -8,23 +8,23 @@ import { ListaKorisnikaComponent } from './lista-korisnika/lista-korisnika.compo
 import { SifrarniciComponent } from './sifrarnici/sifrarnici.component';
 import { KorisnikService } from './lista-korisnika/korisnici.services';
 import { SifrarnikService } from './sifrarnici/sifrarnici.services';
-
-
+import { ListaKomentaraComponent } from './komentari/lista-komentara.component';
+import { KomentariService } from './komentari/komentari.services';
 
 @NgModule({
-  declarations: [ProfilAdminaComponent, ListaKorisnikaComponent, SifrarniciComponent],
+  declarations: [ProfilAdminaComponent, ListaKorisnikaComponent, SifrarniciComponent, ListaKomentaraComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: 'admin', component: ProfilAdminaComponent },
       { path: 'admin/korisnici', component: ListaKorisnikaComponent },
       { path: 'admin/sifrarnici', component: SifrarniciComponent },
-
+      { path: 'admin/komentari', component: ListaKomentaraComponent }
     ]),
     FormsModule
   ],
    providers: [
-     AdminService, KorisnikService, SifrarnikService,
+     AdminService, KorisnikService, SifrarnikService, KomentariService
    ]
 })
 export class ProfilAdminaModule { }

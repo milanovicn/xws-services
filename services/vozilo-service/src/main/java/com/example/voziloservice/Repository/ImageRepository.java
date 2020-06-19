@@ -1,6 +1,7 @@
 package com.example.voziloservice.Repository;
 
 
+
 import com.example.voziloservice.model.ImageModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 

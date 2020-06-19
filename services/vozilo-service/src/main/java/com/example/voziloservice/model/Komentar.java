@@ -1,6 +1,6 @@
 package com.example.voziloservice.model;
 
-
+import com.example.voziloservice.model.StanjeKomentara;
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +17,7 @@ public class Komentar {
     private String komentar;
 
     @Column(name = "Stanje", nullable = false)
-    private String stanje;
+    private StanjeKomentara stanje;
 
 
 
@@ -25,17 +25,17 @@ public class Komentar {
     public Komentar() {
     }
 
-    public Komentar(Long idVozila, String komentar, String stanje) {
+    public Komentar(Long idVozila, String komentar) {
         this.idVozila = idVozila;
         this.komentar = komentar;
-        this.stanje = StanjeKomentara.OBJAVLJEN.toString();
+        this.stanje = StanjeKomentara.OBJAVLJEN;
     }
 
-    public String getStanje() {
+    public StanjeKomentara getStanje() {
         return stanje;
     }
 
-    public void setStanje(String stanje) {
+    public void setStanje(StanjeKomentara stanje) {
         this.stanje = stanje;
     }
 
