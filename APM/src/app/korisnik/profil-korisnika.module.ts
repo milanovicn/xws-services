@@ -16,10 +16,23 @@ import { SearchSerivces } from './search-oglasi/search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PlacanjeComponent } from './placanje/placanje.component';
 
+import { CenovnikComponent } from './cenovnik/cenovnik.component';
+import { NoviCenovnikComponent } from './cenovnik/novi-cenovnik.component';
+import { CenovnikService } from './cenovnik/cenovnik.service';
+import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
+
 
 
 @NgModule({
-  declarations: [ProfilKorisnikaComponent,VoziloComponent,ListaVozilaComponent,DetaljiOglasaComponent,SearchComponent,ZahtevComponent],
+  declarations: [ProfilKorisnikaComponent,
+    VoziloComponent,
+    ListaVozilaComponent,
+    DetaljiOglasaComponent,
+    SearchComponent,
+    ZahtevComponent, 
+    CenovnikComponent,
+    NoviCenovnikComponent,
+    ListaCenovnikaComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -32,6 +45,11 @@ import { PlacanjeComponent } from './placanje/placanje.component';
       { path: 'korisnik/zahteviZaMene', component: ZahtevComponent },
       { path: 'korisnik/placanje', component: PlacanjeComponent },
       {
+        path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent
+      },
+      { path: 'korisnik/novi-cenovnik', component: NoviCenovnikComponent },
+      { path: 'korisnik/cenovnik/:id', component: CenovnikComponent },
+      { path: 'korisnik/cenovnik', component: ListaCenovnikaComponent }
         path: 'mojiOglasi/:id', component: DetaljiOglasaComponent
       }
      
@@ -43,7 +61,12 @@ import { PlacanjeComponent } from './placanje/placanje.component';
     FormsModule
   ],
   providers: [
-    KorisnikService,VoziloSerivces,SifrarnikService,ZahtevSerivces,SearchSerivces
+    KorisnikService,
+    VoziloSerivces,
+    SifrarnikService,
+    ZahtevSerivces,
+    SearchSerivces,
+    CenovnikService
   ]
 })
 export class ProfilKorisnikaModule { }
