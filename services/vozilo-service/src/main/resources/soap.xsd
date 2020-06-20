@@ -1,0 +1,40 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com/voziloservice/xsd"
+           targetNamespace="http://example.com/voziloservice/xsd" elementFormDefault="qualified">
+
+    <xs:element name="postVoziloRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vozilo" type="tns:Vozilo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="postVoziloResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Vozilo">
+        <xs:sequence>
+            <xs:element name="markaAutomobila" type="xs:string"/>
+            <xs:element name="modelAutomobila" type="xs:string"/>
+            <xs:element name="tipGoriva" type="xs:string"/>
+            <xs:element name="tipMenjaca" type="xs:string"/>
+            <xs:element name="klasaVozila" type="xs:string"/>
+            <xs:element name="cenovnikId" type="xs:string"/>
+            <xs:element name="predjenaKilometraza" type="xs:double"/>
+            <xs:element name="ogranicenaKilometraza" type="xs:string"/>
+            <xs:element name="CDWProtection" type="xs:boolean"/>
+            <xs:element name="brojSedistaDeca" type="xs:int"/>
+            <xs:element name="iznajmljivacId" type="xs:long"/>
+            <xs:element name="vaziOd" type="xs:date"/>
+            <xs:element name="vaziDo" type="xs:date"/>
+            <xs:element name="mesto" type="xs:string"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
