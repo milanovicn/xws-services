@@ -15,15 +15,15 @@ export class CenovnikService{
     }
 
     public vratiCenovnik(id:number):Observable<Cenovnik>{
-        return this.http.get<Cenovnik>("/api/cenovnik/"+id);
+        return this.http.get<Cenovnik>("/user/user/cenovnik/"+id);
     }
 
     public obrisiCenovnik(id:number){
-        return this.http.delete("/user/cenovnik/"+id);
+        return this.http.delete("/user/user/cenovnik/"+id);
     }
 
     public napraviCenovnik(cenovnik:Cenovnik){
-        return this.http.post<Cenovnik>("/user/cenovnik/",cenovnik);
+        return this.http.post<Cenovnik>("/user/user/cenovnik",cenovnik);
     }
 
     //public vratiSveCenovnike(): Observable<Cenovnik[]> {
@@ -31,7 +31,7 @@ export class CenovnikService{
     //}
 
     public vratiCenovnikePoKorisniku(id:number): Observable<Cenovnik[]> {
-        return this.http.get<Cenovnik[]>("/user/cenovnik/autor/"+id);
+        return this.http.get<Cenovnik[]>("/user/user/cenovnik/autor/"+id);
     }
 
 }

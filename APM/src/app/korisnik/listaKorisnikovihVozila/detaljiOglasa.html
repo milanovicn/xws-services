@@ -62,9 +62,9 @@
 
 <div *ngIf='zauzmiVozilo'>
   <div>Zauzmi vozilo</div>
-  <input type="date"
+  <input type="datetime-local"
          [(ngModel)]='zauzmiOd'>
-  <input type="date"
+  <input type="datetime-local"
          [(ngModel)]='zauzmiDo'>
   <button class='btn btn-outline-secondary'
           (click)='rezervisi()'>Rezervisi</button>

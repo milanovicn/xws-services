@@ -13,12 +13,12 @@ export class NoviCenovnikComponent {
 
     errorMessage = '';
     cenovnik: Cenovnik;
-    id: number;
+   // id: number;
     korisnik: Korisnik;
 
     constructor(private route: ActivatedRoute, private router: Router, private cenovnikService: CenovnikService, private login: KorisnikService) {
         this.cenovnik = new Cenovnik();
-
+            this.korisnik=new Korisnik();
     }
 
 
@@ -26,7 +26,7 @@ export class NoviCenovnikComponent {
 
         this.login.getKorisnika().subscribe({ next: korisnik => {
                 this.korisnik = korisnik;
-                this.cenovnik.autor=korisnik.id.toString(10);
+                this.cenovnik.autor=this.korisnik.id;
                 this.cenovnikService.napraviCenovnik(this.cenovnik).subscribe(cenovnik => {
                     this.cenovnik = cenovnik;
                 });

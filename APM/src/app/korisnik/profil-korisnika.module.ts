@@ -14,12 +14,13 @@ import { ZahtevComponent } from './zahtevi/zahtevi.component';
 import { ZahtevSerivces } from './search-oglasi/zahtev.service';
 import { SearchSerivces } from './search-oglasi/search.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PlacanjeComponent } from './placanje/placanje.component';
+
 
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { NoviCenovnikComponent } from './cenovnik/novi-cenovnik.component';
 import { CenovnikService } from './cenovnik/cenovnik.service';
 import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
+import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
 
 
 
@@ -32,10 +33,13 @@ import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
     ZahtevComponent, 
     CenovnikComponent,
     NoviCenovnikComponent,
-    ListaCenovnikaComponent],
+    ListaCenovnikaComponent,
+    MojiZahteviComponent],
+
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
 
     RouterModule.forChild([
       { path: 'korisnik', component: ProfilKorisnikaComponent },
@@ -43,16 +47,11 @@ import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
       { path: 'korisnik/mojiOglasi', component: ListaVozilaComponent },
       { path: 'korisnik/search', component: SearchComponent },
       { path: 'korisnik/zahteviZaMene', component: ZahtevComponent },
-      { path: 'korisnik/placanje', component: PlacanjeComponent },
-      {
-        path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent
-      },
+      { path: 'korisnik/placanje', component: MojiZahteviComponent },
       { path: 'korisnik/novi-cenovnik', component: NoviCenovnikComponent },
       { path: 'korisnik/cenovnik/:id', component: CenovnikComponent },
       { path: 'korisnik/cenovnik', component: ListaCenovnikaComponent },
-      {
-        path: 'mojiOglasi/:id', component: DetaljiOglasaComponent
-      }
+      { path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent }
      
 
       //{ path: 'admin/korisnici', component: ListaKorisnikaComponent },

@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { LoginServces } from './login/login.services';
 import { SignupComponent } from './login/signup.component';
 import { ProfilKorisnikaModule } from './korisnik/profil-korisnika.module';
+import { AgentComponent } from './agent/agent.component';
+import { AgentSerivces } from './agent/agent.service';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +21,7 @@ import { ProfilKorisnikaModule } from './korisnik/profil-korisnika.module';
     WelcomeComponent,
     LoginComponent,
     SignupComponent,
+    AgentComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,8 @@ import { ProfilKorisnikaModule } from './korisnik/profil-korisnika.module';
       { path: 'welcome', component: WelcomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
+      { path: 'agent', component:AgentComponent },
+
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'},
       
@@ -36,7 +42,7 @@ import { ProfilKorisnikaModule } from './korisnik/profil-korisnika.module';
     ProfilAdminaModule,
     ProfilKorisnikaModule
   ],
-  providers:[LoginServces,],
+  providers:[LoginServces,AgentSerivces],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

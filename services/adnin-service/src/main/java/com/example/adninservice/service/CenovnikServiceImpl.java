@@ -34,7 +34,7 @@ public class CenovnikServiceImpl implements CenovnikService{
         ret.setCenaPrekoraceniKm(newCenovnik.getCenaPrekoraceniKm());
         ret.setNaziv(newCenovnik.getNaziv());
         ret.setPopustProcenat(newCenovnik.getPopustProcenat());
-
+        ret.setAutor(newCenovnik.getAutor());
 
         ret = cenovnikRepository.save(ret);
         return ret;
@@ -48,15 +48,8 @@ public class CenovnikServiceImpl implements CenovnikService{
 
     @Override
     public Collection<Cenovnik> findAllByAuthorId(Long id) {
-        ArrayList<Cenovnik> ret = new ArrayList<Cenovnik>();
 
-        for(Cenovnik c : cenovnikRepository.findAll()){
-            if(c.getAutor() == id.toString()){
-                ret.add(c);
 
-            }
-        }
-
-            return ret;
+            return cenovnikRepository.findByAutor(id);
     }
 }
