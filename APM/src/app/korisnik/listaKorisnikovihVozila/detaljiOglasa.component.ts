@@ -7,7 +7,11 @@ import { VoziloSerivces } from '../vozilo/vozilo.services';
 
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import {Komentar} from 'src/app/admin/komentari/Komentar';
-import { KomentariServices } from 'src/app/admin/komentari/komentari.services';
+import { KomentariService } from 'src/app/admin/komentari/komentari.services';
+import { ZahtevRezervacije } from '../search-oglasi/ZahtevRezervacije';
+import { ZahtevSerivces } from '../search-oglasi/zahtev.service';
+import { KorisnikService } from 'src/app/admin/lista-korisnika/korisnici.services';
+import { Korisnik } from 'src/app/login/Korisnik';
 
 @Component({
   templateUrl: './detaljiOglasa.html',
@@ -22,7 +26,8 @@ export class DetaljiOglasaComponent implements OnInit {
   _zauzmiDo: Date;
   prikazanKomentre: boolean = false;
   zauzmiVozilo: boolean = false;
-  zauzece: Zauzece;
+  zauzece: ZahtevRezervacije;
+  korisnik:Korisnik;
 
 
   selectedFile: File;
@@ -52,15 +57,19 @@ export class DetaljiOglasaComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, 
     private router: Router, private voziloService: VoziloSerivces, 
-    private komentariService: KomentariServices) {
+    private komentariService: KomentariService,private login:KorisnikService,private zahtevService:ZahtevSerivces) {
 
     this.vozilo = new Vozilo();
-    this.zauzece = new Zauzece();
+    this.zauzece = new ZahtevRezervacije();
+    this.korisnik=new Korisnik();
   }
 
 
   ngOnInit() {
-    const param = this.route.snapshot.paramMap.get('id');
+    this.login.getKorisnika().subscribe({
+      next: korisnik=>{this.korisnik=korisnik;}
+    });
+      const param = this.route.snapshot.paramMap.get('id');
     if (param) {
       this.id = +param;
       this.getProduct(this.id);
@@ -93,10 +102,12 @@ export class DetaljiOglasaComponent implements OnInit {
     this.zauzmiVozilo = true;
   }
   rezervisi() {
-    this.zauzece.od = this.zauzmiOd;
-    this.zauzece.zauzetDo = this.zauzmiDo;
+    this.zauzece.datumOd = this.zauzmiOd;
+    this.zauzece.datumDo = this.zauzmiDo;
     this.zauzece.idVozila = this.id;
-    this.voziloService.rezervisiVozilo(this.zauzece).subscribe();
+    this.zauzece.izdavac=this.korisnik.id;
+    this.zauzece.podnosilac=this.korisnik.id;
+    this.zahtevService.napraviZahtev(this.zauzece).subscribe();
 
   }
 

@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body">
+        <h1>Registruj se</h1>
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+            <table>
+                <tr>
+                    <td>Naziv Firme</td>
+                    <td><input type="text" required name="nazivF" #nazivF="ngModel"  [(ngModel)]="agent.nazivFirme" [ngClass]="{'form-control':true,
+                    'is-invalid': !nazivF?.valid && !nazivF?.touched,
+                    'is-valid': nazivF?.valid && nazivF?.touched}" ></td>
+                    <td *ngIf="nazivF?.errors?.required && nazivF?.touched"> Polje se mora popuniti
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Adresa</td>
+                    <td><input type="text" required name="adresa" #adresa="ngModel" [(ngModel)]="agent.adresa" [ngClass]="{'form-control':true,
+                        'is-invalid': !adresa?.valid && !adresa?.touched,
+                        'is-valid': adresa?.valid && adresa?.touched}" ></td>
+
+                    <td *ngIf="adresa?.errors?.required && adresa?.touched"> Polje se mora popuniti
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" required name="email" #email="ngModel" [(ngModel)]="agent.email" [ngClass]="{'form-control':true,
+                            'is-invalid': !email?.valid && !email?.touched,
+                            'is-valid': email?.valid && email?.touched}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></td>
+
+                    <td *ngIf="email?.errors?.required && email?.touched"> Polje se mora popuniti</td>
+                    <td *ngIf="email?.errors?.pattern && email?.touched"> Email nije validan</td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" required name="password" #password="ngModel" [(ngModel)]="agent.password" [ngClass]="{'form-control':true,
+                        'is-invalid': !password?.valid && !password?.touched,
+                        'is-valid': password?.valid && password?.touched}" minlength="8"></td>
+                    <td *ngIf="password?.errors?.required && password?.touched"> Polje se mora popuniti</td>
+                    <td *ngIf="password?.errors?.minlength && password?.touched"> Sifra sadrzi minimalno 8 karaktera</td>
+                </tr>
+               
+                <tr>
+                <td><input type="submit" value="Potvrdi" class="btn btn-info"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

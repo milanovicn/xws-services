@@ -7,7 +7,7 @@
                 <h3>Slika</h3>
                 <input type="file" (change)="onFileChanged($event)">
 
-
+<!--
                 <div>
                     <img *ngFor="let url of urls"
                          [src]="url"
@@ -18,6 +18,7 @@
                        name="imgs"
                        multiple
                        (change)="detectFiles($event)">
+                       -->
 
                 <tr>
                     <td>Zuzeto od</td>
@@ -105,8 +106,8 @@
                     <td>Cena</td>
                     <td><select name="Cena"
                             #Cena="ngModel"
-                            [(ngModel)]="vozilo.cenovnikId">
-                        <option *ngFor='let c of cenovnici'>{{ c.naziv }}</option>
+                            [(ngModel)]="izabraniCenovnik">
+                        <option *ngFor='let c of cenovnici' [ngValue]="c">{{ c.naziv }}</option>
                     </select></td>
                 </tr>
                 <tr>

@@ -54,9 +54,10 @@
       </tbody>
     </table>
     Tekst komentara:
-    <input type=text
-           [(ngModel)]="tekstKomentara"
-           name="tekstKomentara" />
+    <input type="text"
+           name="TekstKomentara" 
+           #TekstKomentara="ngModel"
+           [(ngModel)]="tekstKomentara"/>
   </div>
 
 </div>
