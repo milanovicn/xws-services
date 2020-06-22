@@ -137,7 +137,7 @@ export class VoziloComponent implements OnInit {
         this.vozilo.tipMenjaca = this.izabraniMenjac.naziv;
         this.vozilo.cenovnikId=this.izabraniCenovnik.naziv;
 
-        this.voziloService.sacuvajVozilo(this.vozilo).subscribe(vozilo => {
+        this.voziloService.sacuvajVozilo(this.vozilo,this.korisnik.rola).subscribe(vozilo => {
             this.vozilo = vozilo;
             this.napraviSearch();
             // this.slika.idVozila=this.vozilo.id;
