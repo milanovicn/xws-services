@@ -23,15 +23,16 @@ public class VoziloServiceImpl implements VoziloService {
 
 
     @Override
-    public Vozilo addVozilo(Vozilo vozilo) {
+    public Vozilo addVozilo(Vozilo vozilo,String rola) {
 
-    if(userClient.chackNuberOfCars(vozilo.getIznajmljivacId())==true){
-        Vozilo newVozilo=new Vozilo(vozilo.getMarka(),vozilo.getModel(),vozilo.getTipGoriva(),vozilo.getTipMenjaca(),
-                vozilo.getKlasaVozila(),vozilo.getCenovnikId(),vozilo.getRedjenaKilometraza(),vozilo.getOgranicenaKilometraza(),
-                vozilo.isCDWProtection(),vozilo.getBrojSedistaDeca(),vozilo.getVaziOd(),vozilo.getVaziDo(),vozilo.getMesto(),vozilo.getIznajmljivacId());
+        if(rola.equals("CLIENT")) {
+            if (userClient.chackNuberOfCars(vozilo.getIznajmljivacId()) == true) {
+                Vozilo newVozilo = new Vozilo(vozilo.getMarka(), vozilo.getModel(), vozilo.getTipGoriva(), vozilo.getTipMenjaca(),
+                        vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
+                        vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId());
 
-        voziloRepository.save(newVozilo);
-        userClient.uvecajBrojOglasa(newVozilo.getIznajmljivacId());
+                voziloRepository.save(newVozilo);
+                userClient.uvecajBrojOglasa(newVozilo.getIznajmljivacId());
      /*   String CWDProtection="NE";
         if(newVozilo.isCDWProtection())
             CWDProtection="DA";
@@ -43,10 +44,17 @@ public class VoziloServiceImpl implements VoziloService {
         datum2=formatter.format(newVozilo.getVaziDo());
         searchClient.addVozilo(newVozilo.getMesto(),newVozilo.getMarka(),newVozilo.getModel(),newVozilo.getTipMenjaca(),newVozilo.getTipGoriva(),CWDProtection,datum1,
                 datum2,newVozilo.getBrojSedistaDeca(),newVozilo.getId());*/
-        return newVozilo;
-    }
-    else
-        return  null;
+                return newVozilo;
+            } else
+                return null;
+        }else{
+            Vozilo newVozilo = new Vozilo(vozilo.getMarka(), vozilo.getModel(), vozilo.getTipGoriva(), vozilo.getTipMenjaca(),
+                    vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
+                    vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId());
+
+            voziloRepository.save(newVozilo);
+            return newVozilo;
+        }
     }
 
     @Override

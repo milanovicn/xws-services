@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface VoziloService {
-    Vozilo addVozilo(Vozilo vozilo);
+    Vozilo addVozilo(Vozilo vozilo,String rola);
     List<Vozilo> getAll();
     List<Vozilo> findByIznajmljivacId(Long id);
     Vozilo findById(Long id);

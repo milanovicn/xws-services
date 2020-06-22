@@ -38,10 +38,10 @@ public class VoziloController {
     @Autowired
     private ZauzeceVozilaService zauzeceVozilaService;
 
-    @PostMapping( value = "/addVozilo")
-    public ResponseEntity<?> addVozilo(@RequestBody Vozilo vozilo) throws Exception {
+    @PostMapping( value = "/addVozilo/{rola}")
+    public ResponseEntity<?> addVozilo(@RequestBody Vozilo vozilo,@PathVariable("rola") String rola) throws Exception {
 
-        Vozilo newVozilo=voziloService.addVozilo(vozilo);
+        Vozilo newVozilo=voziloService.addVozilo(vozilo,rola);
 
         if(newVozilo!=null)
             return new ResponseEntity<>(newVozilo, HttpStatus.CREATED);
