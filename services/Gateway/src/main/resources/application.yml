@@ -22,13 +22,13 @@ spring:
             - Path=/car/**
           filters:
             - RewritePath=/car/(?<path>.*), /$\{path}
-	- id: search
+        - id: search
           uri: lb://search
           predicates:
             - Path=/search/**
           filters:
             - RewritePath=/search/(?<path>.*), /$\{path}
-	- id: zahtev
+        - id: zahtev
           uri: lb://zahtev
           predicates:
             - Path=/zahtev/**
