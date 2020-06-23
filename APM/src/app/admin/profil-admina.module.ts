@@ -10,21 +10,24 @@ import { KorisnikService } from './lista-korisnika/korisnici.services';
 import { SifrarnikService } from './sifrarnici/sifrarnici.services';
 import { ListaKomentaraComponent } from './komentari/lista-komentara.component';
 import { KomentariService } from './komentari/komentari.services';
+import { ListaAgenataComponent } from './agenti/lista-agenata.component';
+import { AgentSerivces } from '../agent/agent.service';
 
 @NgModule({
-  declarations: [ProfilAdminaComponent, ListaKorisnikaComponent, SifrarniciComponent, ListaKomentaraComponent],
+  declarations: [ProfilAdminaComponent, ListaKorisnikaComponent, SifrarniciComponent, ListaKomentaraComponent,ListaAgenataComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: 'admin', component: ProfilAdminaComponent },
       { path: 'admin/korisnici', component: ListaKorisnikaComponent },
       { path: 'admin/sifrarnici', component: SifrarniciComponent },
-      { path: 'admin/komentari', component: ListaKomentaraComponent }
+      { path: 'admin/komentari', component: ListaKomentaraComponent },
+      { path: 'admin/agenti', component: ListaAgenataComponent }
     ]),
     FormsModule
   ],
    providers: [
-     AdminService, KorisnikService, SifrarnikService, KomentariService
+     AdminService, KorisnikService, SifrarnikService, KomentariService,AgentSerivces
    ]
 })
 export class ProfilAdminaModule { }

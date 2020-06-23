@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
 
   consul-server:
@@ -9,54 +9,103 @@ services:
     tty: true
     ports: 
       - "8500:8500"
+    restart: on-failure 
     networks:
       static-network:
         ipv4_address: 172.20.0.2
 
+  mysql-backend:
+    image: mysql:8.0.19
+    environment:
+      MYSQL_ROOT_PASSWORD: fakultet
+      MYSQL_USER: root
+      MYSQL_PASSWORD: fakultet
+      MYSQL_DATABASE: xml_backend
+    ports:
+      - "3306"  
+    restart: always  
+    container_name: mysql-backend
+    networks:
+      - static-network  
+    volumes:
+      - mysql-data:/var/lib/mysql  
+
   adnin-service:
     image: adnin-service
+    environment:
+        DATABASE_USERNAME: root
+        DATABASE_PASSWORD: fakultet
+        DATABASE_SCHEMA: xml_user_service
+        DATABASE_DOMAIN: mysql-backend
+        DATABASE_PORT: 3306
     build:
       context: ./services/adnin-service
       dockerfile: Dockerfile
     tty: true
     networks:
       - static-network
+    restart: on-failure 
     depends_on:
       - consul-server
+      - mysql-backend
 
 
   vozilo-service:
     image: vozilo-service
+    environment:
+        DATABASE_USERNAME: root
+        DATABASE_PASSWORD: fakultet
+        DATABASE_SCHEMA: xml_car_service
+        DATABASE_DOMAIN: mysql-backend
+        DATABASE_PORT: 3306
     build:
       context: ./services/vozilo-service
       dockerfile: Dockerfile
     tty: true
     networks:
       - static-network
+    restart: on-failure 
     depends_on:
       - consul-server
+      - mysql-backend
 
   search-service:
     image: search-service
+    environment:
+        DATABASE_USERNAME: root
+        DATABASE_PASSWORD: fakultet
+        DATABASE_SCHEMA: xml_search_service
+        DATABASE_DOMAIN: mysql-backend
+        DATABASE_PORT: 3306
     build:
       context: ./services/search-service
       dockerfile: Dockerfile
     tty: true
     networks:
       - static-network
+    restart: on-failure 
     depends_on:
       - consul-server
+      - mysql-backend
 
   zahtev-sevices:
     image: zahtev-sevices
+    environment:
+        DATABASE_USERNAME: root
+        DATABASE_PASSWORD: fakultet
+        DATABASE_SCHEMA: xml_request_service
+        DATABASE_DOMAIN: mysql-backend
+        DATABASE_PORT: 3306
     build:
       context: ./services/zahtev-sevices
       dockerfile: Dockerfile
     tty: true
     networks:
       - static-network
+    restart: on-failure 
     depends_on:
       - consul-server
+      - mysql-backend
  
   gateway:
     image: gateway
@@ -68,8 +117,10 @@ services:
       - "8080:8080"
     networks:
       - static-network
+    restart: on-failure 
     depends_on:
       - consul-server
+      
 
 
 
@@ -78,6 +129,9 @@ services:
 
 
 
+volumes:
+  mysql-data:
+  
 networks:
   static-network:
     ipam:

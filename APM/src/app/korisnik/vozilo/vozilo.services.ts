@@ -16,8 +16,8 @@ export class VoziloSerivces {
 
 
 
-  public sacuvajVozilo(vozilo: Vozilo) {
-    return this.http.post<Vozilo>("/car/addVozilo", vozilo);
+  public sacuvajVozilo(vozilo: Vozilo,rola:string) {
+    return this.http.post<Vozilo>("/car/addVozilo/"+rola, vozilo);
   }
 
   public vratiSvaVozila(): Observable<Vozilo[]> {

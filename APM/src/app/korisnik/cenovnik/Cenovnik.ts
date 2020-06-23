@@ -5,6 +5,6 @@ export class Cenovnik{
     cenaPrekoraceniKm:number;
     cenaCDW:number;
     popustProcenat:number;
-    autor:string;
+    autor:number;
 
 }

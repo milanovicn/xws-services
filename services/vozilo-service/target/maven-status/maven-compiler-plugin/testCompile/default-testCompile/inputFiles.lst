@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 /home/student/Desktop/xml/projekat-xws/xws-services/services/vozilo-service/src/test/java/com/example/voziloservice/VoziloServiceApplicationTests.java
+=======
+/home/student/Desktop/xws/xws-services/services/vozilo-service/src/test/java/com/example/voziloservice/VoziloServiceApplicationTests.java
+>>>>>>> e8ddf59dc131d58463b3641b8cd96ee7b79bd232

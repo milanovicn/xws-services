@@ -16,7 +16,7 @@ export class KomentariService {
 
 
     public getSveKomentare(): Observable<Komentar[]> {
-        return this._http.get<Komentar[]>("/car/comment")
+        return this._http.get<Komentar[]>("/car/comment/")
     }
 
 

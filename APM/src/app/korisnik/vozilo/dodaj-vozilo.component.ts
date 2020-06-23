@@ -49,6 +49,7 @@ export class VoziloComponent implements OnInit {
     advancedSearch: AdvancedSearch;
 
     cenovnici: Cenovnik[] = [];
+    izabraniCenovnik:Cenovnik;
 
 
 
@@ -72,6 +73,7 @@ export class VoziloComponent implements OnInit {
         this.izabranaMarka = new Marka();
         this.izabraniModel = new Model();
         this.advancedSearch = new AdvancedSearch();
+        this.izabraniCenovnik=new Cenovnik();
 
 
     }
@@ -81,14 +83,15 @@ export class VoziloComponent implements OnInit {
             next: korisnik => {
                 this.korisnik = korisnik;
                 console.log(this.korisnik);
+                this.cenovnikService.vratiCenovnikePoKorisniku(this.korisnik.id).subscribe({
+                    next: cenovnici => {
+                        this.cenovnici = cenovnici;
+                    }
+                });
             }
         });
 
-        this.cenovnikService.vratiCenovnikePoKorisniku(this.korisnik.id).subscribe({
-            next: cenovnici => {
-                this.cenovnici = cenovnici;
-            }
-        });
+        
         console.log(this.cenovnici);
 
         this.sifarniciService.getKlaseVozila().subscribe({
@@ -132,8 +135,9 @@ export class VoziloComponent implements OnInit {
         this.vozilo.klasaVozila = this.izabranaKlasa.naziv;
         this.vozilo.tipGoriva = this.izabranoGorivo.naziv;
         this.vozilo.tipMenjaca = this.izabraniMenjac.naziv;
+        this.vozilo.cenovnikId=this.izabraniCenovnik.naziv;
 
-        this.voziloService.sacuvajVozilo(this.vozilo).subscribe(vozilo => {
+        this.voziloService.sacuvajVozilo(this.vozilo,this.korisnik.rola).subscribe(vozilo => {
             this.vozilo = vozilo;
             this.napraviSearch();
             // this.slika.idVozila=this.vozilo.id;

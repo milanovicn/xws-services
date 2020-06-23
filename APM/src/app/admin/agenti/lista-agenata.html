@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-body">
+      <h1>Novi agenti za registraciju</h1>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-body">
+  
+      <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Email:</th>
+              <th>Naziv firme:</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let agent of agentiZaRegistraciju'>
+              <td>{{ agent.email }}</td>
+              <td>{{ agent.nazivFirme }}</td>
+              <td><button class="btn btn-info"
+                        (click)='odobri(agent)'>Odobri </button></td>
+  
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+  </div>
+  
+  <div class='card'>
+    <div class='card-body'>
+      <button (click)='onBack()'
+              class="btn btn-info">Back</button>
+    </div>
+  </div>

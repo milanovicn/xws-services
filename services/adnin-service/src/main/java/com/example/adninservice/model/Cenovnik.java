@@ -25,9 +25,9 @@ public class Cenovnik {
     private int popustProcenat;
 
     @Column(name = "Autor", nullable = false)
-    private String autor;
+    private Long autor;
 
-    public Cenovnik(String naziv, double cenaDan, double cenaPrekoraceniKm, double cenaCDW, int popustProcenat, String autor) {
+    public Cenovnik(String naziv, double cenaDan, double cenaPrekoraceniKm, double cenaCDW, int popustProcenat, Long autor) {
         this.naziv = naziv;
         this.cenaDan = cenaDan;
         this.cenaPrekoraceniKm = cenaPrekoraceniKm;
@@ -88,11 +88,11 @@ public class Cenovnik {
         this.popustProcenat = popustProcenat;
     }
 
-    public String getAutor() {
+    public Long getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Long autor) {
         this.autor = autor;
     }
 
