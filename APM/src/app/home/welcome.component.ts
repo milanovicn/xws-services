@@ -32,6 +32,11 @@ export class WelcomeComponent implements OnInit{
           //this.loginService.IzlogujSe(this.request).subscribe(result => this.kraj());
           this._router.navigate(["/korisnik"]);
         }
+        if (this.user != null && this.user.rola == "AGENT") {
+          //this.loginService.IzlogujSe(this.request).subscribe(result => this.kraj());
+          window.open("http://localhost:4201");
+          this._router.navigate(["/homeAgent"]);
+        }
       }
     });
     

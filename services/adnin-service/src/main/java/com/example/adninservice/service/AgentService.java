@@ -10,4 +10,5 @@ public interface AgentService {
     Agent addClient(Agent agent);
     List<Agent> getAll();
     Agent findById(Long id);
+    Agent findByEmail(String email);
 }

@@ -29,4 +29,9 @@ public class AgentServiceImpl implements AgentService {
     public Agent findById(Long id) {
         return agentRepository.findById(id).orElseGet(null);
     }
+
+    @Override
+    public Agent findByEmail(String email) {
+        return agentRepository.findByEmail(email);
+    }
 }

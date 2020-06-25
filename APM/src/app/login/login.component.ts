@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
                 this.korisnik = korisnik;
 
                 console.log(this.korisnik.rola);
+                console.log('Prosao u login subscribe!')
 
                 if (this.korisnik.rola == "ADMIN") {
                     this.router.navigate(["/admin"]);
@@ -58,9 +59,10 @@ export class LoginComponent implements OnInit {
                 else if (this.korisnik.rola == "CLIENT") {
                     this.router.navigate(["/korisnik"]);
                 }
-                /*else if (this.korisnik.rola == "LEKAR") {
-                    this.router.navigate(["/lekar"]);
-                }*/
+                else if (this.korisnik.rola == "AGENT") {
+                    window.open("http://localhost:4201");
+                    this.router.navigate(["/homeAgent"]);
+                }
                 else {
                     this.router.navigate(["/signup"]);
                 }
