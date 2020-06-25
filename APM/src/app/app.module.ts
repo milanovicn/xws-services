@@ -13,6 +13,7 @@ import { SignupComponent } from './login/signup.component';
 import { ProfilKorisnikaModule } from './korisnik/profil-korisnika.module';
 import { AgentComponent } from './agent/agent.component';
 import { AgentSerivces } from './agent/agent.service';
+import { HomePageAgentComponent } from './agent/homePageAgent.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AgentSerivces } from './agent/agent.service';
     LoginComponent,
     SignupComponent,
     AgentComponent,
+    HomePageAgentComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { AgentSerivces } from './agent/agent.service';
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'agent', component:AgentComponent },
+      { path: 'homeAgent', component: HomePageAgentComponent },
 
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'},

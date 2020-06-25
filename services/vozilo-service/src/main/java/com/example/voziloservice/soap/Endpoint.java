@@ -44,7 +44,7 @@ public class Endpoint {
         vozilo.setBrojSedistaDeca(voziloXSD.getBrojSedistaDeca());
         vozilo.setIznajmljivacId(voziloXSD.getIznajmljivacId());
 
-        vozilo = voziloService.addVozilo(vozilo);
+        vozilo = voziloService.addVozilo(vozilo, "AGENT"); //TODO: Proveri vamo dal se prosledjuje string
 
         if (vozilo == null) {
             response.setSuccess(false);

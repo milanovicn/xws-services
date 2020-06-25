@@ -2,9 +2,11 @@ package com.example.adninservice.contoller;
 
 
 import com.example.adninservice.model.Admin;
+import com.example.adninservice.model.Agent;
 import com.example.adninservice.model.Client;
 import com.example.adninservice.model.LoginZahtev;
 import com.example.adninservice.service.AdminService;
+import com.example.adninservice.service.AgentService;
 import com.example.adninservice.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.springframework.web.bind.annotation.RequestMethod.*;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
 public class LoginController {
@@ -32,6 +34,9 @@ public class LoginController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private AgentService agentService;
 
    /* @RequestMapping(method = POST, value = "/regKorisnika")
     public ResponseEntity<?> dodajKorisnika(@RequestBody KorisnikDTO korisnikRequest) throws Exception {
@@ -75,6 +80,16 @@ public class LoginController {
                     return new ResponseEntity<>(admin, HttpStatus.CREATED);
                 }
             }
+            else {
+                Agent agent = agentService.findByEmail(zahtev.getEmail());
+                if (agent != null) {
+                    if(zahtev.getPassword().equals(agent.getPassword())){
+                        HttpSession session = request.getSession();
+                        session.setAttribute("agent", agent);
+                        return new ResponseEntity<>(agent, HttpStatus.CREATED);
+                    }
+                }
+            }
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -109,7 +124,13 @@ public class LoginController {
             return korisnik;
         }
         else {
-            return (Admin) session.getAttribute("admin");
+            Admin admin = (Admin) session.getAttribute("admin");
+            if (admin != null) {
+                return admin;
+            }
+            else {
+                return (Agent) session.getAttribute("agent");
+            }
         }
     }
     @GetMapping(value = "/returnId")
