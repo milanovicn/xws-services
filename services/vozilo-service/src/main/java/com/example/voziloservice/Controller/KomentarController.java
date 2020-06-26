@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.MessageFormat;
 import java.util.Collection;
 
 @RestController
@@ -31,7 +32,7 @@ public class KomentarController {
         Komentar noviKom =komentarService.create(idVozila, tekstKomentara);
 
         if(noviKom!=null) {
-            LOGGER.info("KOM-ID:{0}-added", noviKom.getId());
+            LOGGER.info(MessageFormat.format("KOM-ID:{0}-added", noviKom.getId()));
             return new ResponseEntity<>(noviKom, HttpStatus.CREATED);
         }
         else
@@ -50,7 +51,7 @@ public class KomentarController {
     @PostMapping( value = "/comment/reject/{id}")
     public ResponseEntity<?> odbijKomentar(@PathVariable("id") Long id) throws Exception {
             komentarService.odbij(id);
-        LOGGER.info("KOM-ID:{0}-rejected",id);
+        LOGGER.info(MessageFormat.format("KOM-ID:{0}-rejected",id));
             return new ResponseEntity<>(HttpStatus.OK);
 
     }
@@ -59,7 +60,7 @@ public class KomentarController {
     @PostMapping( value = "/comment/approve/{id}")
     public ResponseEntity<?> odobriKomentar(@PathVariable("id") Long id) throws Exception {
         komentarService.odobri(id);
-        LOGGER.info("KOM-ID:{0}-approved",id);
+        LOGGER.info(MessageFormat.format("KOM-ID:{0}-approved",id));
         return new ResponseEntity<>(HttpStatus.OK);
 
     }

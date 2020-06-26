@@ -3,6 +3,8 @@ package com.example.adninservice.service;
 import com.example.adninservice.model.Client;
 import com.example.adninservice.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,12 +17,22 @@ public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private JavaMailSender javaMailSender;
+
     @Override
     public Client addClient(Client client) {
 
         Client newClient=new Client(client.getIme(),client.getPrezime(),client.getEmail(),client.getPassword(),
                 client.getRola(),client.getBrojTelefona());
-        clientRepository.save(newClient);
+        newClient=clientRepository.save(newClient);
+
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo(newClient.getEmail());
+        mail.setFrom("mglukic@gmail.com");
+        mail.setSubject("Registracija");
+        mail.setText("Pozdrav" + ",\nUspesno ste se registrovali na nas sistem:");
+        javaMailSender.send(mail);
         return newClient;
     }
 

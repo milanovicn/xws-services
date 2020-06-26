@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.MessageFormat;
 import java.util.Collection;
 
 @RestController
@@ -41,9 +42,9 @@ public class CenovnikController {
     public void deleteCenovnik(@PathVariable("id") Long id) throws Exception {
         Cenovnik c= cenovnikService.getById(id);
         if(id!=null) {
-            LOGGER.info("CENOVNIK:{0}-deleted, USER-ID:{1}", id, c.getAutor());
+            LOGGER.info(MessageFormat.format("CENOVNIK:{0}-deleted, USER-ID:{1}", id, c.getAutor()));
         } else {
-            LOGGER.error("CENOVNIK:{0}-not deleted, USER-ID:{1}", id, c.getAutor());
+            LOGGER.error(MessageFormat.format("CENOVNIK:{0}-not deleted, USER-ID:{1}", id, c.getAutor()));
         }
         cenovnikService.removeCenovnik(id);
 
@@ -53,9 +54,9 @@ public class CenovnikController {
     @PostMapping( value = "")
     public Cenovnik addCenovnik(@RequestBody Cenovnik cenovnik) throws Exception {
         if(cenovnik!=null) {
-            LOGGER.info("CENOVNIK-ID:{0}-added, USER-ID:{1}", cenovnik.getId(), cenovnik.getAutor());
+            LOGGER.info(MessageFormat.format("CENOVNIK-ID:{0}-added, USER-ID:{1}", cenovnik.getId(), cenovnik.getAutor()));
         } else {
-            LOGGER.error("CENOVNIK-ID:{0}-not added, USER-ID:{1}", cenovnik.getId(), cenovnik.getAutor());
+            LOGGER.error(MessageFormat.format("CENOVNIK-ID:{0}-not added, USER-ID:{1}", cenovnik.getId(), cenovnik.getAutor()));
         }
         return cenovnikService.addNewCenovnik(cenovnik);
     }
@@ -81,9 +82,9 @@ public class CenovnikController {
 
         Collection<Cenovnik> cenovnik = cenovnikService.findAllByAuthorId(id);
         if(cenovnik!=null) {
-            LOGGER.info("CENOVNIK-returned all, USER-ID:{1}",id);
+            LOGGER.info(MessageFormat.format("CENOVNIK-returned all, USER-ID:{1}",id));
         } else {
-            LOGGER.error("CENOVNIK--not returned all, USER-ID:{1}", id);
+            LOGGER.error(MessageFormat.format("CENOVNIK--not returned all, USER-ID:{1}", id));
         }
         return cenovnik;
     }
