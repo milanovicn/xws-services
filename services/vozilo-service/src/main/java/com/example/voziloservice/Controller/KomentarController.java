@@ -3,6 +3,8 @@ import com.example.voziloservice.Service.KomentarService;
 import com.example.voziloservice.Service.VoziloService;
 import com.example.voziloservice.model.Komentar;
 import com.example.voziloservice.model.Vozilo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +17,7 @@ import java.util.Collection;
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
 public class KomentarController {
 
+    Logger LOGGER = LoggerFactory.getLogger(KomentarController.class);
     @Autowired
     private VoziloService voziloService;
 
@@ -27,8 +30,10 @@ public class KomentarController {
 
         Komentar noviKom =komentarService.create(idVozila, tekstKomentara);
 
-        if(noviKom!=null)
+        if(noviKom!=null) {
+            LOGGER.info("KOM-ID:{0}-added", noviKom.getId());
             return new ResponseEntity<>(noviKom, HttpStatus.CREATED);
+        }
         else
             return new ResponseEntity<>("Nije dodat komentar", HttpStatus.NO_CONTENT);
     }
@@ -45,7 +50,7 @@ public class KomentarController {
     @PostMapping( value = "/comment/reject/{id}")
     public ResponseEntity<?> odbijKomentar(@PathVariable("id") Long id) throws Exception {
             komentarService.odbij(id);
-
+        LOGGER.info("KOM-ID:{0}-rejected",id);
             return new ResponseEntity<>(HttpStatus.OK);
 
     }
@@ -54,7 +59,7 @@ public class KomentarController {
     @PostMapping( value = "/comment/approve/{id}")
     public ResponseEntity<?> odobriKomentar(@PathVariable("id") Long id) throws Exception {
         komentarService.odobri(id);
-
+        LOGGER.info("KOM-ID:{0}-approved",id);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }

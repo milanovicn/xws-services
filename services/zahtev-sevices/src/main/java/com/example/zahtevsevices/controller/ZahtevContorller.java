@@ -3,6 +3,8 @@ package com.example.zahtevsevices.controller;
 
 import com.example.zahtevsevices.model.Zahtev;
 import com.example.zahtevsevices.sevices.ZahtevService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @RestController
 public class ZahtevContorller {
+    Logger LOGGER = LoggerFactory.getLogger(ZahtevContorller.class);
 
     @Autowired
     private ZahtevService zahtevService;
@@ -21,6 +24,13 @@ public class ZahtevContorller {
 
         Zahtev novi = zahtevService.create(zahtev);
         //TODO: uid ako moze validacija da budu brojevi (a jedinstvenost po bazi?)
+        if(novi!=null) {
+            LOGGER.info("ZAHTEV: ZAHTEV-ID:{0}-created, PODNOSILAC-ID:{1}", novi.getId(), novi.getPodnosilac());
+        } else {
+            LOGGER.error("ZAHTEV: ZAHTEV-ID:{0}-not created, PODNOSILAC-ID:{1}", novi.getId(), novi.getPodnosilac());
+        }
+
+
 
         return new ResponseEntity<>(novi, HttpStatus.CREATED);
     }
@@ -30,6 +40,11 @@ public class ZahtevContorller {
 
 
        List<Zahtev> zahtevi=zahtevService.findAll();
+        if(zahtevi!=null) {
+            LOGGER.info("ZAHTEV: returned all, ZAHTEVI-SIZE:{0}", zahtevi.size() );
+        } else {
+            LOGGER.error("ZAHTEV:not returned all");
+        }
 
         return new ResponseEntity<>(zahtevi, HttpStatus.CREATED);
     }
@@ -38,6 +53,11 @@ public class ZahtevContorller {
 
 
         List<Zahtev> zahtevi=zahtevService.findByPodnosilac(idPodnosioca);
+        if(zahtevi!=null) {
+            LOGGER.info("ZAHTEV: returned all by id podnosioca, ZAHTEVI-SIZE:{0},ID-PODNOSIOCA:{1}", zahtevi.size(), idPodnosioca );
+        } else {
+            LOGGER.error("ZAHTEV:not returned all by id podnosioca, ID-PODNOSIOCA:{0}", idPodnosioca);
+        }
 
         return new ResponseEntity<>(zahtevi, HttpStatus.CREATED);
     }
@@ -47,6 +67,12 @@ public class ZahtevContorller {
 
 
         List<Zahtev> zahtevi=zahtevService.findByIzdavac(idIzdavaoca);
+
+        if(zahtevi!=null) {
+            LOGGER.info("ZAHTEV: returned all by id izdavaoca, ZAHTEVI-SIZE:{0},ID-IZDAVALAC:{1}", zahtevi.size(), idIzdavaoca );
+        } else {
+            LOGGER.error("ZAHTEV:not returned all by id izdavaoca, ID-IZDVALAC:{0}", idIzdavaoca);
+        }
 
         return new ResponseEntity<>(zahtevi, HttpStatus.CREATED);
     }
@@ -65,6 +91,10 @@ public class ZahtevContorller {
 
         zahtevService.otkaziZahtev(idZahteva);
 
+            LOGGER.info("ZAHTEV: otkazan, ZAHTEVI-ID:{0}", idZahteva );
+
+
+
 
     }
 
@@ -73,7 +103,7 @@ public class ZahtevContorller {
 
 
         zahtevService.platiZahtev(idZahteva);
-
+        LOGGER.info("ZAHTEV: placen, ZAHTEVI-ID:{0}", idZahteva );
 
     }
 
@@ -83,6 +113,7 @@ public class ZahtevContorller {
 
 
         zahtevService.komentarisiZahtev(idZahteva);
+        LOGGER.info("ZAHTEV: komentarisan, ZAHTEVI-ID:{0}", idZahteva );
 
 
     }
