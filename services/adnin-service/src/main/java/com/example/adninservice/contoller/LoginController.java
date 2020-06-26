@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -73,9 +74,9 @@ public class LoginController {
                 HttpSession session = request.getSession();
                 session.setAttribute("client", ak);
                 if(ak!=null) {
-                    LOGGER.info("CLIENT SESSION: CLIEN-ID:{0}-session created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail());
+                    LOGGER.info(MessageFormat.format("CLIENT SESSION: CLIEN-ID:{0}-session created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail()));
                 } else {
-                    LOGGER.error("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}" , ak.getId(), ak.getEmail());
+                    LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}" , ak.getId(), ak.getEmail()));
                 }
                 return new ResponseEntity<Client>(ak, HttpStatus.CREATED);
             }
@@ -88,9 +89,9 @@ public class LoginController {
                     session.setAttribute("admin", admin);
 
                     if(admin!=null) {
-                        LOGGER.info("ADMIN SESSION: ADMIN-ID:{0}-session created, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail());
+                        LOGGER.info(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session created, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                     } else {
-                        LOGGER.error("ADMIN SESSION: ADMIN-ID:{0}-session not created, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail());
+                        LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session not created, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail()));
                     }
 
                     return new ResponseEntity<>(admin, HttpStatus.CREATED);
@@ -104,9 +105,9 @@ public class LoginController {
                         session.setAttribute("agent", agent);
 
                         if(agent!=null) {
-                            LOGGER.info("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail());
+                            LOGGER.info(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail()));
                         } else {
-                            LOGGER.error("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail());
+                            LOGGER.error(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail()));
                         }
 
                         return new ResponseEntity<>(agent, HttpStatus.CREATED);
@@ -146,9 +147,9 @@ public class LoginController {
         if (korisnik != null) {
 
             if(korisnik!=null) {
-                LOGGER.info("CLIENT SESSION: CLIENT-ID:{0}-logged in, CLIENT-EMAIL:{1}", korisnik.getId(), korisnik.getEmail());
+                LOGGER.info(MessageFormat.format("CLIENT SESSION: CLIENT-ID:{0}-logged in, CLIENT-EMAIL:{1}", korisnik.getId(), korisnik.getEmail()));
             } else {
-                LOGGER.error("CLIENT SESSION: CLIENT-ID:{0}- not logged in, CLIENT-EMAIL:{1}" , korisnik.getId(), korisnik.getEmail());
+                LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID:{0}- not logged in, CLIENT-EMAIL:{1}" , korisnik.getId(), korisnik.getEmail()));
             }
 
             return korisnik;
@@ -157,18 +158,18 @@ public class LoginController {
             Admin admin = (Admin) session.getAttribute("admin");
             if (admin != null) {
                 if(admin!=null) {
-                    LOGGER.info("ADMIN SESSION: ADMIN-ID:{0}-logged in, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail());
+                    LOGGER.info(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-logged in, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                 } else {
-                    LOGGER.error("ADMIN SESSION: ADMIN-ID:{0}-not logged in, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail());
+                    LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-not logged in, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail()));
                 }
                 return admin;
             }
             else {
                 Agent agent = (Agent) session.getAttribute("agent");
                 if(agent!=null) {
-                    LOGGER.info("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail());
+                    LOGGER.info(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail()));
                 } else {
-                    LOGGER.error("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail());
+                    LOGGER.error(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail()));
                 }
 
                 return agent;

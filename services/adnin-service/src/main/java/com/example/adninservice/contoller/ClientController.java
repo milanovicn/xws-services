@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
+import java.text.MessageFormat;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -30,9 +31,9 @@ public class ClientController {
 
         Client newClient=clientServiceImpl.addClient(client);
         if(newClient!=null) {
-            LOGGER.info("CLIENT -ID:{0}-created, CLIENT-EMAIL:{1}", newClient.getId(), newClient.getEmail());
+            LOGGER.info(MessageFormat.format("CLIENT -ID:{0}-created, CLIENT-EMAIL:{1}", newClient.getId(), newClient.getEmail()));
         } else {
-            LOGGER.error("CLIENT-ID:{0}-not created, CLIENT-EMAIL:{1}" , newClient.getId(), newClient.getEmail());
+            LOGGER.error(MessageFormat.format("CLIENT-ID:{0}-not created, CLIENT-EMAIL:{1}" , newClient.getId(), newClient.getEmail()));
         }
 
 

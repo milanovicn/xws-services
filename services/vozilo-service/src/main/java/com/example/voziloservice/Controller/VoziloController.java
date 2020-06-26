@@ -118,9 +118,9 @@ public class VoziloController {
         Vozilo car=voziloService.findById(idVozila);
 
         if(car!=null) {
-            LOGGER.info("CAR-ID:{0}-returned by id", car.getId());
+            LOGGER.info(MessageFormat.format("CAR-ID:{0}-returned by id", car.getId()));
         } else {
-            LOGGER.error("CAR-ID:{0}-not returned by id", car.getId());
+            LOGGER.error(MessageFormat.format("CAR-ID:{0}-not returned by id", car.getId()));
         }
 
         return new ResponseEntity<>(car, HttpStatus.CREATED);
@@ -131,9 +131,9 @@ public class VoziloController {
 
         List<Vozilo> cars=voziloService.findByIznajmljivacId(idIzdavaca);
         if(cars!=null) {
-            LOGGER.info("CARS: returned all by id izdavaoca, CARS-LIST-SIZE:{0},ID-IZDAVAOCA:{1}", cars.size(), idIzdavaca );
+            LOGGER.info(MessageFormat.format("CARS: returned all by id izdavaoca, CARS-LIST-SIZE:{0},ID-IZDAVAOCA:{1}", cars.size(), idIzdavaca ));
         } else {
-            LOGGER.error("CARS:not returned all by id izdavaoca, ID-IZDAVAOCA:{0}", idIzdavaca);
+            LOGGER.error(MessageFormat.format("CARS:not returned all by id izdavaoca, ID-IZDAVAOCA:{0}", idIzdavaca));
         }
 
         return new ResponseEntity<>(cars, HttpStatus.CREATED);

@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 @RestController
@@ -31,9 +32,9 @@ public class AgentController {
         Agent newAgent=agentService.addClient(agent);
 
         if(newAgent!=null) {
-            LOGGER.info("AGENT -ID:{0}-created, AGENT-EMAIL:{1}", newAgent.getId(), newAgent.getEmail());
+            LOGGER.info(MessageFormat.format("AGENT -ID:{0}-created, AGENT-EMAIL:{1}", newAgent.getId(), newAgent.getEmail()));
         } else {
-            LOGGER.error("AGENT-ID:{0}-not created, AGENT-EMAIL:{1}" , newAgent.getId(), newAgent.getEmail());
+            LOGGER.error(MessageFormat.format("AGENT-ID:{0}-not created, AGENT-EMAIL:{1}" , newAgent.getId(), newAgent.getEmail()));
         }
 
         return new ResponseEntity<>(newAgent, HttpStatus.CREATED);
@@ -58,9 +59,9 @@ public class AgentController {
         Agent clients=agentService.findById(idAgenta);
 
         if(clients!=null) {
-            LOGGER.info("AGENT -ID:{0}-returned, AGENT-EMAIL:{1}", clients.getId(), clients.getEmail());
+            LOGGER.info(MessageFormat.format("AGENT -ID:{0}-returned, AGENT-EMAIL:{1}", clients.getId(), clients.getEmail()));
         } else {
-            LOGGER.error("AGENT-ID:{0}-not returned, AGENT-EMAIL:{1}" , clients.getId(), clients.getEmail());
+            LOGGER.error(MessageFormat.format("AGENT-ID:{0}-not returned, AGENT-EMAIL:{1}" , clients.getId(), clients.getEmail()));
         }
 
         return new ResponseEntity<>(clients, HttpStatus.CREATED);
@@ -73,9 +74,9 @@ public class AgentController {
         agentRepository.save(clients);
 
         if(clients!=null) {
-            LOGGER.info("AGENT -ID:{0}-registration approved, AGENT-EMAIL:{1}", clients.getId(), clients.getEmail());
+            LOGGER.info(MessageFormat.format("AGENT -ID:{0}-registration approved, AGENT-EMAIL:{1}", clients.getId(), clients.getEmail()));
         } else {
-            LOGGER.error("AGENT-ID:{0}-registration approved,  AGENT-EMAIL:{1}" , clients.getId(), clients.getEmail());
+            LOGGER.error(MessageFormat.format("AGENT-ID:{0}-registration approved,  AGENT-EMAIL:{1}" , clients.getId(), clients.getEmail()));
         }
 
         return new ResponseEntity<>(clients, HttpStatus.CREATED);
