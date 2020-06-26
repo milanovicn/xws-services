@@ -39,6 +39,21 @@ public class Client  {
     @Column(name = "BrojOtkazanihOglasa", nullable = false)
     private int brojOtkazanihOglasa;
 
+    @Column(name = "SaltValue", nullable = false)
+    private String saltValue;
+
+    @Column(name = "HashedPassAndSalt", nullable = false)
+    private byte[] hashedPassAndSalt;
+
+    public String getSaltValue() {
+        return saltValue;
+    }
+
+    public void setSaltValue(String saltValue) {
+        this.saltValue = saltValue;
+    }
+
+
     public String getBrojTelefona() {
         return brojTelefona;
     }
@@ -129,6 +144,16 @@ public class Client  {
         this.brojObjavljenihOglasa = 0;
         this.blokiran = false;
         this.brojOtkazanihOglasa = 0;
+        this.saltValue="";
+        this.hashedPassAndSalt = new byte[16];
+    }
+
+    public byte[] getHashedPassAndSalt() {
+        return hashedPassAndSalt;
+    }
+
+    public void setHashedPassAndSalt(byte[] hashedPassAndSalt) {
+        this.hashedPassAndSalt = hashedPassAndSalt;
     }
 
     public Client() {

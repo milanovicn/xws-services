@@ -1,6 +1,6 @@
-insert into admin(id, ime, prezime, email, password, rola) values (1, 'Aca', 'Acic', 'a@gmail.com', 'acaacaaca', 'ADMIN')
-insert into client(id, ime, prezime, email, password, rola, broj_telefona, blokiran, broj_objavljenih_oglasa, broj_otkazanih_oglasa) values (1, 'Mika', 'Mikic', 'm@gmail.com', '12345678', 'CLIENT','111111111', 0, 0, 0)
-insert into client(id, ime, prezime, email, password, rola, broj_telefona, blokiran, broj_objavljenih_oglasa, broj_otkazanih_oglasa) values (2, 'Zika', 'Zikic', 'z@gmail.com', '11111111', 'CLIENT','111111111', 0, 0, 0)
+--insert into admin(id, ime, prezime, email, password, rola) values (1, 'Aca', 'Acic', 'a@gmail.com', 'acaacaaca', 'ADMIN')
+--insert into client(id, ime, prezime, email, password, rola, broj_telefona, blokiran, broj_objavljenih_oglasa, broj_otkazanih_oglasa) values (1, 'Mika', 'Mikic', 'm@gmail.com', '12345678', 'CLIENT','111111111', 0, 0, 0)
+--insert into client(id, ime, prezime, email, password, rola, broj_telefona, blokiran, broj_objavljenih_oglasa, broj_otkazanih_oglasa) values (2, 'Zika', 'Zikic', 'z@gmail.com', '11111111', 'CLIENT','111111111', 0, 0, 0)
 
 insert into klasa_vozila(id, naziv) values (1, 'Limunzina')
 insert into klasa_vozila(id, naziv) values (2, 'Karavan')

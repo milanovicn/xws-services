@@ -148,7 +148,7 @@
     </root>
 
     <!-- LOG "com.exmple.*" at TRACE level -->
-    <logger name="com.example.adninservice" level="debug" additivity="false">
+    <logger name="com.example.adninservice" level="debug" additivity="true">
         <appender-ref ref="RollingFile-Info" />
         <appender-ref ref="RollingFile-Error" />
         <appender-ref ref="RollingFile-Warn" />
