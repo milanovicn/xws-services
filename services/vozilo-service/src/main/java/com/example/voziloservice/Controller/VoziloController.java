@@ -5,10 +5,17 @@ package com.example.voziloservice.Controller;
 import com.example.voziloservice.Repository.ImageRepository;
 import com.example.voziloservice.Service.ImageModelService;
 import com.example.voziloservice.Service.ZauzeceVozilaService;
+//import com.example.voziloservice.conf.EndpointConfiguration;
+//import com.example.voziloservice.model.Log;
 import com.example.voziloservice.model.Vozilo;
 import com.example.voziloservice.model.ImageModel;
 import com.example.voziloservice.Service.VoziloService;
 import com.example.voziloservice.model.ZauzeceVozila;
+//import com.example.voziloservice.producer.LogProducer;
+//import com.example.voziloservice.util.RequestCounter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,8 +28,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
+
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -32,6 +41,24 @@ import java.util.zip.Inflater;
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
 public class VoziloController {
 
+    Logger LOGGER = LoggerFactory.getLogger(VoziloController.class);
+
+   /* private static final String LOG_GET_ALL = "action=getAllServers user=%s times=%s";
+    private static final String LOG_GET_BY_ID = "action=getServerById id=%s user=%s times=%s";
+    private static final String LOG_SAVE = "action=saveVozilo user=%s times=%s";
+    private static final String LOG_REMOVE = "action=removeServer id=%s user=%s times=%s";
+
+    private static final String SERVICE_NAME = "servers";
+    private static final String DEFAULT_USER = "public";
+
+    private final RequestCounter counter;
+    private final LogProducer logProducer;
+
+    public VoziloController(RequestCounter counter, LogProducer logProducer) {
+        this.counter = counter;
+        this.logProducer = logProducer;
+    }
+*/
     @Autowired
     private VoziloService voziloService;
 
@@ -43,10 +70,18 @@ public class VoziloController {
 
         Vozilo newVozilo=voziloService.addVozilo(vozilo,rola);
 
-        if(newVozilo!=null)
+        if(newVozilo!=null) {
+           // String logContent = String.format(LOG_SAVE, DEFAULT_USER, counter.get("/addVozilo/{rola}"));
+          //  LOGGER.info(logContent);
+          //  logProducer.send(new Log(SERVICE_NAME, logContent));
+            LOGGER.info(MessageFormat.format("Car-ID:{0}-added;UserID:{1}", newVozilo.getId(),newVozilo.getIznajmljivacId()));
             return new ResponseEntity<>(newVozilo, HttpStatus.CREATED);
-        else
+
+        }
+        else {
+            LOGGER.info("Car not created");
             return new ResponseEntity<>("Ne mozete dodati vise od 3 vozila", HttpStatus.CREATED);
+        }
     }
 
 
@@ -55,15 +90,24 @@ public class VoziloController {
 
         ZauzeceVozila newZauzece=zauzeceVozilaService.addVozilo(zauzeceVozila);
 
-        if(newZauzece!=null)
+        if(newZauzece!=null){
+
+            LOGGER.info(MessageFormat.format("ZAUZECE-ID:{0}-created; VoziloID:{1}", zauzeceVozila.getId(),zauzeceVozila.getIdVozila()));
             return new ResponseEntity<>(newZauzece, HttpStatus.CREATED);
-        else
-            return new ResponseEntity<>("Ne radi", HttpStatus.CREATED);
+        }
+        else{
+            LOGGER.info("ZAUZECE:not created");
+            return new ResponseEntity<>("Ne radi", HttpStatus.CREATED);}
     }
     @GetMapping(value = "/getAllCars")
     public ResponseEntity<List<Vozilo>> getAllCars() throws Exception {
 
         List<Vozilo> cars=voziloService.getAll();
+        if(cars!=null) {
+            LOGGER.info("CAR - returned all");
+        } else {
+            LOGGER.error("CAR - not returned all");
+        }
 
         return new ResponseEntity<>(cars, HttpStatus.CREATED);
     }
@@ -73,6 +117,12 @@ public class VoziloController {
 
         Vozilo car=voziloService.findById(idVozila);
 
+        if(car!=null) {
+            LOGGER.info("CAR-ID:{0}-returned by id", car.getId());
+        } else {
+            LOGGER.error("CAR-ID:{0}-not returned by id", car.getId());
+        }
+
         return new ResponseEntity<>(car, HttpStatus.CREATED);
     }
 
@@ -80,6 +130,11 @@ public class VoziloController {
     public ResponseEntity<List<Vozilo>> getCarByIdIzavaca(@PathVariable("idIzdavaca") Long idIzdavaca) throws Exception {
 
         List<Vozilo> cars=voziloService.findByIznajmljivacId(idIzdavaca);
+        if(cars!=null) {
+            LOGGER.info("CARS: returned all by id izdavaoca, CARS-LIST-SIZE:{0},ID-IZDAVAOCA:{1}", cars.size(), idIzdavaca );
+        } else {
+            LOGGER.error("CARS:not returned all by id izdavaoca, ID-IZDAVAOCA:{0}", idIzdavaca);
+        }
 
         return new ResponseEntity<>(cars, HttpStatus.CREATED);
     }

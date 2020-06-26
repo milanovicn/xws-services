@@ -3,6 +3,8 @@ package com.example.searchservice.Controller;
 import com.example.searchservice.Model.AdvancedSearch;
 import com.example.searchservice.Model.Dto.SearchDTO;
 import com.example.searchservice.Service.AdvancedSearchService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
 public class AdvancedSearchController {
-
+    Logger LOGGER = LoggerFactory.getLogger(AdvancedSearchController.class);
     @Autowired
     private AdvancedSearchService advancedSearchService;
 
@@ -24,7 +26,11 @@ public class AdvancedSearchController {
     public void addVozilo(@RequestBody AdvancedSearch vozilo) throws Exception {
 
         AdvancedSearch newAdvancedSearch = advancedSearchService.addAdvancedReplica(vozilo);
-
+        if(newAdvancedSearch!=null) {
+            LOGGER.info("SEARCH: SEARCH-ID:{0}-created, VOZILO-ID:{1}", newAdvancedSearch.getId(), newAdvancedSearch.getIdVozila());
+        } else {
+            LOGGER.error("SEARCH: SEARCH-ID:{0}-not created, VOZILO-ID:{1}", newAdvancedSearch.getId(), newAdvancedSearch.getIdVozila());
+        }
 
     }
 
@@ -33,10 +39,14 @@ public class AdvancedSearchController {
 
         List<Long> ids = advancedSearchService.findByAdvancedSearch(sDTO);
 
-        if(!ids.isEmpty())
+        if(!ids.isEmpty()) {
+            LOGGER.info("SEARCH: returned list, LIST-LENGTH:{0}", ids.size());
+
             return new ResponseEntity<>(ids, HttpStatus.CREATED);
-        else
+        } else {
+            LOGGER.error("SEARCH: returned empty list, LIST-LENGTH:{0}", ids.size());
             return new ResponseEntity<>("Nista nije pronadjeno :(", HttpStatus.CREATED);
+        }
     }
 
 }

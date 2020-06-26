@@ -8,6 +8,8 @@ import com.example.adninservice.model.LoginZahtev;
 import com.example.adninservice.service.AdminService;
 import com.example.adninservice.service.AgentService;
 import com.example.adninservice.service.ClientService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,8 @@ public class LoginController {
 
     @Autowired
     private AgentService agentService;
+
+    Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
 
    /* @RequestMapping(method = POST, value = "/regKorisnika")
     public ResponseEntity<?> dodajKorisnika(@RequestBody KorisnikDTO korisnikRequest) throws Exception {
@@ -68,6 +72,11 @@ public class LoginController {
                 //if (zahtev.getPassword().equals(ak.getPassword())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("client", ak);
+                if(ak!=null) {
+                    LOGGER.info("CLIENT SESSION: CLIEN-ID:{0}-session created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail());
+                } else {
+                    LOGGER.error("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}" , ak.getId(), ak.getEmail());
+                }
                 return new ResponseEntity<Client>(ak, HttpStatus.CREATED);
             }
 
@@ -77,6 +86,13 @@ public class LoginController {
                 if(zahtev.getPassword().equals(admin.getPassword())){
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", admin);
+
+                    if(admin!=null) {
+                        LOGGER.info("ADMIN SESSION: ADMIN-ID:{0}-session created, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail());
+                    } else {
+                        LOGGER.error("ADMIN SESSION: ADMIN-ID:{0}-session not created, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail());
+                    }
+
                     return new ResponseEntity<>(admin, HttpStatus.CREATED);
                 }
             }
@@ -86,6 +102,13 @@ public class LoginController {
                     if(zahtev.getPassword().equals(agent.getPassword())){
                         HttpSession session = request.getSession();
                         session.setAttribute("agent", agent);
+
+                        if(agent!=null) {
+                            LOGGER.info("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail());
+                        } else {
+                            LOGGER.error("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail());
+                        }
+
                         return new ResponseEntity<>(agent, HttpStatus.CREATED);
                     }
                 }
@@ -121,15 +144,34 @@ public class LoginController {
         Client korisnik = (Client) session.getAttribute("client");
 
         if (korisnik != null) {
+
+            if(korisnik!=null) {
+                LOGGER.info("CLIENT SESSION: CLIENT-ID:{0}-logged in, CLIENT-EMAIL:{1}", korisnik.getId(), korisnik.getEmail());
+            } else {
+                LOGGER.error("CLIENT SESSION: CLIENT-ID:{0}- not logged in, CLIENT-EMAIL:{1}" , korisnik.getId(), korisnik.getEmail());
+            }
+
             return korisnik;
         }
         else {
             Admin admin = (Admin) session.getAttribute("admin");
             if (admin != null) {
+                if(admin!=null) {
+                    LOGGER.info("ADMIN SESSION: ADMIN-ID:{0}-logged in, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail());
+                } else {
+                    LOGGER.error("ADMIN SESSION: ADMIN-ID:{0}-not logged in, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail());
+                }
                 return admin;
             }
             else {
-                return (Agent) session.getAttribute("agent");
+                Agent agent = (Agent) session.getAttribute("agent");
+                if(agent!=null) {
+                    LOGGER.info("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail());
+                } else {
+                    LOGGER.error("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail());
+                }
+
+                return agent;
             }
         }
     }
@@ -157,6 +199,11 @@ public class LoginController {
       ////  System.out.println("...LOGOUTK... " + session.getAttribute("korisnik"));
        // System.out.println("...LOGOUTA... " + session.getAttribute("admin"));
         session.invalidate();
+
+
+            LOGGER.info("SESSION: user logged out");
+
+
 
         return ResponseEntity.status(200).build();
     }
