@@ -41,7 +41,7 @@ import java.util.zip.Inflater;
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
 public class VoziloController {
 
-    Logger LOGGER = LoggerFactory.getLogger(VoziloController.class);
+    final static Logger LOGGER = LoggerFactory.getLogger(VoziloController.class);
 
    /* private static final String LOG_GET_ALL = "action=getAllServers user=%s times=%s";
     private static final String LOG_GET_BY_ID = "action=getServerById id=%s user=%s times=%s";

@@ -13,8 +13,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
@@ -28,6 +32,8 @@ public class AgentController {
 
     @PostMapping(value = "/agent")
     public ResponseEntity<?> addClient(@RequestBody Agent agent) throws Exception {
+        agent.setSaltValue( generateSaltString());
+        agent.setHashedPassAndSalt(hash(agent.getPassword().concat(agent.getSaltValue())));
 
         Agent newAgent=agentService.addClient(agent);
 
@@ -80,5 +86,24 @@ public class AgentController {
         }
 
         return new ResponseEntity<>(clients, HttpStatus.CREATED);
+    }
+
+    public byte[] hash(String data) {
+        //Kao hes funkcija koristi SHA-256
+        try {
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            byte[] dataHash = sha256.digest(data.getBytes());
+            return dataHash;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String generateSaltString(){
+        byte[] array = new byte[16];
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
+        return generatedString;
     }
 }

@@ -68,8 +68,8 @@ public class LoginController {
         Client ak = korisnikService.fingBuEmail(zahtev.getEmail());
 
         if (ak != null) {
-
-            if (zahtev.getPassword().equals(ak.getPassword())) {
+            String zahtevPass = zahtev.getPassword().concat(ak.getSaltValue());
+            if (checkIntegrity(zahtevPass, ak.getHashedPassAndSalt())) {
                 //if (zahtev.getPassword().equals(ak.getPassword())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("client", ak);
@@ -84,7 +84,8 @@ public class LoginController {
         } else {
             Admin admin = adminService.findByEmail(zahtev.getEmail());
             if (admin != null) {
-                if(zahtev.getPassword().equals(admin.getPassword())){
+                String zahtevPass = zahtev.getPassword().concat(admin.getSaltValue());
+                if(checkIntegrity(zahtevPass, admin.getHashedPassAndSalt())){
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", admin);
 
@@ -100,7 +101,8 @@ public class LoginController {
             else {
                 Agent agent = agentService.findByEmail(zahtev.getEmail());
                 if (agent != null) {
-                    if(zahtev.getPassword().equals(agent.getPassword())){
+                    String zahtevPass = zahtev.getPassword().concat(agent.getSaltValue());
+                    if(checkIntegrity(zahtevPass, agent.getHashedPassAndSalt())){
                         HttpSession session = request.getSession();
                         session.setAttribute("agent", agent);
 

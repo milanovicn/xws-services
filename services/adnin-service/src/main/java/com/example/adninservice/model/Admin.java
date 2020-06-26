@@ -27,6 +27,28 @@ public class Admin{
     @Column(name = "Rola", nullable = false)
     private String rola;
 
+    @Column(name = "SaltValue", nullable = false)
+    private String saltValue;
+
+    @Column(name = "HashedPassAndSalt", nullable = false)
+    private byte[] hashedPassAndSalt;
+
+    public String getSaltValue() {
+        return saltValue;
+    }
+
+    public void setSaltValue(String saltValue) {
+        this.saltValue = saltValue;
+    }
+
+    public byte[] getHashedPassAndSalt() {
+        return hashedPassAndSalt;
+    }
+
+    public void setHashedPassAndSalt(byte[] hashedPassAndSalt) {
+        this.hashedPassAndSalt = hashedPassAndSalt;
+    }
+
     public Long getId() {
         return id;
     }
@@ -81,6 +103,8 @@ public class Admin{
         this.email = email;
         this.password = password;
         this.rola = rola;
+        this.saltValue="";
+        this.hashedPassAndSalt = new byte[16];
     }
 
     public Admin() {

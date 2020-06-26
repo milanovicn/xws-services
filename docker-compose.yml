@@ -41,13 +41,12 @@ services:
 
   adnin-service:
     image: adnin-service
-    environment:
+#    environment:
 #        DATABASE_USERNAME: root
 #        DATABASE_PASSWORD: fakultet
 #        DATABASE_SCHEMA: xml_user_service
 #        DATABASE_DOMAIN: mysql-backend
 #        DATABASE_PORT: 3306
-        RMQ_HOST: rabbitmq-broker
     build:
       context: ./services/adnin-service
       dockerfile: Dockerfile
@@ -58,18 +57,17 @@ services:
     depends_on:
       - consul-server
 #      - mysql-backend
-      - rabbitmq-broker
+     
 
 
   vozilo-service:
     image: vozilo-service
-    environment:
+#    environment:
 #        DATABASE_USERNAME: root
 #        DATABASE_PASSWORD: fakultet
 #        DATABASE_SCHEMA: xml_car_service
 #        DATABASE_DOMAIN: mysql-backend
 #        DATABASE_PORT: 3306
-        RMQ_HOST: rabbitmq-broker
     build:
       context: ./services/vozilo-service
       dockerfile: Dockerfile
@@ -80,7 +78,7 @@ services:
     depends_on:
       - consul-server
 #      - mysql-backend
-      - rabbitmq-broker
+     
 
   search-service:
     image: search-service

@@ -30,3 +30,9 @@
 2020-06-26 15:12:42 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2020-06-26 15:12:42 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2020-06-26 15:12:42 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-06-26 18:22:19 [main] INFO  c.e.v.VoziloServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-06-26 18:22:39 [main] INFO  c.e.v.VoziloServiceApplicationTests - Started VoziloServiceApplicationTests in 22.938 seconds (JVM running for 28.344)
+2020-06-26 18:47:14 [main] INFO  c.e.v.VoziloServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-06-26 18:47:57 [main] INFO  c.e.v.VoziloServiceApplicationTests - Started VoziloServiceApplicationTests in 47.728 seconds (JVM running for 56.822)
+2020-06-26 19:12:26 [main] INFO  c.e.v.VoziloServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-06-26 19:12:48 [main] INFO  c.e.v.VoziloServiceApplicationTests - Started VoziloServiceApplicationTests in 27.041 seconds (JVM running for 35.577)
