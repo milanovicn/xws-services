@@ -53,7 +53,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client fingBuEmail(String email) {
+    public Client findByEmail(String email) {
         return clientRepository.findByEmail(email);
     }
 

@@ -107,25 +107,12 @@ public class AdvancedSearchServiceImpl implements AdvancedSearchService {
 
                     }
                 }
-            } else if(!(search.getDatumOd().isBefore(as.getDatumOd()) && search.getDatumOd().isAfter(as.getDatumDo()))) {
-                if((search.getDatumDo().isBefore(as.getDatumOd()) && search.getDatumDo().isAfter(as.getDatumDo()))) {
-
-                    if (retIDs.contains(as.getIdVozila())) {
-                        retIDs.remove(as.getIdVozila());
-
-                    }
-                } else  {
-                    if (retIDs.contains(as.getIdVozila())) {
-                        retIDs.remove(as.getIdVozila());
-                    }
+            } else if(!as.getDatumOd().isBefore(search.getDatumDo()) && !search.getDatumOd().isBefore(as.getDatumDo())){
+                if (retIDs.contains(as.getIdVozila())) {
+                    retIDs.remove(as.getIdVozila());
 
                 }
             }
-
-
-
-
-
 
 
         }

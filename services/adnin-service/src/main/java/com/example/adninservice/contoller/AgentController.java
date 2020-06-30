@@ -5,6 +5,7 @@ import com.example.adninservice.model.Agent;
 import com.example.adninservice.model.Client;
 import com.example.adninservice.repository.AgentRepository;
 import com.example.adninservice.service.AgentService;
+import com.example.adninservice.service.ClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +31,30 @@ public class AgentController {
     @Autowired
     private AgentRepository agentRepository;
 
+    @Autowired
+    private ClientService clientService;
+
     @PostMapping(value = "/agent")
     public ResponseEntity<?> addClient(@RequestBody Agent agent) throws Exception {
-        agent.setSaltValue( generateSaltString());
-        agent.setHashedPassAndSalt(hash(agent.getPassword().concat(agent.getSaltValue())));
 
-        Agent newAgent=agentService.addClient(agent);
-
-        if(newAgent!=null) {
-            LOGGER.info(MessageFormat.format("AGENT -ID:{0}-created, AGENT-EMAIL:{1}", newAgent.getId(), newAgent.getEmail()));
+        Client postojeci = clientService.findByEmail(agent.getEmail());
+        Agent postojeciAgent = agentService.findByEmail(agent.getEmail());
+        if (postojeci != null || postojeciAgent != null) {
+            return new ResponseEntity<>("Agent sa datim email-om vec postoji", HttpStatus.METHOD_NOT_ALLOWED);
         } else {
-            LOGGER.error(MessageFormat.format("AGENT-ID:{0}-not created, AGENT-EMAIL:{1}" , newAgent.getId(), newAgent.getEmail()));
-        }
+            agent.setSaltValue(generateSaltString());
+            agent.setHashedPassAndSalt(hash(agent.getPassword().concat(agent.getSaltValue())));
 
-        return new ResponseEntity<>(newAgent, HttpStatus.CREATED);
+            Agent newAgent = agentService.addClient(agent);
+
+            if (newAgent != null) {
+                LOGGER.info(MessageFormat.format("AGENT -ID:{0}-created, AGENT-EMAIL:{1}", newAgent.getId(), newAgent.getEmail()));
+            } else {
+                LOGGER.error(MessageFormat.format("AGENT-ID:{0}-not created, AGENT-EMAIL:{1}", newAgent.getId(), newAgent.getEmail()));
+            }
+
+            return new ResponseEntity<>(newAgent, HttpStatus.CREATED);
+        }
     }
     @GetMapping(value = "/agent")
     public ResponseEntity<List<Agent>> getAllAgents() throws Exception {

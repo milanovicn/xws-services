@@ -16,4 +16,5 @@ export class Vozilo{
     brojSedistaDeca:number;
    // brojKomentara:number;
     iznajmljivacId:number;
+    iznajmljivacMail:string;
 }

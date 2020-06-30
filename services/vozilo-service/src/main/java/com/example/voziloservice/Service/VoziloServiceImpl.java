@@ -29,7 +29,7 @@ public class VoziloServiceImpl implements VoziloService {
             if (userClient.chackNuberOfCars(vozilo.getIznajmljivacId()) == true) {
                 Vozilo newVozilo = new Vozilo(vozilo.getMarka(), vozilo.getModel(), vozilo.getTipGoriva(), vozilo.getTipMenjaca(),
                         vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
-                        vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId());
+                        vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail());
 
                 voziloRepository.save(newVozilo);
                 userClient.uvecajBrojOglasa(newVozilo.getIznajmljivacId());
@@ -50,7 +50,7 @@ public class VoziloServiceImpl implements VoziloService {
         }else{
             Vozilo newVozilo = new Vozilo(vozilo.getMarka(), vozilo.getModel(), vozilo.getTipGoriva(), vozilo.getTipMenjaca(),
                     vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
-                    vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId());
+                    vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail());
 
             voziloRepository.save(newVozilo);
             return newVozilo;
@@ -65,6 +65,11 @@ public class VoziloServiceImpl implements VoziloService {
     @Override
     public List<Vozilo> findByIznajmljivacId(Long id) {
         return voziloRepository.findByIznajmljivacId(id);
+    }
+
+    @Override
+    public List<Vozilo> findByIznajmljivacMail(String mail) {
+        return voziloRepository.findByIznajmljivacMail(mail);
     }
 
     @Override

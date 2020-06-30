@@ -47,6 +47,9 @@ public class Vozilo {
     @Column(name = "IznajmljivacId", nullable = false)
     private Long iznajmljivacId;
 
+    @Column(name = "IznajmljivacMail", nullable = false)
+    private String iznajmljivacMail;
+
     @Column(name = "VaziOd", nullable = false)
     private LocalDateTime vaziOd;
 
@@ -61,7 +64,7 @@ public class Vozilo {
 
     }
 
-    public Vozilo(String marka, String model, String tipGoriva, String tipMenjaca, String klasaVozila, String cenovnikId, double redjenaKilometraza, String ogranicenaKilometraza, boolean CDWProtection, int brojSedistaDeca, LocalDateTime vaziOd, LocalDateTime vaziDo, String mesto,Long oglasavacId) {
+    public Vozilo(String marka, String model, String tipGoriva, String tipMenjaca, String klasaVozila, String cenovnikId, double redjenaKilometraza, String ogranicenaKilometraza, boolean CDWProtection, int brojSedistaDeca, LocalDateTime vaziOd, LocalDateTime vaziDo, String mesto,Long oglasavacId,String iznajmljivacMail) {
         this.marka = marka;
         this.model = model;
         this.tipGoriva = tipGoriva;
@@ -76,6 +79,7 @@ public class Vozilo {
         this.vaziDo = vaziDo;
         this.mesto = mesto;
         this.iznajmljivacId=oglasavacId;
+        this.iznajmljivacMail=iznajmljivacMail;
     }
 
     public Long getId() {
@@ -196,5 +200,13 @@ public class Vozilo {
 
     public void setMesto(String mesto) {
         this.mesto = mesto;
+    }
+
+    public String getIznajmljivacMail() {
+        return iznajmljivacMail;
+    }
+
+    public void setIznajmljivacMail(String iznajmljivacMail) {
+        this.iznajmljivacMail = iznajmljivacMail;
     }
 }

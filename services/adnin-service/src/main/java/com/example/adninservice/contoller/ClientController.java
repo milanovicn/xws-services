@@ -1,7 +1,9 @@
 package com.example.adninservice.contoller;
 
 
+import com.example.adninservice.model.Agent;
 import com.example.adninservice.model.Client;
+import com.example.adninservice.service.AgentService;
 import com.example.adninservice.service.ClientService;
 import com.example.adninservice.service.ClientServiceImpl;
 import org.slf4j.Logger;
@@ -29,20 +31,29 @@ public class ClientController {
     @Autowired
     private ClientService clientServiceImpl;
 
+    @Autowired
+    private AgentService agentService;
+
 
     @PostMapping( value = "/addClient")
     public ResponseEntity<?> addClient(@RequestBody Client client) throws Exception {
-        client.setSaltValue( generateSaltString());
-        client.setHashedPassAndSalt(hash(client.getPassword().concat(client.getSaltValue())));
-        Client newClient=clientServiceImpl.addClient(client);
-        if(newClient!=null) {
-            LOGGER.info(MessageFormat.format("CLIENT -ID:{0}-created, CLIENT-EMAIL:{1}", newClient.getId(), newClient.getEmail()));
+        Client postojeci = clientServiceImpl.findByEmail(client.getEmail());
+        Agent postojeciAgent = agentService.findByEmail(client.getEmail());
+        if (postojeci != null || postojeciAgent!=null) {
+            return new ResponseEntity<>("Klijent sa datim email-om vec postoji", HttpStatus.METHOD_NOT_ALLOWED);
         } else {
-            LOGGER.error(MessageFormat.format("CLIENT-ID:{0}-not created, CLIENT-EMAIL:{1}" , newClient.getId(), newClient.getEmail()));
+            client.setSaltValue(generateSaltString());
+            client.setHashedPassAndSalt(hash(client.getPassword().concat(client.getSaltValue())));
+            Client newClient = clientServiceImpl.addClient(client);
+            if (newClient != null) {
+                LOGGER.info(MessageFormat.format("CLIENT -ID:{0}-created, CLIENT-EMAIL:{1}", newClient.getId(), newClient.getEmail()));
+            } else {
+                LOGGER.error(MessageFormat.format("CLIENT-ID:{0}-not created, CLIENT-EMAIL:{1}", newClient.getId(), newClient.getEmail()));
+            }
+
+
+            return new ResponseEntity<>(newClient, HttpStatus.CREATED);
         }
-
-
-        return new ResponseEntity<>(newClient, HttpStatus.CREATED);
     }
     @GetMapping(value = "/getAllClients")
     public ResponseEntity<List<Client>> getAllClients() throws Exception {

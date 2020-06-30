@@ -44,7 +44,7 @@ export class ZahtevComponent implements OnInit{
 
       this.login.getKorisnika().subscribe({
         next: korisnik=>{this.korisnik=korisnik;
-            this.zahtevService.vratiZahtevePoKorisniku(this.korisnik.id).subscribe(
+            this.zahtevService.vratiZahtevePoKorisnikuMail(this.korisnik.email).subscribe(
                 zahtevi => {
                   this.zahtevi = zahtevi;
                 }

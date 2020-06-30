@@ -36,16 +36,20 @@ public class Zahtev {
     @Column(name = "Izdavac", nullable = false)
     private Long izdavac;
 
+    @Column(name = "IzdavacMail", nullable = false)
+    private String izdavacMail;
+
     public Zahtev() {
     }
 
-    public Zahtev(Long idVozila, LocalDateTime datumOd, LocalDateTime datumDo, Long podnosilac, Long izdavac) {
+    public Zahtev(Long idVozila, LocalDateTime datumOd, LocalDateTime datumDo, Long podnosilac, Long izdavac,String izdavacMail) {
         this.idVozila = idVozila;
         this.stanje = Stanje.PENDING;
         this.datumOd = datumOd;
         this.datumDo = datumDo;
         this.podnosilac = podnosilac;
         this.izdavac= izdavac;
+        this.izdavacMail=izdavacMail;
        // this.vremeKreiranja=vremeKreiranja;
     }
 
@@ -119,5 +123,13 @@ public class Zahtev {
 
     public void setVremeKreiranja(LocalDateTime vremeKreiranja) {
         this.vremeKreiranja = vremeKreiranja;
+    }
+
+    public String getIzdavacMail() {
+        return izdavacMail;
+    }
+
+    public void setIzdavacMail(String izdavacMail) {
+        this.izdavacMail = izdavacMail;
     }
 }

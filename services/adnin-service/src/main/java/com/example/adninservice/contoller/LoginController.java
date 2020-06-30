@@ -65,7 +65,7 @@ public class LoginController {
         Collection<Client> client = korisnikService.getAll();
 
 
-        Client ak = korisnikService.fingBuEmail(zahtev.getEmail());
+        Client ak = korisnikService.findByEmail(zahtev.getEmail());
 
         if (ak != null) {
             String zahtevPass = zahtev.getPassword().concat(ak.getSaltValue());

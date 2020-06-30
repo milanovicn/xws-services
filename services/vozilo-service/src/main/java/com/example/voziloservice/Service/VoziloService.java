@@ -11,6 +11,7 @@ public interface VoziloService {
     Vozilo addVozilo(Vozilo vozilo,String rola);
     List<Vozilo> getAll();
     List<Vozilo> findByIznajmljivacId(Long id);
+    List<Vozilo> findByIznajmljivacMail(String mail);
     Vozilo findById(Long id);
 
 }

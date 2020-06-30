@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface VoziloRepository extends JpaRepository<Vozilo,Long> {
     List<Vozilo> findByIznajmljivacId(Long id);
-
+    List<Vozilo> findByIznajmljivacMail(String mail);
 
 }

@@ -20,7 +20,7 @@ public class ZahtevServiceImpl implements ZahtevService {
     @Override
     public Zahtev create(Zahtev zahtev) {
         LocalDateTime sad=LocalDateTime.now();
-        Zahtev novi=new Zahtev(zahtev.getIdVozila(),zahtev.getDatumOd(),zahtev.getDatumDo(),zahtev.getPodnosilac(),zahtev.getIzdavac());
+        Zahtev novi=new Zahtev(zahtev.getIdVozila(),zahtev.getDatumOd(),zahtev.getDatumDo(),zahtev.getPodnosilac(),zahtev.getIzdavac(),zahtev.getIzdavacMail());
         novi.setVremeKreiranja(sad);
 
         zahtevRepository.save(novi);
@@ -32,7 +32,7 @@ public class ZahtevServiceImpl implements ZahtevService {
         List<Zahtev> noviZahtevi=new ArrayList<>();
         LocalDateTime sad=LocalDateTime.now();
         for(Zahtev z:zahtevi){
-            Zahtev novi=new Zahtev(z.getIdVozila(),z.getDatumOd(),z.getDatumDo(),z.getPodnosilac(),z.getIzdavac());
+            Zahtev novi=new Zahtev(z.getIdVozila(),z.getDatumOd(),z.getDatumDo(),z.getPodnosilac(),z.getIzdavac(),z.getIzdavacMail());
             novi.setVremeKreiranja(sad);
             zahtevRepository.save(novi);
             noviZahtevi.add(novi);
@@ -48,6 +48,11 @@ public class ZahtevServiceImpl implements ZahtevService {
     @Override
     public List<Zahtev> findByIzdavac(Long id) {
         return zahtevRepository.findByIzdavac(id);
+    }
+
+    @Override
+    public List<Zahtev> findByIzdavacMail(String mail) {
+        return zahtevRepository.findByIzdavacMail(mail);
     }
 
     @Override
