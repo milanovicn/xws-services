@@ -29,12 +29,12 @@ public class ClientServiceImpl implements ClientService {
         newClient.setHashedPassAndSalt(client.getHashedPassAndSalt());
         newClient=clientRepository.save(newClient);
 
-        SimpleMailMessage mail = new SimpleMailMessage();
+      /*  SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo(newClient.getEmail());
         mail.setFrom("isaPSW1@gmail.com");
         mail.setSubject("Registracija");
         mail.setText("Pozdrav" + ",\nUspesno ste se registrovali na nas sistem:");
-        javaMailSender.send(mail);
+        javaMailSender.send(mail);*/
         return newClient;
     }
 

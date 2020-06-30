@@ -36,6 +36,14 @@ public class ZahtevContorller {
         return new ResponseEntity<>(novi, HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/zahtevi")
+    public ResponseEntity<?> napraviZahtev(@RequestBody List<Zahtev> zahtevi) throws Exception {
+
+        List<Zahtev> noviZahtevi = zahtevService.createBundle(zahtevi);
+
+        return new ResponseEntity<>(noviZahtevi, HttpStatus.CREATED);
+    }
+
     @GetMapping(value = "/zahtev")
     public ResponseEntity<?> vratiZahtev() throws Exception {
 
