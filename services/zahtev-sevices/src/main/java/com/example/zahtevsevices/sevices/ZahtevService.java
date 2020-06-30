@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ZahtevService {
     Zahtev create(Zahtev zahtev);
+    List<Zahtev> createBundle(List<Zahtev> zahtevi);
     List<Zahtev> findByPodnosilac(Long id);
     List<Zahtev> findByIzdavac(Long id);
     List<Zahtev> findAll();

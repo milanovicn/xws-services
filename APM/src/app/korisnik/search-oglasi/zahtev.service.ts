@@ -21,7 +21,9 @@ export class ZahtevSerivces{
         return this.http.post<ZahtevRezervacije>("/zahtev/zahtev",zahtev);
     }
    
-
+    public napraviBundleZahtev(zahtevi:ZahtevRezervacije[]){
+      return this.http.post<ZahtevRezervacije[]>("/zahtev/zahtevi",zahtevi);
+  }
 public vratiZahtevePoKorisniku(idKorisnika:number):Observable<ZahtevRezervacije[]>{
       return this.http.get<ZahtevRezervacije[]>("/zahtev/zahtev/izdavalac/"+idKorisnika);
   }

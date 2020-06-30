@@ -60,6 +60,14 @@
     </div>
 
     <div *ngIf='prikaziKorpu'>
+      <div > Zelite li da napravite jedan zahtev za sva vozila od istog izdavaca?
+        <button class='btn btn-outline-secondary'
+                (click)='napraviBundle()'
+                style='width:80px'>
+          <i class='fa fa-chevron-left'></i> Napravi bundle zahtev
+        </button>
+      </div>
+
       <div>Moja korpa</div>
       <table class='table' *ngIf='korpa'>
         <thead>
@@ -76,9 +84,17 @@
             <td>{{ser.model}}</td>
             <td>{{ser.klasaVozila}}</td>
             <td><button class="btn btn-info" (click)='zahtevNapravi(ser)'>Napravi zahtev</button></td>
-          
+          <td *ngIf='isBundle'><button class="btn btn-info" (click)='zahtevBundleNapravi(ser)'>Dodaj u bundle zahtev</button></td>
           </tr>
         </tbody>
       </table>
+
+      <div *ngIf='isBundle'>
+        <button class='btn btn-outline-secondary'
+        (click)='posaljiBundleZahtev()'
+        style='width:80px'>
+  <i class='fa fa-chevron-left'></i> Gotovo
+</button>
+        </div>
   
           </div>

@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +25,19 @@ public class ZahtevServiceImpl implements ZahtevService {
 
         zahtevRepository.save(novi);
         return novi;
+    }
+
+    @Override
+    public List<Zahtev> createBundle(List<Zahtev> zahtevi) {
+        List<Zahtev> noviZahtevi=new ArrayList<>();
+        LocalDateTime sad=LocalDateTime.now();
+        for(Zahtev z:zahtevi){
+            Zahtev novi=new Zahtev(z.getIdVozila(),z.getDatumOd(),z.getDatumDo(),z.getPodnosilac(),z.getIzdavac());
+            novi.setVremeKreiranja(sad);
+            zahtevRepository.save(novi);
+            noviZahtevi.add(novi);
+        }
+        return noviZahtevi;
     }
 
     @Override

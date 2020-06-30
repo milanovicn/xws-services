@@ -21,16 +21,16 @@ import { SearchSerivces } from './search.service';
 
 
 
-@Component({
-
-    templateUrl : './listaSvihVozila.html'
-
+@Component({  
+  templateUrl : './listaSvihVozila.html',
 })
 
 export class SearchComponent implements OnInit{
     
     vozila:Vozilo[]=[];
     korpa:Vozilo[]=[];
+    isBundle:boolean=false;
+    bundleZahtevi:ZahtevRezervacije[]=[];
     idVozila:number[]=[];
     pretrazenaVozila:Vozilo[]=[];
     vracenoVozilo:Vozilo;
@@ -231,6 +231,25 @@ export class SearchComponent implements OnInit{
                               })
                       }
                   });
+            }
+
+            napraviBundle(){
+              this.isBundle=true;
+             
+              
+            }
+
+            zahtevBundleNapravi(vozilo:Vozilo){
+              this.zahtev.izdavac=vozilo.iznajmljivacId;
+              this.zahtev.datumOd=this.zauzmiOd;
+              this.zahtev.datumDo=this.zauzmiDo;
+              this.zahtev.podnosilac=this.korisnik.id;
+              this.zahtev.idVozila=vozilo.id;
+              this.bundleZahtevi.push(this.zahtev);
+
+            }
+            posaljiBundleZahtev(){
+              this.zahtevService.napraviBundleZahtev(this.bundleZahtevi).subscribe();
             }
         }
 
