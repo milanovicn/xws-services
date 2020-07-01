@@ -1,0 +1,20 @@
+<div><h1>Lista mojih dopisivanja:</h1></div>
+<div class='table-responsive'>
+    <table class='table'
+           *ngIf='myChatsPrikaz && myChatsPrikaz.length'>
+        <thead>
+            <tr>
+                <th>Email korisnika</th>
+                <th>Broj poruka</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let chat of myChatsPrikaz'>
+
+                <td><a [routerLink]="[chat.userEmail]">{{chat.userEmail}}</a></td>
+                <td><a [routerLink]="[chat.chatId]">{{chat.chatId}}</a></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

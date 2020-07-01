@@ -43,20 +43,6 @@ public class LoginController {
 
     Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
 
-   /* @RequestMapping(method = POST, value = "/regKorisnika")
-    public ResponseEntity<?> dodajKorisnika(@RequestBody KorisnikDTO korisnikRequest) throws Exception {
-        Admin existAdmin = adminSer.findByEmail(korisnikRequest.getEmail());
-        Korisnik existKor = korisnikService.findByEmail(korisnikRequest.getEmail());
-
-        if (existAdmin != null || existKor != null) {
-            return new ResponseEntity<>("Email vec postoji u bazi! Pokusajte drugi email.", HttpStatus.METHOD_NOT_ALLOWED);
-        }
-
-        Korisnik korisnik = korisnikService.create(korisnikRequest);
-
-        return new ResponseEntity<Korisnik>(korisnik, HttpStatus.CREATED);
-    }*/
-
 
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody LoginZahtev zahtev, @Context HttpServletRequest request) {
@@ -68,15 +54,15 @@ public class LoginController {
         Client ak = korisnikService.findByEmail(zahtev.getEmail());
 
         if (ak != null) {
-            String zahtevPass = zahtev.getPassword().concat(ak.getSaltValue());
-            if (checkIntegrity(zahtevPass, ak.getHashedPassAndSalt())) {
+            //String zahtevPass = zahtev.getPassword().concat(ak.getSaltValue());
+            if (zahtev.getPassword().equals(ak.getPassword())) {
                 //if (zahtev.getPassword().equals(ak.getPassword())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("client", ak);
-                if(ak!=null) {
+                if (ak != null) {
                     LOGGER.info(MessageFormat.format("CLIENT SESSION: CLIEN-ID:{0}-session created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail()));
                 } else {
-                    LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}" , ak.getId(), ak.getEmail()));
+                    LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail()));
                 }
                 return new ResponseEntity<Client>(ak, HttpStatus.CREATED);
             }
@@ -84,35 +70,34 @@ public class LoginController {
         } else {
             Admin admin = adminService.findByEmail(zahtev.getEmail());
             if (admin != null) {
-                String zahtevPass = zahtev.getPassword().concat(admin.getSaltValue());
-                if(checkIntegrity(zahtevPass, admin.getHashedPassAndSalt())){
+                //String zahtevPass = zahtev.getPassword().concat(admin.getSaltValue());
+                if (zahtev.getPassword().equals(admin.getPassword())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", admin);
 
-                    if(admin!=null) {
+                    if (admin != null) {
                         LOGGER.info(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session created, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                     } else {
-                        LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session not created, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail()));
+                        LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session not created, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                     }
 
                     return new ResponseEntity<>(admin, HttpStatus.CREATED);
                 }
-            }
-            else {
+            } else {
                 Agent agent = agentService.findByEmail(zahtev.getEmail());
                 if (agent != null) {
-                    String zahtevPass = zahtev.getPassword().concat(agent.getSaltValue());
-                    if(checkIntegrity(zahtevPass, agent.getHashedPassAndSalt())){
-                        HttpSession session = request.getSession();
-                        session.setAttribute("agent", agent);
+                    // String zahtevPass = zahtev.getPassword().concat(agent.getSaltValue());
+                    if (zahtev.getPassword().equals(agent.getPassword())) {
+                        if (agent.isOdobren()) {
+                            HttpSession session = request.getSession();
+                            session.setAttribute("agent", agent);
 
-                        if(agent!=null) {
-                            LOGGER.info(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail()));
+
+                            return new ResponseEntity<>(agent, HttpStatus.CREATED);
+
                         } else {
-                            LOGGER.error(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail()));
+                            return new ResponseEntity<>("Registracija agenta jos uvek nije odobrena od strane admina", HttpStatus.METHOD_NOT_ALLOWED);
                         }
-
-                        return new ResponseEntity<>(agent, HttpStatus.CREATED);
                     }
                 }
             }
@@ -148,36 +133,35 @@ public class LoginController {
 
         if (korisnik != null) {
 
-            if(korisnik!=null) {
+            if (korisnik != null) {
                 LOGGER.info(MessageFormat.format("CLIENT SESSION: CLIENT-ID:{0}-logged in, CLIENT-EMAIL:{1}", korisnik.getId(), korisnik.getEmail()));
             } else {
-                LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID:{0}- not logged in, CLIENT-EMAIL:{1}" , korisnik.getId(), korisnik.getEmail()));
+                LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID:{0}- not logged in, CLIENT-EMAIL:{1}", korisnik.getId(), korisnik.getEmail()));
             }
 
             return korisnik;
-        }
-        else {
+        } else {
             Admin admin = (Admin) session.getAttribute("admin");
             if (admin != null) {
-                if(admin!=null) {
+                if (admin != null) {
                     LOGGER.info(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-logged in, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                 } else {
-                    LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-not logged in, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail()));
+                    LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-not logged in, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                 }
                 return admin;
-            }
-            else {
+            } else {
                 Agent agent = (Agent) session.getAttribute("agent");
-                if(agent!=null) {
+                if (agent != null) {
                     LOGGER.info(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail()));
                 } else {
-                    LOGGER.error(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail()));
+                    LOGGER.error(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail()));
                 }
 
                 return agent;
             }
         }
     }
+
     @GetMapping(value = "/returnId")
     public Long vratiIdUlogovanog(@Context HttpServletRequest request) {
 
@@ -195,17 +179,15 @@ public class LoginController {
     }
 
 
-
     @RequestMapping(method = PUT, value = "/logOut")
     public ResponseEntity logOut(@Context HttpServletRequest request) {
         HttpSession session = request.getSession();
-      ////  System.out.println("...LOGOUTK... " + session.getAttribute("korisnik"));
-       // System.out.println("...LOGOUTA... " + session.getAttribute("admin"));
+        ////  System.out.println("...LOGOUTK... " + session.getAttribute("korisnik"));
+        // System.out.println("...LOGOUTA... " + session.getAttribute("admin"));
         session.invalidate();
 
 
-            LOGGER.info("SESSION: user logged out");
-
+        LOGGER.info("SESSION: user logged out");
 
 
         return ResponseEntity.status(200).build();

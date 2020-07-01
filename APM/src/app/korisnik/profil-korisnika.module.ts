@@ -21,7 +21,9 @@ import { NoviCenovnikComponent } from './cenovnik/novi-cenovnik.component';
 import { CenovnikService } from './cenovnik/cenovnik.service';
 import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
 import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
-
+import { ListaMojihChatovaComponent } from './chat/lista-mojih-chatova.component';
+import { ChatService } from './chat/chat.service';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
     CenovnikComponent,
     NoviCenovnikComponent,
     ListaCenovnikaComponent,
-    MojiZahteviComponent],
+    MojiZahteviComponent,
+    ListaMojihChatovaComponent,
+    ChatComponent],
 
   imports: [
     CommonModule,
@@ -51,7 +55,9 @@ import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
       { path: 'korisnik/novi-cenovnik', component: NoviCenovnikComponent },
       { path: 'korisnik/cenovnik/:id', component: CenovnikComponent },
       { path: 'korisnik/cenovnik', component: ListaCenovnikaComponent },
-      { path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent }
+      { path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent },
+      { path: 'korisnik/chat/:id', component: ChatComponent },
+      { path: 'korisnik/chat', component: ListaMojihChatovaComponent }
      
 
       //{ path: 'admin/korisnici', component: ListaKorisnikaComponent },
@@ -66,7 +72,8 @@ import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
     SifrarnikService,
     ZahtevSerivces,
     SearchSerivces,
-    CenovnikService
+    CenovnikService,
+    ChatService
   ]
 })
 export class ProfilKorisnikaModule { }
