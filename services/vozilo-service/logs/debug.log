@@ -40,3 +40,8 @@
 2020-06-30 19:25:41 [main] INFO  c.e.v.VoziloServiceApplicationTests - Started VoziloServiceApplicationTests in 27.705 seconds (JVM running for 33.048)
 2020-06-30 22:08:02 [main] INFO  c.e.v.VoziloServiceApplicationTests - No active profile set, falling back to default profiles: default
 2020-06-30 22:08:45 [main] INFO  c.e.v.VoziloServiceApplicationTests - Started VoziloServiceApplicationTests in 48.937 seconds (JVM running for 56.952)
+2020-07-01 17:41:19 [main] INFO  c.e.v.VoziloServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 17:47:09 [main] INFO  c.e.v.VoziloServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 17:48:46 [main] INFO  c.e.v.VoziloServiceApplicationTests - Started VoziloServiceApplicationTests in 110.648 seconds (JVM running for 139.005)
+2020-07-01 21:15:25 [main] INFO  c.e.v.VoziloServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 21:16:12 [main] INFO  c.e.v.VoziloServiceApplicationTests - Started VoziloServiceApplicationTests in 51.763 seconds (JVM running for 59.273)

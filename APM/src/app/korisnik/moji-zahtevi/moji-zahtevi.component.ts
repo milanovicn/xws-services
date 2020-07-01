@@ -26,6 +26,7 @@ import { ZahtevSerivces } from '../search-oglasi/zahtev.service';
 export class MojiZahteviComponent implements OnInit {
 
   vozila: Vozilo[] = [];
+  pom: Vozilo[] = [];
 
   vozilo: Vozilo;
   prikaziKorpu: boolean = false;
@@ -50,20 +51,25 @@ export class MojiZahteviComponent implements OnInit {
     this.login.getKorisnika().subscribe({
       next: korisnik => {
         this.korisnik = korisnik;
-        this.zahtevService.vratiZahtevePoPodnosiocu(this.korisnik.id).subscribe({
+        this.voziloService.vratiZahtevePoPodnosiocu(this.korisnik.id).subscribe({
           next: zahtevi => {
             this.zahtevi = zahtevi;
              console.log(this.zahtevi);
             for (let z of this.zahtevi){
               if (z.stanje == "RESERVED") {
                 this.zahteviZaPlacanje.push(z);
-                
+                for(let v of z.vozila){
+                  this.vozila.push(v);
+                }
               }
               }
 
             for (let z of this.zahtevi){
               if (z.stanje == "PAID") {
                 this.zahteviZaKomentar.push(z);
+                for(let v of z.vozila){
+                  this.pom.push(v);
+                }
                 console.log("cao" +this.zahteviZaKomentar);
               }
               }
@@ -93,18 +99,19 @@ export class MojiZahteviComponent implements OnInit {
   }
 
   plati(zahtev: ZahtevRezervacije) {
-    this.zahtevService.platiZahtev(zahtev).subscribe();
+    this.voziloService.platiZahtev(zahtev).subscribe();
   }
 
   ostaviKomentar(zahtev: ZahtevRezervacije) {
     //promena statusa zahteva u zahtev service
    // this.zahtevService.komentarisi(zahtev).subscribe({
      // next:zahtev=>{this.zahtev=zahtev;
-        this.voziloService.kreirajKomentar(this.tekstKomentara, zahtev.idVozila).subscribe();
+     for(let v of zahtev.vozila){
+       this.voziloService.kreirajKomentar(this.tekstKomentara, v.id).subscribe();
      // }
    // });
     //dodavanje komentara za vozilo u vozilo service
-    
+     }
   }
 
 

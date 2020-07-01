@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vozilo } from "./Vozilo";
 import { Zauzece } from '../listaKorisnikovihVozila/Zauzece';
+import { ZahtevRezervacije } from '../search-oglasi/ZahtevRezervacije';
 
 
 
@@ -19,6 +20,28 @@ export class VoziloSerivces {
   public sacuvajVozilo(vozilo: Vozilo,rola:string) {
     return this.http.post<Vozilo>("/car/addVozilo/"+rola, vozilo);
   }
+
+  public zahtevNapravi(zahtev:ZahtevRezervacije) {
+    return this.http.post<ZahtevRezervacije>("/car/zahtev",zahtev);
+  }
+
+  public vratiZahtevePoKorisnikuMail(mail:string):Observable<ZahtevRezervacije[]>{
+    return this.http.get<ZahtevRezervacije[]>("/car/zahtev/izdavalacMail/"+mail);
+  }
+  public vratiZahtevePoPodnosiocu(idKorisnika:number):Observable<ZahtevRezervacije[]>{
+    return this.http.get<ZahtevRezervacije[]>("/car/zahtev/"+idKorisnika);
+}
+
+  public odobriZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
+    return this.http.post<ZahtevRezervacije>("/car/odobri/"+zahtev.id,zahtev);
+}
+public otkaziZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
+  return this.http.post<ZahtevRezervacije>("/car/otkazi/"+zahtev.id,zahtev);
+}
+
+public platiZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
+  return this.http.post<ZahtevRezervacije>("/car/plati/"+zahtev.id, zahtev);
+}
 
   public vratiSvaVozila(): Observable<Vozilo[]> {
     return this.http.get<Vozilo[]>("/car/getAllCars");

@@ -6,7 +6,7 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
+          <th  *ngFor='let v of vozila'>Za vozilo</th>
           <th>Stanje zahteva</th>
 
         </tr>
@@ -15,7 +15,7 @@
         <tr *ngFor='let ser of zahteviZaPlacanje'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td>{{ser.idVozila}}</td>
+          <td  *ngFor='let v of vozila'>{{v.marka}}</td>
           <td>{{ser.stanje}}</td>
           <td><button class="btn btn-info"
                     (click)='plati(ser)'>Plati</button></td>
@@ -35,7 +35,7 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
+          <th *ngFor='let v of pom'>Za vozilo</th>
           <th>Stanje zahteva</th>
 
         </tr>
@@ -44,7 +44,7 @@
         <tr *ngFor='let ser of zahteviZaKomentar'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td>{{ser.idVozila}}</td>
+          <td *ngFor='let v of pom'>{{v.marka}}</td>
           <td>{{ser.stanje}}</td>
           <td><button class="btn btn-info"
                     (click)='ostaviKomentar(ser)'>Plati</button></td>

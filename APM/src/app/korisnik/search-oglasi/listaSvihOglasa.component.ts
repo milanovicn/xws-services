@@ -200,13 +200,17 @@ export class SearchComponent implements OnInit{
         }
 
         zahtevNapravi(vozilo:Vozilo){
+          let pomocna:Vozilo;
+          pomocna=new Vozilo();
+          this.zahtev.vozila=[];
           this.zahtev.izdavac=vozilo.iznajmljivacId;
           this.zahtev.izdavacMail=vozilo.iznajmljivacMail;
           this.zahtev.datumOd=this.zauzmiOd;
           this.zahtev.datumDo=this.zauzmiDo;
           this.zahtev.podnosilac=this.korisnik.id;
-          this.zahtev.idVozila=vozilo.id;
-          this.zahtevService.napraviZahtev(this.zahtev).subscribe();
+          pomocna=vozilo;
+          this.zahtev.vozila.push(pomocna);
+          this.voziloService.zahtevNapravi(this.zahtev).subscribe();
         }
         pretrazi(){
                   this.pretraga.datumOd=this.zauzmiOd;
@@ -267,34 +271,45 @@ export class SearchComponent implements OnInit{
 
             napraviBundle(){
               this.isBundle=true;
-             
+              this.zahtev.vozila=[];
               
             }
 
             zahtevBundleNapravi(vozilo:Vozilo){
               if(this.idAutora==0){
+                let pomocna:Vozilo;
+                pomocna=new Vozilo();
+                //this.zahtev.vozila=[];
                 this.idAutora=vozilo.iznajmljivacId;
                 this.zahtev.izdavac=vozilo.iznajmljivacId;
                 this.zahtev.izdavacMail=vozilo.iznajmljivacMail;
                 this.zahtev.datumOd=this.zauzmiOd;
                 this.zahtev.datumDo=this.zauzmiDo;
                 this.zahtev.podnosilac=this.korisnik.id;
-                this.zahtev.idVozila=vozilo.id;;
+                pomocna=vozilo;
+                this.zahtev.vozila.push(pomocna);
+                //this.zahtev.idVozila=vozilo.id;;
                 this.bundleZahtevi.push(this.zahtev);
               }else if(this.idAutora!=vozilo.iznajmljivacId && this.idAutora!=0){
                 alert("U bundle zahtevu sva vozila moraju biti od istog izdavaca");
               }else{
+                let pomocna:Vozilo;
+                pomocna=new Vozilo();
+              //  this.zahtev.vozila=[];
               this.zahtev.izdavac=vozilo.iznajmljivacId;
               this.zahtev.izdavacMail=vozilo.iznajmljivacMail;
               this.zahtev.datumOd=this.zauzmiOd;
               this.zahtev.datumDo=this.zauzmiDo;
               this.zahtev.podnosilac=this.korisnik.id;
-              this.zahtev.idVozila=vozilo.id;
+              //this.zahtev.idVozila=vozilo.id;
+              pomocna=vozilo;
+                this.zahtev.vozila.push(pomocna);
               this.bundleZahtevi.push(this.zahtev);
               }
             }
             posaljiBundleZahtev(){
-              this.zahtevService.napraviBundleZahtev(this.bundleZahtevi).subscribe();
+             // this.zahtevService.napraviBundleZahtev(this.bundleZahtevi).subscribe();
+             this.voziloService.zahtevNapravi(this.zahtev).subscribe()
             }
         }
 

@@ -2,9 +2,13 @@ package com.example.voziloservice.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Vozilo {
@@ -59,6 +63,12 @@ public class Vozilo {
     @Column(name = "Mesto", nullable = false)
     private String mesto;
 
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "VOZILO_ZAHTEV",
+            joinColumns = @JoinColumn(name = "vozilo_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "zahtev_id", referencedColumnName = "id"))
+    private Set<Zahtev> zahtevi = new HashSet<Zahtev>();
 
     public Vozilo() {
 
@@ -80,6 +90,7 @@ public class Vozilo {
         this.mesto = mesto;
         this.iznajmljivacId=oglasavacId;
         this.iznajmljivacMail=iznajmljivacMail;
+        this.zahtevi=zahtevi;
     }
 
     public Long getId() {

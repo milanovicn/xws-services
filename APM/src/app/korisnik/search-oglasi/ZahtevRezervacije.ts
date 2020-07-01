@@ -1,6 +1,8 @@
+import { Vozilo } from '../vozilo/Vozilo';
+
 export class ZahtevRezervacije{
     id:number;
-    idVozila:number;
+    vozila:Vozilo[];
    datumOd:Date;
     datumDo:Date;
     izdavac:number;

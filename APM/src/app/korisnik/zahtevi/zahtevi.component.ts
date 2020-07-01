@@ -44,9 +44,15 @@ export class ZahtevComponent implements OnInit{
 
       this.login.getKorisnika().subscribe({
         next: korisnik=>{this.korisnik=korisnik;
-            this.zahtevService.vratiZahtevePoKorisnikuMail(this.korisnik.email).subscribe(
+            this.voziloService.vratiZahtevePoKorisnikuMail(this.korisnik.email).subscribe(
                 zahtevi => {
                   this.zahtevi = zahtevi;
+                  for(let z of this.zahtevi){
+                    for(let v of z.vozila){
+                      this.vozila.push(v);
+                    }
+                  }
+
                 }
               );
          }
@@ -56,10 +62,10 @@ export class ZahtevComponent implements OnInit{
         }
 
         odobriZahtev(zahtev:ZahtevRezervacije){
-            this.zahtevService.odobriZahtev(zahtev).subscribe();
+            this.voziloService.odobriZahtev(zahtev).subscribe();
         }
         ponistiZahtev(zahtev:ZahtevRezervacije){
-            this.zahtevService.otkaziZahtev(zahtev).subscribe();
+            this.voziloService.otkaziZahtev(zahtev).subscribe();
         }
             
         }
