@@ -5,16 +5,16 @@
     <table class='table'
            *ngIf='poruke && poruke.length'>
         <thead>
-            <tr>
+            <tr><th>Posiljalac </th>
                 <th>Vreme poruke</th>
                 <th>Sadrzaj poruke</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor='let poruka of poruke'>
-
-                <td><a [routerLink]="[poruka.timestamp]">{{poruka.timestamp}}</a></td>
-                <td><a [routerLink]="[poruka.content]">{{poruka.content}}</a></td>
+                <td>{{poruka.senderEmail}}</td>
+                <td>{{poruka.timestamp}}</td>
+                <td>{{poruka.content}}</td>
 
             </tr>
         </tbody>

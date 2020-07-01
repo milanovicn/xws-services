@@ -1,33 +1,76 @@
 <div>Pretraga vozila</div>
-          <input type="datetime-local" [(ngModel)]='zauzmiOd'>
-          <input type="datetime-local" [(ngModel)]='zauzmiDo'>
-           <input type="text" name="Mesto"  #Mesto="ngModel" [(ngModel)]="pretraga.mesto">
-          <input type="number" name="Sedista"  #Sedista="ngModel" [(ngModel)]="pretraga.brojSedistaZaDecu">
-          <input type="checkbox" name="CWD"  #CWD="ngModel" [(ngModel)]="protection">
-        
-          <select name="MarkaAutomobila"  #MarkaAutomobila="ngModel" [(ngModel)] = "izabranaMarka">
-            <option value="sve" selected="selected">sve</option >
-            <option *ngFor='let mar of markeVozila' [ngValue]="mar">{{mar.naziv}}</option>
+<div class='row'>
+  Datum pocetka zakupa:
+  <input type="datetime-local"
+         [(ngModel)]='zauzmiOd'>
+  Datum kraja zakupa:
+  <input type="datetime-local"
+         [(ngModel)]='zauzmiDo'>
+</div>
+<div class='row'>
+  Mesto iznajmljivanja:
+  <input type="text"
+         name="Mesto"
+         #Mesto="ngModel"
+         [(ngModel)]="pretraga.mesto">
+  Broj sedista za decu:
+  <input type="number"
+         name="Sedista"
+         #Sedista="ngModel"
+         [(ngModel)]="pretraga.brojSedistaZaDecu">
+  CDW zastita:
+  <input type="checkbox"
+         name="CWD"
+         #CWD="ngModel"
+         [(ngModel)]="protection">
+</div>
+<div class='row'>
+  Marka vozila:
+  <select name="MarkaAutomobila"
+          #MarkaAutomobila="ngModel"
+          [(ngModel)]="izabranaMarka">
+    <option value="sve"
+            selected="selected">sve</option>
+    <option *ngFor='let mar of markeVozila'
+            [ngValue]="mar">{{mar.naziv}}</option>
 
-            </select>
-            <select name="ModelAutomobila"  #ModelAutomobila="ngModel" [(ngModel)] = "izabraniModel">
-              <option value="sve" selected="selected">sve</option >
-              <option *ngFor='let mod of modeliVozila' [ngValue]="mod">{{mod.naziv}}</option>
+  </select>
+  Model vozila:
+  <select name="ModelAutomobila"
+          #ModelAutomobila="ngModel"
+          [(ngModel)]="izabraniModel">
+    <option value="sve"
+            selected="selected">sve</option>
+    <option *ngFor='let mod of modeliVozila'
+            [ngValue]="mod">{{mod.naziv}}</option>
 
-              </select>
-              <select name="TipGoriva"  #TipGoriva="ngModel" [(ngModel)] = "izabranoGorivo">
-                <option value="sve" selected="selected">sve</option >
-                <option *ngFor='let ngorivo of tipoviGoriva' [ngValue]="ngorivo">{{ngorivo.naziv}}</option>
+  </select>
+</div>
 
-                </select>
-                <select name="TipMenjaca"  #TipMenjaca="ngModel" [(ngModel)] = "izabraniMenjac">
-                  <option *ngFor='let nmenjac of tipoviMenjaca' [ngValue]="nmenjac">{{nmenjac.naziv}}</option>
-                  <option [ngValue]="sve" selected="selected">sve</option >
-                  </select>
-        <button class='btn btn-outline-secondary'
-                  (click)='pretrazi()'>Pretrazi</button>
-      
-            
+<div class='row'>
+  Tip goriva:
+  <select name="TipGoriva"
+          #TipGoriva="ngModel"
+          [(ngModel)]="izabranoGorivo">
+    <option value="sve"
+            selected="selected">sve</option>
+    <option *ngFor='let ngorivo of tipoviGoriva'
+            [ngValue]="ngorivo">{{ngorivo.naziv}}</option>
+
+  </select>
+  Tip menjaca:
+  <select name="TipMenjaca"
+          #TipMenjaca="ngModel"
+          [(ngModel)]="izabraniMenjac">
+    <option *ngFor='let nmenjac of tipoviMenjaca'
+            [ngValue]="nmenjac">{{nmenjac.naziv}}</option>
+    <option [ngValue]="sve"
+            selected="selected">sve</option>
+  </select>
+</div>
+<button style="margin-bottom: 70px;" class='btn btn-outline-secondary'
+        (click)='pretrazi()'>Pretrazi</button>
+
 
 <div class="listaVozila">
     <div class='table-responsive'>
@@ -35,7 +78,7 @@
         <thead>
           <tr>
             <th>Marka</th>
-            <th>MOdel</th>
+            <th>Model</th>
             <th>Klasa</th>
             
           </tr>

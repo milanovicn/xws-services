@@ -63,12 +63,10 @@ export class ZahtevComponent implements OnInit {
   odobriZahtev(zahtev: ZahtevRezervacije) {
     this.pronadjiPodnosioca(zahtev);
 
-    let chat = new Chat();
-    chat.user2 = zahtev.izdavacMail;
-    chat.user1 = this.podnosilac.email;
+   
 
     this.zahtevService.odobriZahtev(zahtev).subscribe();
-    this.chatService.kreirajChat(chat).subscribe();
+    
 
   }
 
@@ -84,14 +82,28 @@ export class ZahtevComponent implements OnInit {
     this.login.getKorisnikeSve().subscribe({
       next: korisnici => {
         this.korisnici = korisnici;
+
+
+        for (let i = 0; i < this.korisnici.length; i++) {
+          if (this.korisnici[i].id == zahtev.podnosilac) {
+            this.podnosilac = this.korisnici[i];
+          }
+        }
+    
+        let chat = new Chat();
+        chat.user2 = zahtev.izdavacMail;
+        chat.user1 = this.podnosilac.email;
+        console.log(chat);
+        this.chatService.kreirajChat(chat).subscribe();
+        
       }
+
+
+      
     });
 
-    for (let i = 0; i < this.korisnici.length; i++) {
-      if (this.korisnici[i].id == zahtev.podnosilac) {
-        this.podnosilac = this.korisnici[i];
-      }
-    }
+    
+
 
   }
 

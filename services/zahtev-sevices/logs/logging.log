@@ -102,3 +102,29 @@
 2020-06-30 22:17:01.674 INFO  [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2020-06-30 22:17:01.676 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2020-06-30 22:17:01.704 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-07-01 22:52:57.854 INFO  [main] c.e.z.ZahtevSevicesApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 22:52:59.931 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-07-01 22:53:00.587 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 614ms. Found 1 JPA repository interfaces.
+2020-07-01 22:53:01.624 INFO  [main] o.s.cloud.context.scope.GenericScope - BeanFactory id=5f9656e6-a050-359b-a6c0-79dd996ea5fc
+2020-07-01 22:53:03.265 INFO  [main] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-01 22:53:03.393 INFO  [main] o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2020-07-01 22:53:03.734 INFO  [task-1] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-07-01 22:53:04.062 INFO  [task-1] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.17.Final
+2020-07-01 22:53:04.933 INFO  [main] c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-07-01 22:53:04.959 INFO  [main] c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-07-01 22:53:05.066 INFO  [task-1] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-07-01 22:53:05.592 INFO  [task-1] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-07-01 22:53:06.427 INFO  [task-1] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-07-01 22:53:06.520 INFO  [task-1] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-07-01 22:53:08.483 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:zahtevDb'
+2020-07-01 22:53:09.493 INFO  [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-07-01 22:53:09.565 INFO  [task-1] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-07-01 22:53:10.789 INFO  [main] o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
+2020-07-01 22:53:11.864 INFO  [main] o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+2020-07-01 22:53:11.916 INFO  [main] c.e.z.ZahtevSevicesApplicationTests - Started ZahtevSevicesApplicationTests in 16.098 seconds (JVM running for 19.628)
+2020-07-01 22:53:12.315 INFO  [SpringContextShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-07-01 22:53:12.316 INFO  [SpringContextShutdownHook] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-07-01 22:53:12.347 INFO  [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2020-07-01 22:53:12.358 INFO  [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-01 22:53:12.363 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-07-01 22:53:12.386 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -25,8 +25,8 @@ public class ClientServiceImpl implements ClientService {
 
         Client newClient=new Client(client.getIme(),client.getPrezime(),client.getEmail(),client.getPassword(),
                 client.getRola(),client.getBrojTelefona());
-        newClient.setSaltValue(client.getSaltValue());
-        newClient.setHashedPassAndSalt(client.getHashedPassAndSalt());
+        //newClient.setSaltValue(client.getSaltValue());
+        //newClient.setHashedPassAndSalt(client.getHashedPassAndSalt());
         newClient=clientRepository.save(newClient);
 
       /*  SimpleMailMessage mail = new SimpleMailMessage();
@@ -63,6 +63,11 @@ public class ClientServiceImpl implements ClientService {
         clint.setBlokiran(true);
         clientRepository.save(clint);
 
+    }
+
+    @Override
+    public void deactivateClient(String email) {
+git
     }
 
     @Override

@@ -43,28 +43,40 @@ export class ChatComponent implements OnInit {
             next: korisnik => { this.korisnik = korisnik; }
         });
 
-        this.chatService.vratiPorukePoCetu(this.chat.id).subscribe({
-            next: poruke => {
-              this.poruke = poruke;
-            }
-          });
+        
 
     }
 
     getProduct(id: number) {
         this.chatService.vratiChat(id).subscribe(
-            chat => this.chat = chat,
+            chat => {this.chat = chat;
+                this.chatService.vratiPorukePoCetu(this.chat.id).subscribe({
+                    next: poruke => {
+                      this.poruke = poruke;
+                    }
+                  });
+            },
             error => this.errorMessage = <any>error
         );
     }
 
     posaljiPoruku() {
+
         this.novaPoruka.content=this.tekstPoruke;
         this.novaPoruka.senderEmail=this.korisnik.email;
         this.novaPoruka.timestamp = new Date();
         this.novaPoruka.chatId = this.chat.id;
 
-        this.chatService.posaljiPorukuNaCet(this.novaPoruka).subscribe();
+        this.chatService.posaljiPorukuNaCet(this.novaPoruka).subscribe({
+            next: povratna=>{
+                let poruka=povratna;
+                if(poruka!=null){
+                    window.location.reload();
+                }
+            }
+        });
+       
+        
     }
 
 }

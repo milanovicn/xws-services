@@ -4,9 +4,11 @@ com/example/adninservice/model/Cenovnik.class
 com/example/adninservice/AdninServiceApplication.class
 com/example/adninservice/repository/ClientRepository.class
 com/example/adninservice/model/Marka.class
+com/example/adninservice/model/Chat.class
 com/example/adninservice/model/Client.class
 com/example/adninservice/model/LoginZahtev.class
 com/example/adninservice/service/SifrarnikServiceImpl.class
+com/example/adninservice/service/ChatService.class
 com/example/adninservice/repository/CenovnikRepository.class
 com/example/adninservice/service/CenovnikService.class
 com/example/adninservice/service/AgentService.class
@@ -19,6 +21,7 @@ com/example/adninservice/repository/UserRepository.class
 com/example/adninservice/repository/AgentRepository.class
 com/example/adninservice/contoller/AdminController.class
 com/example/adninservice/service/CenovnikServiceImpl.class
+com/example/adninservice/contoller/ChatController.class
 com/example/adninservice/repository/ModelRepository.class
 com/example/adninservice/service/ClientService.class
 com/example/adninservice/contoller/ClientController.class
@@ -28,10 +31,14 @@ com/example/adninservice/service/SifrarnikService.class
 com/example/adninservice/repository/KlasaVozilaRepository.class
 com/example/adninservice/contoller/CenovnikController.class
 com/example/adninservice/model/TipMenjaca.class
+com/example/adninservice/model/Message.class
 com/example/adninservice/service/AdminService.class
 com/example/adninservice/model/User.class
+com/example/adninservice/repository/ChatRepository.class
 com/example/adninservice/service/AgentServiceImpl.class
 com/example/adninservice/service/ClientServiceImpl.class
 com/example/adninservice/repository/AdminRepository.class
 com/example/adninservice/repository/MarkaRepository.class
+com/example/adninservice/repository/MessageRepository.class
+com/example/adninservice/service/ChatServiceImpl.class
 com/example/adninservice/contoller/LoginController.class

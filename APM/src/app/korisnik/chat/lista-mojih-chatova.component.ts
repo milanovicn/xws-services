@@ -37,15 +37,17 @@ export class ListaMojihChatovaComponent implements OnInit {
               let userEmail;
 
               if (element.user1.valueOf() == this.korisnik.email.valueOf()) {
-                userEmail = element.user1;
-              } else {
                 userEmail = element.user2;
+              } else {
+                userEmail = element.user1;
               }
 
               let c = new ChatPrikazLista(element.id, userEmail);
               this.myChatsPrikaz.push(c);
             })
+             console.log(this.myChatsPrikaz);
           }
+         
         });
 
       }

@@ -366,3 +366,55 @@
 2020-06-30 21:55:34.337 INFO  [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2020-06-30 21:55:34.339 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2020-06-30 21:55:34.367 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-07-01 22:42:30.607 INFO  [main] c.e.a.AdninServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 22:42:30.607 INFO  [main] c.e.a.AdninServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 22:42:35.159 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-07-01 22:42:36.668 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1453ms. Found 10 JPA repository interfaces.
+2020-07-01 22:42:38.750 INFO  [main] o.s.cloud.context.scope.GenericScope - BeanFactory id=06cd2fb3-d3fa-3113-8843-059a25989128
+2020-07-01 22:42:42.131 INFO  [main] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-01 22:42:42.668 INFO  [task-1] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-07-01 22:42:43.391 INFO  [task-1] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.15.Final
+2020-07-01 22:42:45.047 INFO  [task-1] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-07-01 22:42:45.265 INFO  [main] c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-07-01 22:42:45.360 INFO  [main] c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-07-01 22:42:46.121 INFO  [task-1] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-07-01 22:42:47.868 INFO  [task-1] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-07-01 22:42:48.024 INFO  [task-1] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-07-01 22:42:52.848 INFO  [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-07-01 22:42:52.939 INFO  [task-1] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-07-01 22:43:02.271 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:myDb'
+2020-07-01 22:43:03.941 INFO  [main] o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
+2020-07-01 22:43:05.325 INFO  [main] o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+2020-07-01 22:43:05.397 INFO  [main] c.e.a.AdninServiceApplicationTests - Started AdninServiceApplicationTests in 39.182 seconds (JVM running for 45.59)
+2020-07-01 22:43:05.397 INFO  [main] c.e.a.AdninServiceApplicationTests - Started AdninServiceApplicationTests in 39.182 seconds (JVM running for 45.59)
+2020-07-01 22:43:06.632 INFO  [SpringContextShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-07-01 22:43:06.655 INFO  [SpringContextShutdownHook] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-07-01 22:43:06.901 INFO  [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-01 22:43:06.916 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-07-01 22:43:06.950 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-07-01 23:00:13.724 INFO  [main] c.e.a.AdninServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 23:00:13.724 INFO  [main] c.e.a.AdninServiceApplicationTests - No active profile set, falling back to default profiles: default
+2020-07-01 23:00:16.496 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-07-01 23:00:17.174 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 664ms. Found 12 JPA repository interfaces.
+2020-07-01 23:00:18.420 INFO  [main] o.s.cloud.context.scope.GenericScope - BeanFactory id=3cc949de-dac2-3290-8dd1-313417f1fdb8
+2020-07-01 23:00:20.175 INFO  [main] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-01 23:00:20.461 INFO  [task-1] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-07-01 23:00:20.773 INFO  [task-1] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.15.Final
+2020-07-01 23:00:21.448 INFO  [task-1] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-07-01 23:00:21.993 INFO  [task-1] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-07-01 23:00:22.005 INFO  [main] c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-07-01 23:00:22.036 INFO  [main] c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-07-01 23:00:23.056 INFO  [task-1] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-07-01 23:00:23.106 INFO  [task-1] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-07-01 23:00:25.699 INFO  [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-07-01 23:00:25.751 INFO  [task-1] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-07-01 23:00:30.602 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:myDb'
+2020-07-01 23:00:31.702 INFO  [main] o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
+2020-07-01 23:00:32.549 INFO  [main] o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+2020-07-01 23:00:32.574 INFO  [main] c.e.a.AdninServiceApplicationTests - Started AdninServiceApplicationTests in 21.185 seconds (JVM running for 24.831)
+2020-07-01 23:00:32.574 INFO  [main] c.e.a.AdninServiceApplicationTests - Started AdninServiceApplicationTests in 21.185 seconds (JVM running for 24.831)
+2020-07-01 23:00:33.166 INFO  [SpringContextShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-07-01 23:00:33.173 INFO  [SpringContextShutdownHook] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-07-01 23:00:33.310 INFO  [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-01 23:00:33.315 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-07-01 23:00:33.335 INFO  [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

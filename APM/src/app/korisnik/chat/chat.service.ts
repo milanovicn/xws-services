@@ -24,13 +24,14 @@ export class ChatService{
         return this.http.get<Message[]>("/user/chat/message/"+id);
     }
 
-    public posaljiPorukuNaCet(message:Message){
+    public posaljiPorukuNaCet(message:Message): Observable<Message> {
         return this.http.post<Message>("/user/chat/message",message);
     }
 
     //poziva se nakon odobrene rezervacije u listi zahteva za mene
-    public kreirajChat(chat:Chat){
+    public kreirajChat(chat:Chat): Observable<Chat> {
         return this.http.post<Chat>("/user/chat/",chat);
     }
+    
 
 }
