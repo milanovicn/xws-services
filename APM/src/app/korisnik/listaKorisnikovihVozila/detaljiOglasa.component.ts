@@ -104,7 +104,7 @@ export class DetaljiOglasaComponent implements OnInit {
   rezervisi() {
     this.zauzece.datumOd = this.zauzmiOd;
     this.zauzece.datumDo = this.zauzmiDo;
-    this.zauzece.idVozila = this.id;
+    this.zauzece.vozila.push(this.vozilo);
     this.zauzece.izdavac=this.korisnik.id;
     this.zauzece.podnosilac=this.korisnik.id;
     this.zahtevService.napraviZahtev(this.zauzece).subscribe();
