@@ -1,4 +1,4 @@
-version: '3.7'
+version: '2.0'
 services:
 
   consul-server:
@@ -14,14 +14,6 @@ services:
       static-network:
         ipv4_address: 172.20.0.2
 
-  rabbitmq-broker:
-    image: rabbitmq:management-alpine
-    container_name: rabbitmq-broker
-    ports:
-      - 5672:5672
-      - 15672:15672
-    networks:
-      - static-network
 
 #  mysql-backend:
 #    image: mysql:8.0.19
@@ -82,13 +74,12 @@ services:
 
   search-service:
     image: search-service
-    environment:
+#    environment:
 #        DATABASE_USERNAME: root
 #        DATABASE_PASSWORD: fakultet
 #        DATABASE_SCHEMA: xml_search_service
 #        DATABASE_DOMAIN: mysql-backend
 #        DATABASE_PORT: 3306
-        RMQ_HOST: rabbitmq-broker
     build:
       context: ./services/search-service
       dockerfile: Dockerfile
@@ -99,17 +90,16 @@ services:
     depends_on:
       - consul-server
 #      - mysql-backend
-      - rabbitmq-broker
+     
 
   zahtev-sevices:
     image: zahtev-sevices
-    environment:
+#    environment:
 #        DATABASE_USERNAME: root
 #        DATABASE_PASSWORD: fakultet
 #        DATABASE_SCHEMA: xml_request_service
 #        DATABASE_DOMAIN: mysql-backend
 #        DATABASE_PORT: 3306
-        RMQ_HOST: rabbitmq-broker
     build:
       context: ./services/zahtev-sevices
       dockerfile: Dockerfile
@@ -120,7 +110,6 @@ services:
     depends_on:
       - consul-server
 #      - mysql-backend
-      - rabbitmq-broker
  
   gateway:
     image: gateway

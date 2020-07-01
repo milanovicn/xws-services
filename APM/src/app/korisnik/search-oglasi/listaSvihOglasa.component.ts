@@ -30,6 +30,7 @@ export class SearchComponent implements OnInit{
     vozila:Vozilo[]=[];
     korpa:Vozilo[]=[];
     isBundle:boolean=false;
+    idAutora:number=0;
     bundleZahtevi:ZahtevRezervacije[]=[];
     idVozila:number[]=[];
     pretrazenaVozila:Vozilo[]=[];
@@ -60,6 +61,7 @@ export class SearchComponent implements OnInit{
     izabraniMenjac:TipMenjaca;
     izabranaMarka:Marka;
     izabraniModel:Model;
+    sve:string="sve";
 
     
     constructor(private route:ActivatedRoute,private router:Router,private voziloService:VoziloSerivces,private login:KorisnikService,
@@ -181,6 +183,9 @@ export class SearchComponent implements OnInit{
         
 
         dodajUkorpu(voziloId:number){
+          if(this.zauzmiOd==null && this.zauzmiDo==null){
+            alert("Polja za datume su obavezna za uneti");
+          }else{
               this.voziloService.vratiVozilo(voziloId).subscribe({
                 next:vozilo => {
                   this.vozilo = vozilo;
@@ -188,7 +193,7 @@ export class SearchComponent implements OnInit{
                 }
               })
         }
-
+      }
 
         prikazKorpe(){
           this.prikaziKorpu=true;
@@ -196,27 +201,54 @@ export class SearchComponent implements OnInit{
 
         zahtevNapravi(vozilo:Vozilo){
           this.zahtev.izdavac=vozilo.iznajmljivacId;
+          this.zahtev.izdavacMail=vozilo.iznajmljivacMail;
           this.zahtev.datumOd=this.zauzmiOd;
           this.zahtev.datumDo=this.zauzmiDo;
           this.zahtev.podnosilac=this.korisnik.id;
           this.zahtev.idVozila=vozilo.id;
           this.zahtevService.napraviZahtev(this.zahtev).subscribe();
         }
-            pretrazi(){
+        pretrazi(){
                   this.pretraga.datumOd=this.zauzmiOd;
                   this.pretraga.datumDo=this.zauzmiDo;
-                  this.pretraga.marka=this.izabranaMarka.naziv;
-                  this.pretraga.model=this.izabraniModel.naziv;
+                  
+                  if(this.izabranaMarka==undefined){
+                    this.pretraga.marka="sve";
+                  }else{
+                    this.pretraga.marka=this.izabranaMarka.naziv;
+                  }
 
-                  this.pretraga.tipGoriva=this.izabranoGorivo.naziv;
-                  this.pretraga.tipMenjaca=this.izabraniMenjac.naziv;
-                 /* this.pretraga.mesto=this.mesto;
+                  if(this.izabraniModel==undefined){
+                    this.pretraga.model="sve";
+                  }else{
+                    this.pretraga.model=this.izabraniModel.naziv;
+                  }
+
+                  if(this.izabraniMenjac==undefined){
+                    this.pretraga.tipMenjaca="sve";
+                  }else{
+                    this.pretraga.tipMenjaca=this.izabraniMenjac.naziv;
+                  }
+
+                  if(this.izabranoGorivo==undefined){
+                    this.pretraga.tipGoriva="sve";
+                  }else{
+                    this.pretraga.tipGoriva=this.izabranoGorivo.naziv;
+                  }
+                 
+                  
+
+                  
+                  
+               /*  this.pretraga.mesto=this.mesto;
                   this.pretraga.brojSedistaZaDecu=this.sedista;*/
+
                   if(this.protection==true)
                     this.pretraga.CDWProtection="DA";
                   else
                     this.pretraga.CDWProtection="NE";
                     console.log(this.pretraga);
+                    this.vozila=[];
                     this.searchService.pretrazi(this.pretraga).subscribe({
                       next: idovi => {
                           this.idVozila = idovi;
@@ -224,8 +256,8 @@ export class SearchComponent implements OnInit{
                               this.voziloService.vratiVozilo(id).subscribe({
                                 next: idovi => {
                                   this.vracenoVozilo = idovi;
-                                  this.pretrazenaVozila.push(this.vracenoVozilo);
-                                  console.log(this.pretrazenaVozila);
+                                  this.vozila.push(this.vracenoVozilo);
+                                  console.log(this.vozila);
                               }
 
                               })
@@ -240,13 +272,26 @@ export class SearchComponent implements OnInit{
             }
 
             zahtevBundleNapravi(vozilo:Vozilo){
+              if(this.idAutora==0){
+                this.idAutora=vozilo.iznajmljivacId;
+                this.zahtev.izdavac=vozilo.iznajmljivacId;
+                this.zahtev.izdavacMail=vozilo.iznajmljivacMail;
+                this.zahtev.datumOd=this.zauzmiOd;
+                this.zahtev.datumDo=this.zauzmiDo;
+                this.zahtev.podnosilac=this.korisnik.id;
+                this.zahtev.idVozila=vozilo.id;;
+                this.bundleZahtevi.push(this.zahtev);
+              }else if(this.idAutora!=vozilo.iznajmljivacId && this.idAutora!=0){
+                alert("U bundle zahtevu sva vozila moraju biti od istog izdavaca");
+              }else{
               this.zahtev.izdavac=vozilo.iznajmljivacId;
+              this.zahtev.izdavacMail=vozilo.iznajmljivacMail;
               this.zahtev.datumOd=this.zauzmiOd;
               this.zahtev.datumDo=this.zauzmiDo;
               this.zahtev.podnosilac=this.korisnik.id;
               this.zahtev.idVozila=vozilo.id;
               this.bundleZahtevi.push(this.zahtev);
-
+              }
             }
             posaljiBundleZahtev(){
               this.zahtevService.napraviBundleZahtev(this.bundleZahtevi).subscribe();

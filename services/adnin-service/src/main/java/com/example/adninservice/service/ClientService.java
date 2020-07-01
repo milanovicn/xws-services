@@ -9,7 +9,7 @@ public interface ClientService {
     Client addClient(Client client);
     List<Client> getAll();
     Client findById(Long id);
-    Client fingBuEmail(String email);
+    Client findByEmail(String email);
     void blockClient(String emaail);
     void removeClient(Long id);
     boolean proveriBrojOglasa(Long id);

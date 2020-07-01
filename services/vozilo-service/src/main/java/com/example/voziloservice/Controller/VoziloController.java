@@ -139,6 +139,19 @@ public class VoziloController {
         return new ResponseEntity<>(cars, HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/vratiPoIzdavacu/{mail}")
+    public ResponseEntity<List<Vozilo>> getCarByMailIzavaca(@PathVariable("mail") String mail) throws Exception {
+
+        List<Vozilo> cars=voziloService.findByIznajmljivacMail(mail);
+        if(cars!=null) {
+            LOGGER.info(MessageFormat.format("CARS: returned all by id izdavaoca, CARS-LIST-SIZE:{0},ID-IZDAVAOCA:{1}", cars.size(), mail ));
+        } else {
+            LOGGER.error(MessageFormat.format("CARS:not returned all by id izdavaoca, ID-IZDAVAOCA:{0}", mail));
+        }
+
+        return new ResponseEntity<>(cars, HttpStatus.CREATED);
+    }
+
     @Autowired
     private ImageRepository imageRepository;
 

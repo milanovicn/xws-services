@@ -29,6 +29,9 @@ export class VoziloSerivces {
   public vratVozilaPoKorisniku(idKorisnika: number): Observable<Vozilo[]> {
     return this.http.get<Vozilo[]>("/car/vratiPoKorisniku/" + idKorisnika);
   }
+  public vratVozilaPoIzdavacuMail(mail: string): Observable<Vozilo[]> {
+    return this.http.get<Vozilo[]>("/car/vratiPoIzdavacu/" + mail);
+  }
   public rezervisiVozilo(zauzece: Zauzece) {
     return this.http.post<Zauzece>("/car/zauzmiVozilo", zauzece);
   }

@@ -4,6 +4,7 @@ export class ZahtevRezervacije{
    datumOd:Date;
     datumDo:Date;
     izdavac:number;
+    izdavacMail:string;
     podnosilac:number;
     stanje:string;
     vremeKreiranja:Date;

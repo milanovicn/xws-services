@@ -85,6 +85,21 @@ public class ZahtevContorller {
 
         return new ResponseEntity<>(zahtevi, HttpStatus.CREATED);
     }
+
+    @GetMapping(value = "/zahtev/izdavalacMail/{mail}")
+    public ResponseEntity<?> vratiZahtevIzdavaocaByMail(@PathVariable("mail") String  mail) throws Exception {
+
+
+        List<Zahtev> zahtevi=zahtevService.findByIzdavacMail(mail);
+
+        if(zahtevi!=null) {
+            LOGGER.info(MessageFormat.format("ZAHTEV: returned all by id izdavaoca, ZAHTEVI-SIZE:{0},ID-IZDAVALAC:{1}", zahtevi.size(), mail) );
+        } else {
+            LOGGER.error(MessageFormat.format("ZAHTEV:not returned all by id izdavaoca, ID-IZDVALAC:{0}", mail));
+        }
+
+        return new ResponseEntity<>(zahtevi, HttpStatus.CREATED);
+    }
     @PostMapping(value = "/odobri/{idZahteva}")
     public void odobriZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
 

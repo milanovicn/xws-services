@@ -9,6 +9,7 @@ public interface ZahtevService {
     List<Zahtev> createBundle(List<Zahtev> zahtevi);
     List<Zahtev> findByPodnosilac(Long id);
     List<Zahtev> findByIzdavac(Long id);
+    List<Zahtev> findByIzdavacMail(String mail);
     List<Zahtev> findAll();
     void prihvatiZahtev(Long id) throws Exception;
     void otkaziZahtev(Long id);

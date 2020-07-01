@@ -31,7 +31,7 @@ export class ListaVozilaComponent implements OnInit{
     ngOnInit(): void {
             this.login.getKorisnika().subscribe({
                next: korisnik=>{this.korisnik=korisnik;
-                this.voziloService.vratVozilaPoKorisniku(this.korisnik.id).subscribe({
+                this.voziloService.vratVozilaPoIzdavacuMail(this.korisnik.email).subscribe({
                     next: vozila => {
                       this.vozila = vozila;
                     }

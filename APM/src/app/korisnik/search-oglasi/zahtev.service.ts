@@ -30,6 +30,10 @@ public vratiZahtevePoKorisniku(idKorisnika:number):Observable<ZahtevRezervacije[
   public vratiZahtevePoPodnosiocu(idKorisnika:number):Observable<ZahtevRezervacije[]>{
     return this.http.get<ZahtevRezervacije[]>("/zahtev/zahtev/"+idKorisnika);
 }
+public vratiZahtevePoKorisnikuMail(mail:string):Observable<ZahtevRezervacije[]>{
+  return this.http.get<ZahtevRezervacije[]>("/zahtev/zahtev/izdavalacMail/"+mail);
+}
+
   public odobriZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
     return this.http.post<ZahtevRezervacije>("/zahtev/odobri/"+zahtev.id,zahtev);
 }
