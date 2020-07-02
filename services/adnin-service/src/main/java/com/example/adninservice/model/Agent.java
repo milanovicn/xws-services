@@ -29,7 +29,7 @@ public class Agent {
     @Column(name = "Odobren", nullable = false)
     private boolean odobren;
 
-    @Column(name = "SaltValue", nullable = false)
+    /*@Column(name = "SaltValue", nullable = false)
     private String saltValue;
 
     @Column(name = "HashedPassAndSalt", nullable = false)
@@ -43,7 +43,7 @@ public class Agent {
         this.saltValue = saltValue;
     }
 
-
+*/
     public Agent() {
     }
 
@@ -54,8 +54,8 @@ public class Agent {
         this.adresa = adresa;
         this.rola= "AGENT";
         this.odobren=false;
-        this.saltValue="";
-        this.hashedPassAndSalt = new byte[16];
+       // this.saltValue="";
+    //    this.hashedPassAndSalt = new byte[16];
     }
 
     public Long getId() {
@@ -106,13 +106,13 @@ public class Agent {
         this.adresa = adresa;
     }
 
-    public byte[] getHashedPassAndSalt() {
-        return hashedPassAndSalt;
-    }
+   // public byte[] getHashedPassAndSalt() {
+    //    return hashedPassAndSalt;
+   // }
 
-    public void setHashedPassAndSalt(byte[] hashedPassAndSalt) {
-        this.hashedPassAndSalt = hashedPassAndSalt;
-    }
+   // public void setHashedPassAndSalt(byte[] hashedPassAndSalt) {
+   //     this.hashedPassAndSalt = hashedPassAndSalt;
+  //  }
 
     public boolean isOdobren() {
         return odobren;
