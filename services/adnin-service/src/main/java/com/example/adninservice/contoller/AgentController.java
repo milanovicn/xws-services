@@ -42,8 +42,8 @@ public class AgentController {
         if (postojeci != null || postojeciAgent != null) {
             return new ResponseEntity<>("Agent sa datim email-om vec postoji", HttpStatus.METHOD_NOT_ALLOWED);
         } else {
-            agent.setSaltValue(generateSaltString());
-            agent.setHashedPassAndSalt(hash(agent.getPassword().concat(agent.getSaltValue())));
+           // agent.setSaltValue(generateSaltString());
+          //  agent.setHashedPassAndSalt(hash(agent.getPassword().concat(agent.getSaltValue())));
 
             Agent newAgent = agentService.addClient(agent);
 

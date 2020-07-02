@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @Service
 public class ChatServiceImpl implements ChatService {
@@ -44,6 +45,8 @@ public class ChatServiceImpl implements ChatService {
                 ret.add(m);
             }
         }
+        //nadam se da radi
+        ret.sort(Comparator.comparing(o -> o.getTimestamp()));
         return ret;
     }
 
