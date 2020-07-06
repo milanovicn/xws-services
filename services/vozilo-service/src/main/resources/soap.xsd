@@ -1,6 +1,24 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com/voziloservice/xsd"
            targetNamespace="http://example.com/voziloservice/xsd" elementFormDefault="qualified">
 
+    <xs:element name="postProbaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="salje" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="postProbaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="prima" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
     <xs:element name="postVoziloRequest">
         <xs:complexType>
             <xs:sequence>
@@ -30,11 +48,59 @@
             <xs:element name="CDWProtection" type="xs:boolean"/>
             <xs:element name="brojSedistaDeca" type="xs:int"/>
             <xs:element name="iznajmljivacId" type="xs:long"/>
+            <xs:element name="iznajmljivacMail" type="xs:string"/>
             <xs:element name="vaziOd" type="xs:date"/>
             <xs:element name="vaziDo" type="xs:date"/>
             <xs:element name="mesto" type="xs:string"/>
+            <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>
 
         </xs:sequence>
     </xs:complexType>
+
+
+
+    <xs:element name="getZahteveRequset">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getZahteveResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Zahtev">
+        <xs:sequence>
+            <xs:element name="vozila" type="tns:Vozilo"/>
+            <xs:element name="stanje" type="tns:Stanje"/>
+            <xs:element name="datumOd" type="xs:date"/>
+            <xs:element name="datumDo" type="xs:date"/>
+            <xs:element name="vremeOdobrenja" type="xs:date"/>
+            <xs:element name="vremeKreiranja" type="xs:date"/>
+            <xs:element name="podnosilac" type="xs:long"/>
+            <xs:element name="izdavac" type="xs:long"/>
+            <xs:element name="izdavacMail" type="xs:string"/>
+
+
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Stanje">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="RESERVED"/>
+            <xs:enumeration value="PAID"/>
+            <xs:enumeration value="CANCELED"/>
+            <xs:enumeration value="WAITING_REVIEW"/>
+            <xs:enumeration value="REVIEWED"/>
+        </xs:restriction>
+    </xs:simpleType>
 
 </xs:schema>
