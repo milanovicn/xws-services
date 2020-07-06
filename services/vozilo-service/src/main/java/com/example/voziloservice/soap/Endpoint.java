@@ -2,6 +2,8 @@ package com.example.voziloservice.soap;
 
 import com.example.voziloservice.Service.VoziloService;
 import com.example.voziloservice.model.Vozilo;
+import com.example.voziloservice.xsd.PostProbaRequest;
+import com.example.voziloservice.xsd.PostProbaResponse;
 import com.example.voziloservice.xsd.PostVoziloRequest;
 import com.example.voziloservice.xsd.PostVoziloResponse;
 import org.slf4j.Logger;
@@ -23,7 +25,7 @@ public class Endpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "postVoziloRequest")
     @ResponsePayload
     public PostVoziloResponse postVoziloResponse(@RequestPayload PostVoziloRequest request) throws Exception {
-        logger.info("---Izvrsava u Endpoint(u mikroservisu) za postVoziloRequest!");
+        logger.info("---Izvrsava u Endpoint(u mikroservisu) za postVoziloRequest!\nVOZILO: -->" + request.getVozilo().getMarkaAutomobila() + ", " + request.getVozilo().getModelAutomobila());
         PostVoziloResponse response = new PostVoziloResponse();
 
         Vozilo vozilo = new Vozilo();
@@ -43,14 +45,40 @@ public class Endpoint {
         vozilo.setCDWProtection(voziloXSD.isCDWProtection());
         vozilo.setBrojSedistaDeca(voziloXSD.getBrojSedistaDeca());
         vozilo.setIznajmljivacId(voziloXSD.getIznajmljivacId());
+        vozilo.setIznajmljivacMail(voziloXSD.getIznajmljivacMail());
+
+        logger.info("---!Pre addVozilo() : " + vozilo.getMarka() + ", " + vozilo.getModel());
+
+        logger.info("---!Pre addVozilo(), ispis VOZILA: " + vozilo.toString());
 
         vozilo = voziloService.addVozilo(vozilo, "AGENT"); //TODO: Proveri vamo dal se prosledjuje string
 
-        if (vozilo == null) {
-            response.setSuccess(false);
-        } else {
+        logger.info("---!Posle addVozilo(), ispis VOZILA: " + vozilo.toString());
+
+        logger.info("---!Prosao addVozilo() i vratio vozilo: " + vozilo.getMarka() + ", " + vozilo.getModel());
+
+        if (vozilo != null) {
             response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
         }
+        return response;
+    }
+
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "postProbaRequest")
+    @ResponsePayload
+    public PostProbaResponse postProbaResponse(@RequestPayload PostProbaRequest request) {
+        logger.info("---Izvrsava u Endpoint(u mikroservisu) za postProbaRequest");
+        PostProbaResponse response = new PostProbaResponse();
+
+        String salje = request.getSalje();
+
+        if (salje.length() > 4)
+            response.setPrima(salje + ", i IMA VISE OD 4 KARAKTERA");
+        else
+            response.setPrima(salje + ", i IMA MANJE ili JEDNAKO OD 4 KARAKTERA");
+
         return response;
     }
 
