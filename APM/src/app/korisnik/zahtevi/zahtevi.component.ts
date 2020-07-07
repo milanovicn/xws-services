@@ -65,7 +65,7 @@ export class ZahtevComponent implements OnInit{
             this.voziloService.odobriZahtev(zahtev).subscribe();
         }
         ponistiZahtev(zahtev:ZahtevRezervacije){
-            this.voziloService.otkaziZahtev(zahtev).subscribe();
+            this.voziloService.odbaciZahtev(zahtev).subscribe();
         }
             
         }

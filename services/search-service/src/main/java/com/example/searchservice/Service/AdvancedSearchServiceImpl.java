@@ -45,7 +45,7 @@ public class AdvancedSearchServiceImpl implements AdvancedSearchService {
         ArrayList<Long> retIDs = new ArrayList<Long>();
         List<AdvancedSearch> allCars = advancedSearchRepository.findAll();
 
-        for (AdvancedSearch as : allCars){
+         for (AdvancedSearch as : allCars){
             retIDs.add(as.getIdVozila());
         }
 
@@ -95,7 +95,7 @@ public class AdvancedSearchServiceImpl implements AdvancedSearchService {
 
                     }
                 }
-            } else if(!search.getCDWProtection().equals("sve")) {
+            } else if(!search.getCDWProtection().equals("ne")) {
                 boolean temp = false;
 
                 if (search.getCDWProtection().equals("da")){

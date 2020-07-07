@@ -5,7 +5,6 @@ import com.example.adninservice.model.Agent;
 import com.example.adninservice.model.Client;
 import com.example.adninservice.service.AgentService;
 import com.example.adninservice.service.ClientService;
-import com.example.adninservice.service.ClientServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

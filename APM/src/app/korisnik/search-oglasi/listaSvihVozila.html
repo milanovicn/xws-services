@@ -6,28 +6,34 @@
           <input type="checkbox" name="CWD"  #CWD="ngModel" [(ngModel)]="protection">
         
           <select name="MarkaAutomobila"  #MarkaAutomobila="ngModel" [(ngModel)] = "izabranaMarka">
-            <option value="sve" selected="selected">sve</option >
             <option *ngFor='let mar of markeVozila' [ngValue]="mar">{{mar.naziv}}</option>
 
             </select>
             <select name="ModelAutomobila"  #ModelAutomobila="ngModel" [(ngModel)] = "izabraniModel">
-              <option value="sve" selected="selected">sve</option >
               <option *ngFor='let mod of modeliVozila' [ngValue]="mod">{{mod.naziv}}</option>
 
               </select>
               <select name="TipGoriva"  #TipGoriva="ngModel" [(ngModel)] = "izabranoGorivo">
-                <option value="sve" selected="selected">sve</option >
                 <option *ngFor='let ngorivo of tipoviGoriva' [ngValue]="ngorivo">{{ngorivo.naziv}}</option>
 
                 </select>
                 <select name="TipMenjaca"  #TipMenjaca="ngModel" [(ngModel)] = "izabraniMenjac">
                   <option *ngFor='let nmenjac of tipoviMenjaca' [ngValue]="nmenjac">{{nmenjac.naziv}}</option>
-                  <option [ngValue]="sve" selected="selected">sve</option >
                   </select>
         <button class='btn btn-outline-secondary'
                   (click)='pretrazi()'>Pretrazi</button>
       
-            
+                  <div class='card'>
+                    <div class='card-body'>
+                        <h2 style="margin-top: 70px;">Sortiraj po:</h2>
+                        <div><select name="a" #a="ngModel" [(ngModel)]='izabranaVstaIzvestaja'>
+                            <option *ngFor='let tipIzvestaja of tipovi' [ngValue]="tipIzvestaja">{{tipIzvestaja}}</option>
+                          </select>
+                    </div>
+                <button style="margin-bottom: 100px;" class="btn btn-info" (click)='sortiraj(izabranaVstaIzvestaja)'>Sortiraj</button>
+                
+                </div>     
+                  </div>     
 
 <div class="listaVozila">
     <div class='table-responsive'>

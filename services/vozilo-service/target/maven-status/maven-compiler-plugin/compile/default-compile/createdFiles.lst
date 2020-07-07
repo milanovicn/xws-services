@@ -14,6 +14,8 @@ com/example/voziloservice/xsd/PostVoziloRequest.class
 com/example/voziloservice/soap/Endpoint.class
 com/example/voziloservice/Repository/KomentarRepository.class
 com/example/voziloservice/Service/ZauzeceVozilaServiceImpl.class
+com/example/voziloservice/Controller/OcenaContoller.class
+com/example/voziloservice/Repository/OcenaRepository.class
 com/example/voziloservice/model/Vozilo.class
 com/example/voziloservice/Service/KomentarService.class
 com/example/voziloservice/Repository/ZauzeceVozilaRepository.class
@@ -21,9 +23,11 @@ com/example/voziloservice/Repository/ZahtevRepository.class
 com/example/voziloservice/Service/ZahtevServiceImpl.class
 com/example/voziloservice/model/Stanje.class
 com/example/voziloservice/model/StanjeKomentara.class
+com/example/voziloservice/Service/OcenaService.class
 com/example/voziloservice/Service/ImageModelService.class
 com/example/voziloservice/Service/ImageModelServiceImpl.class
 com/example/voziloservice/model/ZauzeceVozila.class
+com/example/voziloservice/model/Ocena.class
 com/example/voziloservice/model/Zahtev.class
 com/example/voziloservice/xsd/ObjectFactory.class
 com/example/voziloservice/xsd/Vozilo.class
@@ -31,5 +35,6 @@ com/example/voziloservice/Repository/ImageRepository.class
 com/example/voziloservice/Service/ZahtevService.class
 com/example/voziloservice/Client/UserClient.class
 com/example/voziloservice/model/ImageModel.class
+com/example/voziloservice/Service/OcenaServiceImpl.class
 com/example/voziloservice/model/SearchWithIdDTO.class
 com/example/voziloservice/Controller/KomentarController.class

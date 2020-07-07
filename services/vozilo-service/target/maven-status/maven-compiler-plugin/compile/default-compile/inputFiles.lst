@@ -14,6 +14,7 @@
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Controller/KomentarController.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/ImageModelServiceImpl.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/KomentarService.java
+/home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/OcenaServiceImpl.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/target/generated-sources/jaxb/com/example/voziloservice/xsd/ObjectFactory.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/model/Stanje.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/target/generated-sources/jaxb/com/example/voziloservice/xsd/PostVoziloResponse.java
@@ -30,6 +31,10 @@
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/ZauzeceVozilaService.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/ZahtevServiceImpl.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/KomentarServiceImpl.java
+/home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Controller/OcenaContoller.java
+/home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/model/Ocena.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/ZahtevService.java
+/home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Service/OcenaService.java
+/home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Repository/OcenaRepository.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/VoziloServiceApplication.java
 /home/student/Desktop/xws/xws-services/services/vozilo-service/src/main/java/com/example/voziloservice/Repository/ImageRepository.java

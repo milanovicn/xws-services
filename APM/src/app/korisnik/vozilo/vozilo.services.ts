@@ -24,6 +24,9 @@ export class VoziloSerivces {
   public zahtevNapravi(zahtev:ZahtevRezervacije) {
     return this.http.post<ZahtevRezervacije>("/car/zahtev",zahtev);
   }
+  public sortiraj(vozila:Vozilo[],izabraniTip:string) :Observable<Vozilo[]>{
+    return this.http.post<Vozilo[]>("/car/sortiraj/"+izabraniTip,vozila);
+  }
 
   public vratiZahtevePoKorisnikuMail(mail:string):Observable<ZahtevRezervacije[]>{
     return this.http.get<ZahtevRezervacije[]>("/car/zahtev/izdavalacMail/"+mail);
@@ -35,8 +38,11 @@ export class VoziloSerivces {
   public odobriZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
     return this.http.post<ZahtevRezervacije>("/car/odobri/"+zahtev.id,zahtev);
 }
+public odbaciZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
+  return this.http.post<ZahtevRezervacije>("/car/odbaci/"+zahtev.id,zahtev);
+}
 public otkaziZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
-  return this.http.post<ZahtevRezervacije>("/car/otkazi/"+zahtev.id,zahtev);
+  return this.http.delete<ZahtevRezervacije>("/car/otkazi/"+zahtev.id);
 }
 
 public platiZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
@@ -63,6 +69,9 @@ public platiZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
     return this.http.post<string>("/car/comment/"+idVozila, tekstKomentara);
   }
 
+  public oceni(ocena:number, idVozila: number) {
+    return this.http.post<string>("/car/ocena/"+idVozila, ocena);
+  }
 }
 
 

@@ -10,5 +10,6 @@ public interface CenovnikService {
     public void removeCenovnik(Long id);
     public Cenovnik addNewCenovnik(Cenovnik newCenovnik);
     public Cenovnik getById(Long id);
+    public Cenovnik getByNaziv(String naziv);
     public Collection<Cenovnik> findAllByAuthorId(Long id);
 }

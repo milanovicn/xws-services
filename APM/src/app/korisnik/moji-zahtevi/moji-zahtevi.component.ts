@@ -34,6 +34,7 @@ export class MojiZahteviComponent implements OnInit {
   zahteviZaPlacanje: ZahtevRezervacije[] = []
   korisnik: Korisnik;
   tekstKomentara: string;
+  ocena:number;
   zahteviZaKomentar: ZahtevRezervacije[] = [];
   zahtev:ZahtevRezervacije;
 
@@ -101,6 +102,9 @@ export class MojiZahteviComponent implements OnInit {
   plati(zahtev: ZahtevRezervacije) {
     this.voziloService.platiZahtev(zahtev).subscribe();
   }
+  otkazi(zahtev: ZahtevRezervacije) {
+    this.voziloService.otkaziZahtev(zahtev).subscribe();
+  }
 
   ostaviKomentar(zahtev: ZahtevRezervacije) {
     //promena statusa zahteva u zahtev service
@@ -108,6 +112,17 @@ export class MojiZahteviComponent implements OnInit {
      // next:zahtev=>{this.zahtev=zahtev;
      for(let v of zahtev.vozila){
        this.voziloService.kreirajKomentar(this.tekstKomentara, v.id).subscribe();
+     // }
+   // });
+    //dodavanje komentara za vozilo u vozilo service
+     }
+  }
+  oceni(zahtev: ZahtevRezervacije) {
+    //promena statusa zahteva u zahtev service
+   // this.zahtevService.komentarisi(zahtev).subscribe({
+     // next:zahtev=>{this.zahtev=zahtev;
+     for(let v of zahtev.vozila){
+       this.voziloService.oceni(this.ocena, v.id).subscribe();
      // }
    // });
     //dodavanje komentara za vozilo u vozilo service
