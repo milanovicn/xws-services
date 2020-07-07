@@ -206,7 +206,6 @@ public class AdminController {
         } else {
             LOGGER.error("KLASA-VOZILA-ID:{0}-not deleted, USER:admin, USER-EMAIL:a@gmail.com, USER-ID:1", id);
         }
-
     }
 
 

@@ -68,15 +68,15 @@ public class LoginController {
         Client ak = korisnikService.findByEmail(zahtev.getEmail());
 
         if (ak != null) {
-            String zahtevPass = zahtev.getPassword().concat(ak.getSaltValue());
-            if (checkIntegrity(zahtevPass, ak.getHashedPassAndSalt())) {
+            //String zahtevPass = zahtev.getPassword().concat(ak.getSaltValue());
+            if (zahtev.getPassword().equals(ak.getPassword())) {
                 //if (zahtev.getPassword().equals(ak.getPassword())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("client", ak);
-                if(ak!=null) {
+                if (ak != null) {
                     LOGGER.info(MessageFormat.format("CLIENT SESSION: CLIEN-ID:{0}-session created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail()));
                 } else {
-                    LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}" , ak.getId(), ak.getEmail()));
+                    LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail()));
                 }
                 return new ResponseEntity<Client>(ak, HttpStatus.CREATED);
             }
@@ -84,35 +84,34 @@ public class LoginController {
         } else {
             Admin admin = adminService.findByEmail(zahtev.getEmail());
             if (admin != null) {
-                String zahtevPass = zahtev.getPassword().concat(admin.getSaltValue());
-                if(checkIntegrity(zahtevPass, admin.getHashedPassAndSalt())){
+                //String zahtevPass = zahtev.getPassword().concat(admin.getSaltValue());
+                if (zahtev.getPassword().equals(admin.getPassword())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", admin);
 
-                    if(admin!=null) {
+                    if (admin != null) {
                         LOGGER.info(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session created, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                     } else {
-                        LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session not created, ADMIN-EMAIL:{1}" , admin.getId(), admin.getEmail()));
+                        LOGGER.error(MessageFormat.format("ADMIN SESSION: ADMIN-ID:{0}-session not created, ADMIN-EMAIL:{1}", admin.getId(), admin.getEmail()));
                     }
 
                     return new ResponseEntity<>(admin, HttpStatus.CREATED);
                 }
-            }
-            else {
+            } else {
                 Agent agent = agentService.findByEmail(zahtev.getEmail());
                 if (agent != null) {
-                    String zahtevPass = zahtev.getPassword().concat(agent.getSaltValue());
-                    if(checkIntegrity(zahtevPass, agent.getHashedPassAndSalt())){
-                        HttpSession session = request.getSession();
-                        session.setAttribute("agent", agent);
+                    // String zahtevPass = zahtev.getPassword().concat(agent.getSaltValue());
+                    if (zahtev.getPassword().equals(agent.getPassword())) {
+                        if (agent.isOdobren()) {
+                            HttpSession session = request.getSession();
+                            session.setAttribute("agent", agent);
 
-                        if(agent!=null) {
-                            LOGGER.info(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session created, AGENT-EMAIL:{1}", agent.getId(), agent.getEmail()));
+
+                            return new ResponseEntity<>(agent, HttpStatus.CREATED);
+
                         } else {
-                            LOGGER.error(MessageFormat.format("AGENT SESSION: AGENT-ID:{0}-session not created, AGENT-EMAIL:{1}" , agent.getId(), agent.getEmail()));
+                            return new ResponseEntity<>("Registracija agenta jos uvek nije odobrena od strane admina", HttpStatus.METHOD_NOT_ALLOWED);
                         }
-
-                        return new ResponseEntity<>(agent, HttpStatus.CREATED);
                     }
                 }
             }

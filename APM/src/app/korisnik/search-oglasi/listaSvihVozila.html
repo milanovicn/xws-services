@@ -1,108 +1,118 @@
 <div>Pretraga vozila</div>
-          <input type="datetime-local" [(ngModel)]='zauzmiOd'>
-          <input type="datetime-local" [(ngModel)]='zauzmiDo'>
-           <input type="text" name="Mesto"  #Mesto="ngModel" [(ngModel)]="pretraga.mesto">
-          <input type="number" name="Sedista"  #Sedista="ngModel" [(ngModel)]="pretraga.brojSedistaZaDecu">
-          <input type="checkbox" name="CWD"  #CWD="ngModel" [(ngModel)]="protection">
-        
-          <select name="MarkaAutomobila"  #MarkaAutomobila="ngModel" [(ngModel)] = "izabranaMarka">
-            <option *ngFor='let mar of markeVozila' [ngValue]="mar">{{mar.naziv}}</option>
+<table>
+  <tr>
+    <td>Datum pocetka zakupa:</td>
+    <td><input type="datetime-local" [(ngModel)]='zauzmiOd'></td>
+    <td>Datum kraja zakupa:</td>
+    <td><input type="datetime-local" [(ngModel)]='zauzmiDo'></td>
+    <td>Mesto iznajmljivanja:</td>
+    <td><input type="text" name="Mesto" #Mesto="ngModel" [(ngModel)]="pretraga.mesto"></td>
+  </tr>
+  <tr>
 
-            </select>
-            <select name="ModelAutomobila"  #ModelAutomobila="ngModel" [(ngModel)] = "izabraniModel">
-              <option *ngFor='let mod of modeliVozila' [ngValue]="mod">{{mod.naziv}}</option>
+    <td>Broj sedista za decu:</td>
+    <td><input type="number" name="Sedista" #Sedista="ngModel" [(ngModel)]="pretraga.brojSedistaZaDecu"></td>
+    <td>CDW zastita:</td>
+    <td><input type="checkbox" name="CWD" #CWD="ngModel" [(ngModel)]="protection"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Marka vozila:</td>
+    <td> <select name="MarkaAutomobila" #MarkaAutomobila="ngModel" [(ngModel)]="izabranaMarka">
+        <option value="sve" selected="selected">sve</option>
+        <option *ngFor='let mar of markeVozila' [ngValue]="mar">{{mar.naziv}}</option>
 
-              </select>
-              <select name="TipGoriva"  #TipGoriva="ngModel" [(ngModel)] = "izabranoGorivo">
-                <option *ngFor='let ngorivo of tipoviGoriva' [ngValue]="ngorivo">{{ngorivo.naziv}}</option>
+      </select></td>
+    <td>Model vozila:</td>
+    <td><select name="ModelAutomobila" #ModelAutomobila="ngModel" [(ngModel)]="izabraniModel">
+        <option value="sve" selected="selected">sve</option>
+        <option *ngFor='let mod of modeliVozila' [ngValue]="mod">{{mod.naziv}}</option>
 
-                </select>
-                <select name="TipMenjaca"  #TipMenjaca="ngModel" [(ngModel)] = "izabraniMenjac">
-                  <option *ngFor='let nmenjac of tipoviMenjaca' [ngValue]="nmenjac">{{nmenjac.naziv}}</option>
-                  </select>
-        <button class='btn btn-outline-secondary'
-                  (click)='pretrazi()'>Pretrazi</button>
-      
-                  <div class='card'>
-                    <div class='card-body'>
-                        <h2 style="margin-top: 70px;">Sortiraj po:</h2>
-                        <div><select name="a" #a="ngModel" [(ngModel)]='izabranaVstaIzvestaja'>
-                            <option *ngFor='let tipIzvestaja of tipovi' [ngValue]="tipIzvestaja">{{tipIzvestaja}}</option>
-                          </select>
-                    </div>
-                <button style="margin-bottom: 100px;" class="btn btn-info" (click)='sortiraj(izabranaVstaIzvestaja)'>Sortiraj</button>
-                
-                </div>     
-                  </div>     
+      </select></td>
+  </tr>
+
+  <tr>
+    <td>Tip goriva:</td>
+    <td><select name="TipGoriva" #TipGoriva="ngModel" [(ngModel)]="izabranoGorivo">
+        <option value="sve" selected="selected">sve</option>
+        <option *ngFor='let ngorivo of tipoviGoriva' [ngValue]="ngorivo">{{ngorivo.naziv}}</option>
+
+      </select></td>
+    <td>Tip menjaca:</td>
+    <td><select name="TipMenjaca" #TipMenjaca="ngModel" [(ngModel)]="izabraniMenjac">
+        <option *ngFor='let nmenjac of tipoviMenjaca' [ngValue]="nmenjac">{{nmenjac.naziv}}</option>
+        <option [ngValue]="sve" selected="selected">sve</option>
+      </select></td>
+  </tr>
+
+</table>
+<button style="margin-bottom: 70px;" class='btn btn-outline-secondary' (click)='pretrazi()'>Pretrazi</button>
+
+
 
 <div class="listaVozila">
-    <div class='table-responsive'>
-      <table class='table' *ngIf='vozila'>
-        <thead>
-          <tr>
-            <th>Marka</th>
-            <th>MOdel</th>
-            <th>Klasa</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor='let ser of vozila'>
-            <td>{{ser.marka}}</td>
-            <td>{{ser.model}}</td>
-            <td>{{ser.klasaVozila}}</td>
-            <td><button class="btn btn-info" (click)='dodajUkorpu(ser.id)'>Korpa</button></td>
+  <div class='table-responsive'>
+    <table class='table' *ngIf='vozila'>
+      <thead>
+        <tr>
+          <th>Marka</th>
+          <th>MOdel</th>
+          <th>Klasa</th>
 
-           
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let ser of vozila'>
+          <td>{{ser.marka}}</td>
+          <td>{{ser.model}}</td>
+          <td>{{ser.klasaVozila}}</td>
+          <td><button class="btn btn-info" (click)='dodajUkorpu(ser.id)'>Korpa</button></td>
 
-    <div class='card-footer'>
-      <button class='btn btn-info'
-              (click)='prikazKorpe()'
-              style='width:80px'>
-       Prikazi sadrzaj korpe
-      </button>
-    </div>
 
-    <div *ngIf='prikaziKorpu'>
-      <div > Zelite li da napravite jedan zahtev za sva vozila od istog izdavaca?
-        <button class='btn btn-info'
-                (click)='napraviBundle()'
-                style='width:80px'>
-          DA
-        </button>
-      </div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-      <div>Moja korpa</div>
-      <table class='table' *ngIf='korpa'>
-        <thead>
-          <tr>
-            <th>Marka</th>
-            <th>MOdel</th>
-            <th>Izdavac</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor='let ser of korpa'>
-            <td>{{ser.marka}}</td>
-            <td>{{ser.model}}</td>
-            <td>{{ser.iznajmljivacId}}</td>
-            <td><button class="btn btn-info" (click)='zahtevNapravi(ser)'>Napravi zahtev</button></td>
-          <td *ngIf='isBundle'><button class="btn btn-info" (click)='zahtevBundleNapravi(ser)'>Dodaj u bundle zahtev</button></td>
-          </tr>
-        </tbody>
-      </table>
+<div class='card-footer'>
+  <button class='btn btn-info' (click)='prikazKorpe()' style='width:80px'>
+    Prikazi sadrzaj korpe
+  </button>
+</div>
 
-      <div *ngIf='isBundle'>
-        <button class='btn btn-info'
-        (click)='posaljiBundleZahtev()'
-        style='width:80px'>Gotovo
-</button>
-        </div>
-  
-          </div>
+<div *ngIf='prikaziKorpu'>
+  <div> Zelite li da napravite jedan zahtev za sva vozila od istog izdavaca?
+    <button class='btn btn-info' (click)='napraviBundle()' style='width:80px'>
+      DA
+    </button>
+  </div>
+
+  <div>Moja korpa</div>
+  <table class='table' *ngIf='korpa'>
+    <thead>
+      <tr>
+        <th>Marka</th>
+        <th>MOdel</th>
+        <th>Izdavac</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let ser of korpa'>
+        <td>{{ser.marka}}</td>
+        <td>{{ser.model}}</td>
+        <td>{{ser.iznajmljivacId}}</td>
+        <td><button class="btn btn-info" (click)='zahtevNapravi(ser)'>Napravi zahtev</button></td>
+        <td *ngIf='isBundle'><button class="btn btn-info" (click)='zahtevBundleNapravi(ser)'>Dodaj u bundle
+            zahtev</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf='isBundle'>
+    <button class='btn btn-info' (click)='posaljiBundleZahtev()' style='width:80px'>Gotovo
+    </button>
+  </div>
+
+</div>

@@ -41,8 +41,8 @@ public class ClientController {
         if (postojeci != null || postojeciAgent!=null) {
             return new ResponseEntity<>("Klijent sa datim email-om vec postoji", HttpStatus.METHOD_NOT_ALLOWED);
         } else {
-            client.setSaltValue(generateSaltString());
-            client.setHashedPassAndSalt(hash(client.getPassword().concat(client.getSaltValue())));
+          //  client.setSaltValue(generateSaltString());
+           // client.setHashedPassAndSalt(hash(client.getPassword().concat(client.getSaltValue())));
             Client newClient = clientServiceImpl.addClient(client);
             if (newClient != null) {
                 LOGGER.info(MessageFormat.format("CLIENT -ID:{0}-created, CLIENT-EMAIL:{1}", newClient.getId(), newClient.getEmail()));

@@ -27,15 +27,15 @@ public class WebServisConfig extends WsConfigurerAdapter {
     }
 
     @Bean
-    public XsdSchema userSchema() {
+    public XsdSchema soapSchema() {
         return new SimpleXsdSchema(new ClassPathResource("soap.xsd"));
     }
 
     @Bean(name = "soap")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema heloSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema soapSchema) {
 
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
-        definition.setSchema(heloSchema);
+        definition.setSchema(soapSchema);
         definition.setLocationUri("/ws");
         definition.setPortTypeName("SoapPort");
         definition.setTargetNamespace("http://example.com/voziloservice/xsd");

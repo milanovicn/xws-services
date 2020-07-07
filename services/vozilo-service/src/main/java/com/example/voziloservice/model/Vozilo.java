@@ -71,7 +71,7 @@ public class Vozilo {
     private Set<Zahtev> zahtevi = new HashSet<Zahtev>();
 
     public Vozilo() {
-
+        this.zahtevi = new HashSet<Zahtev>();
     }
 
     public Vozilo(String marka, String model, String tipGoriva, String tipMenjaca, String klasaVozila, String cenovnikId, double redjenaKilometraza, String ogranicenaKilometraza, boolean CDWProtection, int brojSedistaDeca, LocalDateTime vaziOd, LocalDateTime vaziDo, String mesto,Long oglasavacId,String iznajmljivacMail) {
@@ -90,7 +90,7 @@ public class Vozilo {
         this.mesto = mesto;
         this.iznajmljivacId=oglasavacId;
         this.iznajmljivacMail=iznajmljivacMail;
-        this.zahtevi=zahtevi;
+        this.zahtevi = new HashSet<Zahtev>();
     }
 
     public Long getId() {
@@ -219,5 +219,28 @@ public class Vozilo {
 
     public void setIznajmljivacMail(String iznajmljivacMail) {
         this.iznajmljivacMail = iznajmljivacMail;
+    }
+
+    @Override
+    public String toString() {
+        return "Vozilo{" +
+                "id=" + id +
+                ", marka='" + marka + '\'' +
+                ", model='" + model + '\'' +
+                ", tipGoriva='" + tipGoriva + '\'' +
+                ", tipMenjaca='" + tipMenjaca + '\'' +
+                ", klasaVozila='" + klasaVozila + '\'' +
+                ", cenovnikId='" + cenovnikId + '\'' +
+                ", redjenaKilometraza=" + redjenaKilometraza +
+                ", ogranicenaKilometraza='" + ogranicenaKilometraza + '\'' +
+                ", CDWProtection=" + CDWProtection +
+                ", brojSedistaDeca=" + brojSedistaDeca +
+                ", iznajmljivacId=" + iznajmljivacId +
+                ", iznajmljivacMail='" + iznajmljivacMail + '\'' +
+                ", vaziOd=" + vaziOd +
+                ", vaziDo=" + vaziDo +
+                ", mesto='" + mesto + '\'' +
+                ", zahtevi=" + zahtevi +
+                '}';
     }
 }

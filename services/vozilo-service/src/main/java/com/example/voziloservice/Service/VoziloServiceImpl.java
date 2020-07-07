@@ -7,7 +7,12 @@ import com.example.voziloservice.model.Vozilo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.Comparator;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 @Service
@@ -21,6 +26,7 @@ public class VoziloServiceImpl implements VoziloService {
 
    /* @Autowired
     private SearchClient searchClient;*/
+	final static Logger logger = LoggerFactory.getLogger(VoziloServiceImpl.class);
 
 
     @Override
@@ -32,7 +38,9 @@ public class VoziloServiceImpl implements VoziloService {
                         vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
                         vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail());
 
+                logger.info("---!Pre voziloRepositorySave() (Za Klijenta) ispis vozila:: " + newVozilo.toString());
                 voziloRepository.save(newVozilo);
+                logger.info("---!Posle voziloRepositorySave() (Za Klijenta) ispis vozila:: " + newVozilo.toString());
                 userClient.uvecajBrojOglasa(newVozilo.getIznajmljivacId());
      /*   String CWDProtection="NE";
         if(newVozilo.isCDWProtection())
@@ -53,7 +61,12 @@ public class VoziloServiceImpl implements VoziloService {
                     vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
                     vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail());
 
-            voziloRepository.save(newVozilo);
+            logger.info("---!");
+		    logger.info("---!Pre voziloRepositorySave() ispis vozila:: " + newVozilo.toString());
+
+            newVozilo = voziloRepository.save(newVozilo);
+
+            logger.info("---!Posle voziloRepositorySave() ispis vozila:: " + newVozilo.toString());
             return newVozilo;
         }
     }

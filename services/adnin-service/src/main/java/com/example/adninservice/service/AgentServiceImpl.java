@@ -22,8 +22,8 @@ public class AgentServiceImpl implements AgentService {
     @Override
     public Agent addClient(Agent agent) {
         Agent agent1=new Agent(agent.getNazivFirme(),agent.getEmail(),agent.getPassword(),agent.getAdresa());
-        agent1.setSaltValue(agent.getSaltValue());
-        agent1.setHashedPassAndSalt(agent.getHashedPassAndSalt());
+      //  agent1.setSaltValue(agent.getSaltValue());
+       // agent1.setHashedPassAndSalt(agent.getHashedPassAndSalt());
         agentRepository.save(agent1);
 
        /* SimpleMailMessage mail = new SimpleMailMessage();
