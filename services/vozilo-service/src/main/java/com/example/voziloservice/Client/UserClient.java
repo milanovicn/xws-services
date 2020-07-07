@@ -17,4 +17,7 @@ public interface UserClient {
     @PutMapping("/uvecajBrojOglasa/{id}")
     void uvecajBrojOglasa(@PathVariable("id") Long id);
 
+    @GetMapping("/user/cenovnik/naziv/{naziv}")
+    double getCenovnikByNaziv(@PathVariable("naziv") String naziv);
+
 }

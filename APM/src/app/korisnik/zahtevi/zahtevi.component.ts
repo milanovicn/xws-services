@@ -42,6 +42,8 @@ export class ZahtevComponent implements OnInit {
   }
 
 
+      
+ 
 
   ngOnInit(): void {
 
@@ -72,7 +74,7 @@ export class ZahtevComponent implements OnInit {
 
 
   ponistiZahtev(zahtev: ZahtevRezervacije) {
-    this.voziloService.otkaziZahtev(zahtev).subscribe();
+    this.voziloService.odbaciZahtev(zahtev).subscribe();
   }
 
 

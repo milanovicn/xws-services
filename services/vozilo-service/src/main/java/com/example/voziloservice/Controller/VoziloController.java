@@ -152,6 +152,15 @@ public class VoziloController {
         return new ResponseEntity<>(cars, HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/sortiraj/{sortBy}")
+    public ResponseEntity<List<Vozilo>> sort(@RequestBody List<Vozilo> vozila,@PathVariable("sortBy") String sortBy) throws Exception {
+
+        List<Vozilo> cars=voziloService.sortiraj(vozila,sortBy);
+
+
+        return new ResponseEntity<>(cars, HttpStatus.CREATED);
+    }
+
     @Autowired
     private ImageRepository imageRepository;
 

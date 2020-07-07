@@ -5,7 +5,7 @@
           <tr>
             <th>Marka</th>
             <th>Model</th>
-            <th  *ngFor='let v of vozila'>Vozila</th>
+            <th  >Vozila</th>
             <th>Stanje</th>
             
           </tr>
@@ -14,7 +14,7 @@
           <tr *ngFor='let ser of zahtevi'>
             <td>{{ser.datumOd}}</td>
             <td>{{ser.datumDo}}</td>
-            <td *ngFor='let v of vozila' >{{v.marka}}</td>
+            <td *ngFor='let v of ser.vozila' >{{v.marka}}</td>
             <td>{{ser.stanje}}</td>
             <td><button class="btn btn-info" (click)='odobriZahtev(ser)'>Odobri</button></td>
             <td><button class="btn btn-info" (click)='ponistiZahtev(ser)'>Ponisti</button></td>

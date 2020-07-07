@@ -47,6 +47,11 @@ public class CenovnikServiceImpl implements CenovnikService{
     }
 
     @Override
+    public Cenovnik getByNaziv(String naziv) {
+        return cenovnikRepository.findByNaziv(naziv);
+    }
+
+    @Override
     public Collection<Cenovnik> findAllByAuthorId(Long id) {
 
 

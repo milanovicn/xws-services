@@ -103,13 +103,26 @@ public class ZahtevContorller {
 
     }
 
-    @PostMapping(value = "/otkazi/{idZahteva}")
-    public void otkaziZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
+    @PostMapping(value = "/odbaci/{idZahteva}")
+    public void odbaciZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
 
 
         zahtevService.otkaziZahtev(idZahteva);
 
             LOGGER.info(MessageFormat.format("ZAHTEV: otkazan, ZAHTEVI-ID:{0}", idZahteva ));
+
+
+
+
+    }
+
+    @DeleteMapping(value = "/otkazi/{idZahteva}")
+    public void otkaziZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
+
+
+        zahtevService.obrisiZahtev(idZahteva);
+
+        LOGGER.info(MessageFormat.format("ZAHTEV: otkazan, ZAHTEVI-ID:{0}", idZahteva ));
 
 
 
