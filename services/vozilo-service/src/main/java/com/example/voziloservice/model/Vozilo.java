@@ -63,6 +63,9 @@ public class Vozilo {
     @Column(name = "Mesto", nullable = false)
     private String mesto;
 
+    @Column(name = "PomId", nullable = false)
+    private Long pomId;
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "VOZILO_ZAHTEV",
@@ -74,7 +77,7 @@ public class Vozilo {
         this.zahtevi = new HashSet<Zahtev>();
     }
 
-    public Vozilo(String marka, String model, String tipGoriva, String tipMenjaca, String klasaVozila, String cenovnikId, double redjenaKilometraza, String ogranicenaKilometraza, boolean CDWProtection, int brojSedistaDeca, LocalDateTime vaziOd, LocalDateTime vaziDo, String mesto,Long oglasavacId,String iznajmljivacMail) {
+    public Vozilo(String marka, String model, String tipGoriva, String tipMenjaca, String klasaVozila, String cenovnikId, double redjenaKilometraza, String ogranicenaKilometraza, boolean CDWProtection, int brojSedistaDeca, LocalDateTime vaziOd, LocalDateTime vaziDo, String mesto,Long oglasavacId,String iznajmljivacMail, Long pomId) {
         this.marka = marka;
         this.model = model;
         this.tipGoriva = tipGoriva;
@@ -90,6 +93,7 @@ public class Vozilo {
         this.mesto = mesto;
         this.iznajmljivacId=oglasavacId;
         this.iznajmljivacMail=iznajmljivacMail;
+        this.pomId = pomId;
         this.zahtevi = new HashSet<Zahtev>();
     }
 
@@ -221,6 +225,22 @@ public class Vozilo {
         this.iznajmljivacMail = iznajmljivacMail;
     }
 
+    public Set<Zahtev> getZahtevi() {
+        return zahtevi;
+    }
+
+    public void setZahtevi(Set<Zahtev> zahtevi) {
+        this.zahtevi = zahtevi;
+    }
+
+    public Long getPomId() {
+        return pomId;
+    }
+
+    public void setPomId(Long pomId) {
+        this.pomId = pomId;
+    }
+
     @Override
     public String toString() {
         return "Vozilo{" +
@@ -240,6 +260,7 @@ public class Vozilo {
                 ", vaziOd=" + vaziOd +
                 ", vaziDo=" + vaziDo +
                 ", mesto='" + mesto + '\'' +
+                ", pomId=" + pomId +
                 ", zahtevi=" + zahtevi +
                 '}';
     }

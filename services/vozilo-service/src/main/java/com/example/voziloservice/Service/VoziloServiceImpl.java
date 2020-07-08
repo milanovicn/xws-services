@@ -36,7 +36,7 @@ public class VoziloServiceImpl implements VoziloService {
             if (userClient.chackNuberOfCars(vozilo.getIznajmljivacId()) == true) {
                 Vozilo newVozilo = new Vozilo(vozilo.getMarka(), vozilo.getModel(), vozilo.getTipGoriva(), vozilo.getTipMenjaca(),
                         vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
-                        vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail());
+                        vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail(), 0L);
 
                 logger.info("---!Pre voziloRepositorySave() (Za Klijenta) ispis vozila:: " + newVozilo.toString());
                 voziloRepository.save(newVozilo);
@@ -59,7 +59,7 @@ public class VoziloServiceImpl implements VoziloService {
         }else{
             Vozilo newVozilo = new Vozilo(vozilo.getMarka(), vozilo.getModel(), vozilo.getTipGoriva(), vozilo.getTipMenjaca(),
                     vozilo.getKlasaVozila(), vozilo.getCenovnikId(), vozilo.getRedjenaKilometraza(), vozilo.getOgranicenaKilometraza(),
-                    vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail());
+                    vozilo.isCDWProtection(), vozilo.getBrojSedistaDeca(), vozilo.getVaziOd(), vozilo.getVaziDo(), vozilo.getMesto(), vozilo.getIznajmljivacId(),vozilo.getIznajmljivacMail(), vozilo.getPomId());
 
             logger.info("---!");
 		    logger.info("---!Pre voziloRepositorySave() ispis vozila:: " + newVozilo.toString());

@@ -52,6 +52,8 @@
             <xs:element name="vaziOd" type="xs:date"/>
             <xs:element name="vaziDo" type="xs:date"/>
             <xs:element name="mesto" type="xs:string"/>
+            <xs:element name="pomId" type="xs:long"/>
+
 <!--            <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>-->
 
         </xs:sequence>

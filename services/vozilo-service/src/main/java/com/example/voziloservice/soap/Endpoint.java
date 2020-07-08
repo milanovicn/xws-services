@@ -61,6 +61,7 @@ public class Endpoint {
         vozilo.setBrojSedistaDeca(voziloXSD.getBrojSedistaDeca());
         vozilo.setIznajmljivacId(voziloXSD.getIznajmljivacId());
         vozilo.setIznajmljivacMail(voziloXSD.getIznajmljivacMail());
+        vozilo.setPomId(voziloXSD.getPomId());
 
         logger.info("---!Pre addVozilo() : " + vozilo.getMarka() + ", " + vozilo.getModel());
 
@@ -184,6 +185,7 @@ public class Endpoint {
             voziloXSD.setBrojSedistaDeca(vozilo.getBrojSedistaDeca());
             voziloXSD.setIznajmljivacId(vozilo.getIznajmljivacId());
             voziloXSD.setIznajmljivacMail(vozilo.getIznajmljivacMail());
+            voziloXSD.setPomId(vozilo.getPomId());
 
             zahtevXSD.getVozila().add(voziloXSD);
         }
