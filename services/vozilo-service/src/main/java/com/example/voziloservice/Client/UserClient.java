@@ -17,4 +17,7 @@ public interface UserClient {
     @PutMapping("/uvecajBrojOglasa/{id}")
     void uvecajBrojOglasa(@PathVariable("id") Long id);
 
+    @GetMapping("/getMailAgent")
+    String getEmailUlogovanogAgenta();
+
 }

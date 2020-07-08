@@ -43,6 +43,8 @@ public class LoginController {
 
     Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
 
+    private String mejlUlogovanogAgenta = null;
+
    /* @RequestMapping(method = POST, value = "/regKorisnika")
     public ResponseEntity<?> dodajKorisnika(@RequestBody KorisnikDTO korisnikRequest) throws Exception {
         Admin existAdmin = adminSer.findByEmail(korisnikRequest.getEmail());
@@ -106,6 +108,7 @@ public class LoginController {
                             HttpSession session = request.getSession();
                             session.setAttribute("agent", agent);
 
+                            mejlUlogovanogAgenta = agent.getEmail();
 
                             return new ResponseEntity<>(agent, HttpStatus.CREATED);
 
@@ -194,6 +197,21 @@ public class LoginController {
     }
 
 
+    @GetMapping(value = "/getMailAgent")
+    public String getEmailUlogovanogAgenta() {
+
+//        HttpSession session = request.getSession();
+//
+//        Agent ag = (Agent) session.getAttribute("agent");
+//
+//        if (ag != null) {
+//            return ag.getEmail();
+//        }
+
+        return mejlUlogovanogAgenta;
+    }
+
+
 
     @RequestMapping(method = PUT, value = "/logOut")
     public ResponseEntity logOut(@Context HttpServletRequest request) {
@@ -201,6 +219,7 @@ public class LoginController {
       ////  System.out.println("...LOGOUTK... " + session.getAttribute("korisnik"));
        // System.out.println("...LOGOUTA... " + session.getAttribute("admin"));
         session.invalidate();
+        mejlUlogovanogAgenta = null;
 
 
             LOGGER.info("SESSION: user logged out");

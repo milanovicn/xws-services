@@ -140,4 +140,20 @@ public class Zahtev {
     public void setVozila(Set<Vozilo> vozila) {
         this.vozila = vozila;
     }
+
+    @Override
+    public String toString() {
+        return "Zahtev{" +
+                "id=" + id +
+                ", vozila=" + vozila +
+                ", stanje=" + stanje +
+                ", datumOd=" + datumOd +
+                ", datumDo=" + datumDo +
+                ", vremeOdobrenja=" + vremeOdobrenja +
+                ", vremeKreiranja=" + vremeKreiranja +
+                ", podnosilac=" + podnosilac +
+                ", izdavac=" + izdavac +
+                ", izdavacMail='" + izdavacMail + '\'' +
+                '}';
+    }
 }
