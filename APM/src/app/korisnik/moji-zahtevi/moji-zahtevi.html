@@ -6,7 +6,7 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th  *ngFor='let v of vozila'>Za vozilo</th>
+          <th>Za vozilo</th>
           <th>Stanje zahteva</th>
 
         </tr>
@@ -15,10 +15,12 @@
         <tr *ngFor='let ser of zahteviZaPlacanje'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td  *ngFor='let v of vozila'>{{v.marka}}</td>
+          <td  *ngFor='let v of ser.vozila'>{{v.marka}}</td>
           <td>{{ser.stanje}}</td>
           <td><button class="btn btn-info"
                     (click)='plati(ser)'>Plati</button></td>
+          <td><button class="btn btn-info"
+                      (click)='otkazi(ser)'>Otkazi</button></td>
 
         </tr>
       </tbody>
@@ -35,7 +37,7 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th *ngFor='let v of pom'>Za vozilo</th>
+          <th >Za vozilo</th>
           <th>Stanje zahteva</th>
 
         </tr>
@@ -44,10 +46,12 @@
         <tr *ngFor='let ser of zahteviZaKomentar'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td *ngFor='let v of pom'>{{v.marka}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
           <td>{{ser.stanje}}</td>
           <td><button class="btn btn-info"
-                    (click)='ostaviKomentar(ser)'>Plati</button></td>
+                    (click)='ostaviKomentar(ser)'>Postavi komentar</button></td>
+                <td><button class="btn btn-info"
+                      (click)='oceni(ser)'>Postavi ocenu</button></td>
 
         </tr>
 
@@ -58,6 +62,12 @@
            name="TekstKomentara" 
            #TekstKomentara="ngModel"
            [(ngModel)]="tekstKomentara"/>
+
+    Ocena:
+           <input type="number"
+                  name="Ocena" 
+                  #Ocena="ngModel"
+                  [(ngModel)]="ocena"/>
   </div>
 
 </div>

@@ -29,6 +29,8 @@ export class SearchComponent implements OnInit{
     
     vozila:Vozilo[]=[];
     korpa:Vozilo[]=[];
+     tipovi:string[];
+     izabranaVstaIzvestaja:string;
     isBundle:boolean=false;
     idAutora:number=0;
     bundleZahtevi:ZahtevRezervacije[]=[];
@@ -71,11 +73,17 @@ export class SearchComponent implements OnInit{
       this.zahtev=new ZahtevRezervacije();
       this.korisnik=new Korisnik();
       this.pretraga=new Pretraga();
+      this.izabranoGorivo=new TipGoriva();
+      this.izabraniMenjac=new TipMenjaca();
+      this.izabraniModel=new Model();
+      this.izabranaMarka=new Marka();
+
        
     }
 
      ngOnInit(): void {
 
+      this.tipovi=["KILOMETRAZA","OCENA","CENA"];
       this.login.getKorisnika().subscribe({
         next: korisnik=>{this.korisnik=korisnik;
          
@@ -93,7 +101,10 @@ export class SearchComponent implements OnInit{
        this.ucitajMarke();
        this.ucitajGoriva();
        this.ucitajMenjace();
-        
+        this.izabranoGorivo.naziv="sve";
+         this.izabranaMarka.naziv="sve";
+         this.izabraniMenjac.naziv="sve";
+         this.izabraniModel.naziv="sve";
         
          
           }
@@ -216,29 +227,29 @@ export class SearchComponent implements OnInit{
                   this.pretraga.datumOd=this.zauzmiOd;
                   this.pretraga.datumDo=this.zauzmiDo;
                   
-                  if(this.izabranaMarka==undefined){
-                    this.pretraga.marka="sve";
-                  }else{
+                 // if(this.izabranaMarka==undefined){
+                 //   this.pretraga.marka="sve";
+                 // }else{
                     this.pretraga.marka=this.izabranaMarka.naziv;
-                  }
+                //  }
 
-                  if(this.izabraniModel==undefined){
-                    this.pretraga.model="sve";
-                  }else{
+               //   if(this.izabraniModel==undefined){
+                   // this.pretraga.model="sve";
+                //  }else{
                     this.pretraga.model=this.izabraniModel.naziv;
-                  }
+                //  }
 
-                  if(this.izabraniMenjac==undefined){
-                    this.pretraga.tipMenjaca="sve";
-                  }else{
+                 // if(this.izabraniMenjac==undefined){
+                   // this.pretraga.tipMenjaca="sve";
+                //  }else{
                     this.pretraga.tipMenjaca=this.izabraniMenjac.naziv;
-                  }
+                 // }
 
-                  if(this.izabranoGorivo==undefined){
-                    this.pretraga.tipGoriva="sve";
-                  }else{
+                 // if(this.izabranoGorivo==undefined){
+                 //   this.pretraga.tipGoriva="sve";
+                //  }else{
                     this.pretraga.tipGoriva=this.izabranoGorivo.naziv;
-                  }
+                //  }
                  
                   
 
@@ -248,9 +259,9 @@ export class SearchComponent implements OnInit{
                   this.pretraga.brojSedistaZaDecu=this.sedista;*/
 
                   if(this.protection==true)
-                    this.pretraga.CDWProtection="DA";
+                    this.pretraga.CDWProtection="da";
                   else
-                    this.pretraga.CDWProtection="NE";
+                    this.pretraga.CDWProtection="ne";
                     console.log(this.pretraga);
                     this.vozila=[];
                     this.searchService.pretrazi(this.pretraga).subscribe({
@@ -311,7 +322,14 @@ export class SearchComponent implements OnInit{
              // this.zahtevService.napraviBundleZahtev(this.bundleZahtevi).subscribe();
              this.voziloService.zahtevNapravi(this.zahtev).subscribe()
             }
-        }
 
+            sortiraj(izabranaVstaIzvestaja:string):void{
+              
+              this.voziloService.sortiraj(this.vozila,izabranaVstaIzvestaja).subscribe(vozila => {
+                  this.vozila = vozila;
+                  console.log(this.vozila);
+                });
+          }
     
-
+    
+        }

@@ -35,7 +35,7 @@ public class ZahtevServiceImpl implements ZahtevService {
         novi.setIzdavac(zahtev.getIzdavac());
         novi.setIzdavacMail(zahtev.getIzdavacMail());
         novi.setStanje(Stanje.PENDING);
-        novi.setVozila(vozila);
+                    novi.setVozila(vozila);
         //Zahtev novi=new Zahtev(zahtev.getVozila(),zahtev.getDatumOd(),zahtev.getDatumDo(),zahtev.getPodnosilac(),zahtev.getIzdavac(),zahtev.getIzdavacMail());
         novi.setVremeKreiranja(sad);
 
@@ -123,6 +123,11 @@ public class ZahtevServiceImpl implements ZahtevService {
         zaIzemnu.setStanje(Stanje.CANCELED);
         zahtevRepository.save(zaIzemnu);
 
+    }
+
+    @Override
+    public void obrisiZahtev(Long id) {
+        zahtevRepository.deleteById(id);
     }
 
     @Override

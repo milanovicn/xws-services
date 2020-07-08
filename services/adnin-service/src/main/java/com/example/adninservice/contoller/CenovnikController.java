@@ -76,6 +76,15 @@ public class CenovnikController {
         return new ResponseEntity<>(cenovnik, HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/naziv/{naziv}")
+    public double getCenovnikByNaziv(@PathVariable("naziv") String naziv) throws Exception {
+
+        Cenovnik cenovnik = cenovnikService.getByNaziv(naziv);
+
+
+        return cenovnik.getCenaDan();
+    }
+
     //get by author id
     @GetMapping(value = "/autor/{id}")
     public Collection<Cenovnik> getByAuthorId(@PathVariable("id") Long id) {

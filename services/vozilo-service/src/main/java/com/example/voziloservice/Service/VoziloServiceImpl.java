@@ -7,6 +7,9 @@ import com.example.voziloservice.model.Vozilo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.Comparator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,6 +74,34 @@ public class VoziloServiceImpl implements VoziloService {
     @Override
     public List<Vozilo> getAll() {
         return voziloRepository.findAll();
+    }
+
+    @Override
+    public List<Vozilo> sortiraj(List<Vozilo> vozila, String sortBy) {
+
+        if(sortBy.equals("KILOMETRAZA")){
+            vozila.sort(Comparator.comparingDouble(Vozilo :: getRedjenaKilometraza));
+            return vozila;
+        }
+        else if(sortBy.equals("OCENA")){
+
+           // vozila.sort(Comparator.comparingInt(Vozilo :: getOcena));
+            return vozila;
+        }
+        else if(sortBy.equals("CENA")){
+            Vozilo temp = new Vozilo() ;
+           for (int i = 0; i < vozila.size()-1; i++) {
+                for (int j = i+1; j < vozila.size(); j++) {
+                    if(userClient.getCenovnikByNaziv(vozila.get(i).getCenovnikId()) > userClient.getCenovnikByNaziv(vozila.get(j).getCenovnikId())) {
+                        temp = vozila.get(i);
+                        vozila.set(i,vozila.get(j));
+                        vozila.set(j,temp);
+                    }
+                }
+            }
+           return  vozila;
+        }
+        return null;
     }
 
     @Override
