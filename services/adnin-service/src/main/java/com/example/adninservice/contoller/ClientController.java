@@ -80,6 +80,12 @@ public class ClientController {
 
         clientServiceImpl.povecajBrojOglasa(id);
     }
+
+    @GetMapping("/email/{id}")
+    String getMailKorisnika(@PathVariable("id") Long id){
+        return clientServiceImpl.findById(id).getEmail();
+    }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<List<Client>> removeClients(@PathVariable("id") Long id) throws Exception {
 

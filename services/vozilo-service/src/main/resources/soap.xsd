@@ -120,7 +120,21 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="getMailPodnosiocaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idPodnosilac" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
+    <xs:element name="getMailPodnosiocaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vraceniMejl" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 
 

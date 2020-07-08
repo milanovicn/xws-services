@@ -1,0 +1,94 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com/adninservice/xsd"
+           targetNamespace="http://example.com/adninservice/xsd" elementFormDefault="qualified">
+
+
+
+
+
+    <xs:element name="postChatRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="chat" type="tns:Chat"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="postChatResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Chat">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="user1" type="xs:string"/>
+            <xs:element name="user2" type="xs:string"/>
+<!--            <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>-->
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="postMessageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="tns:Message"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="postMessageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Message">
+    <xs:sequence>
+        <xs:element name="chatId" type="xs:long"/>
+        <xs:element name="senderEmail" type="xs:string"/>
+        <xs:element name="timestamp" type="xs:date"/>
+        <xs:element name="content" type="xs:string"/>
+        <!--            <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>-->
+
+    </xs:sequence>
+</xs:complexType>
+
+
+    <xs:element name="getChatByAgentMailRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mail" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getChatByAgentMailResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="chatovi" type="tns:Chat"  minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMessageByChatIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="chatId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMessageByChatIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="messages" type="tns:Message"  minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
