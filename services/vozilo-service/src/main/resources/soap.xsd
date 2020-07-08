@@ -52,22 +52,22 @@
             <xs:element name="vaziOd" type="xs:date"/>
             <xs:element name="vaziDo" type="xs:date"/>
             <xs:element name="mesto" type="xs:string"/>
-            <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>
+<!--            <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>-->
 
         </xs:sequence>
     </xs:complexType>
 
 
 
-    <xs:element name="getZahteveRequset">
+    <xs:element name="getZahteveByIzdavacMailRequset">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="username" type="xs:string"/>
+                <xs:element name="izdavacMail" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getZahteveResponse">
+    <xs:element name="getZahteveByIzdavacMailResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="zahtevi" type="tns:Zahtev" minOccurs="0" maxOccurs="unbounded"/>
@@ -77,7 +77,7 @@
 
     <xs:complexType name="Zahtev">
         <xs:sequence>
-            <xs:element name="vozila" type="tns:Vozilo"/>
+            <xs:element name="vozila" type="tns:Vozilo" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="stanje" type="tns:Stanje"/>
             <xs:element name="datumOd" type="xs:date"/>
             <xs:element name="datumDo" type="xs:date"/>
@@ -102,5 +102,27 @@
             <xs:enumeration value="REVIEWED"/>
         </xs:restriction>
     </xs:simpleType>
+
+
+    <xs:element name="getMailUlogovanogAgentaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="get" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMailUlogovanogAgentaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vraceniMejl" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+
+
 
 </xs:schema>
