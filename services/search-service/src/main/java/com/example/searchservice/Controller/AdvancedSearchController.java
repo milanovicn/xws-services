@@ -38,7 +38,10 @@ public class AdvancedSearchController {
     @PostMapping(value = "/pretrazi")
     public ResponseEntity<?> searchCar(@RequestBody SearchDTO sDTO) throws Exception {
 
-        List<Long> ids = advancedSearchService.findByAdvancedSearch(sDTO);
+        LOGGER.debug("####################");
+        LOGGER.debug("PretragaDTO po kojoj se pretrazuje: " + sDTO);
+
+        List<Long> ids = advancedSearchService.find(sDTO);
 
         if(!ids.isEmpty()) {
             LOGGER.info(MessageFormat.format("SEARCH: returned list, LIST-LENGTH:{0}", ids.size()));

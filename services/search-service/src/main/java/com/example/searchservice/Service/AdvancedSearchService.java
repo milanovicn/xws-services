@@ -12,7 +12,7 @@ public interface AdvancedSearchService {
     public AdvancedSearch addAdvancedReplica(AdvancedSearch vozilo);
     public void removeAdvancedReplica(Long idVozila);
     public List<Long> findByAdvancedSearch(SearchDTO search);
-
+    public List<Long> find(SearchDTO search);
 
 
 }
