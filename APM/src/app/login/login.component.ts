@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(["/korisnik"]);
                 }
                 else if (this.korisnik.rola == "AGENT") {
-                    window.open("http://localhost:4201");
+                    window.open("https://localhost:4201");
                     this.router.navigate(["/homeAgent"]);
                 }
                 else {
