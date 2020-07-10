@@ -1,6 +1,7 @@
 package com.example.voziloservice.soap;
 
 import com.example.voziloservice.Client.UserClient;
+import com.example.voziloservice.Service.KomentarService;
 import com.example.voziloservice.Service.VoziloService;
 import com.example.voziloservice.Service.ZahtevService;
 import com.example.voziloservice.model.Vozilo;
@@ -19,6 +20,8 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -35,6 +38,9 @@ public class Endpoint {
     ZahtevService zahtevService;
 
     @Autowired
+    KomentarService komentarService;
+
+    @Autowired
     UserClient userClient;
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "postVoziloRequest")
@@ -42,6 +48,8 @@ public class Endpoint {
     public PostVoziloResponse postVoziloResponse(@RequestPayload PostVoziloRequest request) throws Exception {
         logger.info("---Izvrsava u Endpoint(u mikroservisu) za postVoziloRequest!\nVOZILO: -->" + request.getVozilo().getMarkaAutomobila() + ", " + request.getVozilo().getModelAutomobila());
         PostVoziloResponse response = new PostVoziloResponse();
+
+        String mejl = userClient.getEmailUlogovanogAgenta();
 
         Vozilo vozilo = new Vozilo();
         com.example.voziloservice.xsd.Vozilo voziloXSD = request.getVozilo();
@@ -60,7 +68,7 @@ public class Endpoint {
         vozilo.setCDWProtection(voziloXSD.isCDWProtection());
         vozilo.setBrojSedistaDeca(voziloXSD.getBrojSedistaDeca());
         vozilo.setIznajmljivacId(voziloXSD.getIznajmljivacId());
-        vozilo.setIznajmljivacMail(voziloXSD.getIznajmljivacMail());
+        vozilo.setIznajmljivacMail(mejl);
         vozilo.setPomId(voziloXSD.getPomId());
 
         logger.info("---!Pre addVozilo() : " + vozilo.getMarka() + ", " + vozilo.getModel());
@@ -112,7 +120,8 @@ public class Endpoint {
 //        for (com.example.voziloservice.model.Zahtev zahtev : zahtevService.findByIzdavacMail(request.getIzdavacMail())) {
 //            response.getZahtevi().add(napraviZahtevXSD(zahtev));
 //        }
-        for (com.example.voziloservice.model.Zahtev zahtev : zahtevService.findAll()) {
+        List<com.example.voziloservice.model.Zahtev> zahtevi=zahtevService.findAll();
+        for (com.example.voziloservice.model.Zahtev zahtev : zahtevi) {
             logger.info("###ENDPOINT > getZahteveByIzdavacMailRequset > Pre add(zahtev).." + zahtev.toString());
             response.getZahtevi().add(napraviZahtevXSD(zahtev));
             logger.info("###ENDPOINT > getZahteveByIzdavacMailRequset > Posle add(zahtev).." + zahtev.toString());
@@ -251,6 +260,49 @@ public class Endpoint {
 
     }
 
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getKomentareByIdVozilaRequest")
+    @ResponsePayload
+    public GetKomentareByIdVozilaResponse getKomentareByIdVozila(@RequestPayload GetKomentareByIdVozilaRequest request) {
+        logger.info("---Izvrsava u Endpoint(u mikroservisu) za getKomentareByIdVozilaRequest!");
+
+        GetKomentareByIdVozilaResponse response = new GetKomentareByIdVozilaResponse();
+
+        Long idVozila = request.getIdVozila();
+        logger.info("###ENDPOINT > getKomentareByIdVozilaRequest > pre komentarService.findApprovedByIdVozilaSoap()..");
+
+        Collection<com.example.voziloservice.model.Komentar> komentari = komentarService.findApprovedByIdVozilaSoap(idVozila);
+
+        logger.info("###ENDPOINT > getKomentareByIdVozilaRequest > posle komentarService.findApprovedByIdVozilaSoap()..\nI vratio size:: " + komentari.size());
+
+        for (com.example.voziloservice.model.Komentar komentar : komentari) {
+            response.getKomentari().add(napraviKomentarXSD(komentar));
+        }
+
+        logger.info("###ENDPOINT > getKomentareByIdVozilaRequest > posle napravioKomentarXSD()..\nI vratio size:: " + response.getKomentari().size());
+
+        return response;
+    }
+
+    private Komentar napraviKomentarXSD(com.example.voziloservice.model.Komentar komentar) {
+
+        Komentar komentarXSD = new Komentar();
+
+        komentarXSD.setIdVozila(komentar.getIdVozila());
+        komentarXSD.setKomentar(komentar.getKomentar());
+
+        if (komentar.getStanje().equals(com.example.voziloservice.model.StanjeKomentara.OBJAVLJEN)) {
+            komentarXSD.setStanje(StanjeKomentara.OBJAVLJEN);
+        } else if (komentar.getStanje().equals(com.example.voziloservice.model.StanjeKomentara.ODBIJEN)) {
+            komentarXSD.setStanje(StanjeKomentara.ODBIJEN);
+        } else if (komentar.getStanje().equals(com.example.voziloservice.model.StanjeKomentara.ODOBREN)) {
+            komentarXSD.setStanje(StanjeKomentara.ODOBREN);
+        } else if (komentar.getStanje().equals(com.example.voziloservice.model.StanjeKomentara.ODGOVOREN)) {
+            komentarXSD.setStanje(StanjeKomentara.ODGOVOREN);
+        }
+
+        return komentarXSD;
+    }
 
 
 }

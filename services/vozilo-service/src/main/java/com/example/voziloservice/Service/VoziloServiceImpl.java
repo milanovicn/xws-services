@@ -118,4 +118,9 @@ public class VoziloServiceImpl implements VoziloService {
     public Vozilo findById(Long id) {
         return voziloRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Vozilo findByPomId(Long id) {
+        return voziloRepository.findByPomId(id);
+    }
 }

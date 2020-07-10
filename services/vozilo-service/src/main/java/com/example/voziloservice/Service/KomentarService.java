@@ -15,4 +15,5 @@ public interface KomentarService {
     public void odbij(Long id);
     public void odobri(Long id);
     public Collection<Komentar> findApprovedByIdVozila(Long id);
+    public Collection<Komentar> findApprovedByIdVozilaSoap(Long id);
 }

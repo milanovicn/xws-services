@@ -15,4 +15,5 @@ public interface VoziloService {
     List<Vozilo> findByIznajmljivacMail(String mail);
     Vozilo findById(Long id);
 
+    Vozilo findByPomId(Long id);
 }

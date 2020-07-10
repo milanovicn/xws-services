@@ -19,7 +19,7 @@ public class KomentarServiceImpl implements KomentarService {
    private KomentarRepository komentrRepository;
 
     @Autowired
-    private VoziloService voziloRepository;
+    private VoziloService voziloService;
 
     @Override
     public Collection<Komentar> findAll() {
@@ -80,4 +80,43 @@ public class KomentarServiceImpl implements KomentarService {
 
         return ret;
     }
+
+
+    @Override
+    public Collection<Komentar> findApprovedByIdVozilaSoap(Long id) {
+//        Collection<Komentar> tempAgentski = new ArrayList<>();
+//
+//        Collection<Komentar> temp = komentrRepository.findByIdVozila(id);
+//
+//        for (Komentar komentar : temp) {
+//            if (checkForAgent(komentar.getIdVozila())) { // proverava dal je pomId != 0 tj. dal je vozilo od agenta
+//                tempAgentski.add(komentar);
+//            }
+//        }
+//
+//        for (Komentar komentar : tempAgentski) {
+//            if (komentar.getIdVozila().equals(id)) {
+//                ret.add(komentar);
+//            }
+//        }
+        Vozilo v = voziloService.findByPomId(id);
+        Collection<Komentar> temp = komentrRepository.findByIdVozila(v.getId());
+
+        for(Komentar k : temp){
+            if(k.getStanje() != StanjeKomentara.ODOBREN){
+                temp.remove(k);
+            }
+        }
+
+        return temp;
+    }
+
+//    private boolean checkForAgent(Long idVozila) {
+//        Vozilo v = voziloService.findById(idVozila);
+//        if (v.getPomId().equals(0L)) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 }
