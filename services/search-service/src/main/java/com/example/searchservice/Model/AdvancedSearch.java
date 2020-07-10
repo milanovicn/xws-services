@@ -59,6 +59,23 @@ public class AdvancedSearch {
         this.idVozila = idVozila;
     }
 
+    @Override
+    public String toString() {
+        return "AdvancedSearch{" +
+                "id=" + id +
+                ", mesto='" + mesto + '\'' +
+                ", datumOd=" + datumOd +
+                ", datumDo=" + datumDo +
+                ", marka='" + marka + '\'' +
+                ", tipMenjaca='" + tipMenjaca + '\'' +
+                ", model='" + model + '\'' +
+                ", tipGoriva='" + tipGoriva + '\'' +
+                ", brojSedistaZaDecu=" + brojSedistaZaDecu +
+                ", CDWProtection=" + CDWProtection +
+                ", idVozila=" + idVozila +
+                '}';
+    }
+
     public AdvancedSearch() {
     }
 
