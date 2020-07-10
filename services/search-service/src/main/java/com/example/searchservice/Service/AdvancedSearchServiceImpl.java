@@ -137,67 +137,88 @@ public class AdvancedSearchServiceImpl implements AdvancedSearchService {
         List<AdvancedSearch> allCars = advancedSearchRepository.findAll();
         List<AdvancedSearch> ret = advancedSearchRepository.findAll();
 
-        LOGGER.debug("#####################");
-        LOGGER.debug("SVE REPLIKE KOJE IMAMO: " + ret);
+        LOGGER.info("#####################");
+        LOGGER.info("SVE REPLIKE KOJE IMAMO: " + ret.toString());
 
         for (AdvancedSearch as : allCars){
-            LOGGER.debug("#####################");
-            LOGGER.debug("Ulazak u for petlju za repliku: " + as);
+            LOGGER.info("#####################");
+            LOGGER.info("Ulazak u for petlju za repliku: " + as.toString());
             //provera poklapanja mesta, trebalo bi da je ovo polje uvek popunjeno
             if(!as.getMesto().equals(search.getMesto())){
+                LOGGER.info("Mesto1");
                ret.remove(as);
              //provera tipa menjaca ako vrednost nije sve
-            } else if (!search.getTipMenjaca().equals("sve")){
+            } 
+		if (!search.getTipMenjaca().equals("sve")){
+                LOGGER.info("Menjac1");
                 //ako se ne poklapaju trenutni i tip menjaca searcha izbaci ga iz liste
                 if(as.getTipMenjaca().equals(search.getTipMenjaca())){
+                    LOGGER.info("MEnjac2");
                     ret.remove(as);
                 }
              //provera tipa goriva ako vrednost nije sve
-            }else if(!search.getTipGoriva().equals("sve")){
+            }
+ if(!search.getTipGoriva().equals("sve")){
+                LOGGER.info("Gorivo1");
                 if(!search.getTipGoriva().equals(as.getTipGoriva())){
+                    LOGGER.info("Gorivo2");
                     ret.remove(as);
                 }
 
-            }else if(!search.getMarka().equals("sve")){
+            }
+if(!search.getMarka().equals("sve")){
+                LOGGER.info("Marka1");
                 if(!search.getMarka().equals(as.getMarka())){
+                    LOGGER.info("Marka2");
                     ret.remove(as);
                 }
 
-            }else if(!search.getModel().equals("sve")){
+            }
+if(!search.getModel().equals("sve")){
+                LOGGER.info("Model1");
                  if(!search.getModel().equals(as.getModel())) {
+                     LOGGER.info("Model2");
                      ret.remove(as);
                  }
 
-            }else if(search.getBrojSedistaZaDecu() != 0){
+            }
+if(search.getBrojSedistaZaDecu() != 0){
+                LOGGER.info("Sedista1");
                 if(search.getBrojSedistaZaDecu() != as.getBrojSedistaZaDecu()){
-                    ret.remove(as);
-                }
-            }else if(search.getBrojSedistaZaDecu() != 0){
-                if(search.getBrojSedistaZaDecu() != as.getBrojSedistaZaDecu()){
-                    ret.remove(as);
-                }
-            }else if(search.getCDWProtection().equals("ne")){
-                if(as.isCDWProtection()){
+                    LOGGER.info("Sedista2");
                     ret.remove(as);
                 }
 
-            }else if(search.getCDWProtection().equals("da")) {
+            }
+ if(search.getCDWProtection().equals("ne")){
+                LOGGER.info("CDW ne1");
+                if(as.isCDWProtection()){
+                    ret.remove(as);
+                    LOGGER.info("CDW ne2");
+                }
+
+            }
+ if(search.getCDWProtection().equals("da")) {
+                LOGGER.info("CDW da1");
                 if (!as.isCDWProtection()) {
+                    LOGGER.info("CDW da2");
                     ret.remove(as);
                 }
              // (StartDate1 <= EndDate2) and (StartDate2 <= EndDate1)
-            }else {
+            }
+                LOGGER.info("Datum1");
                 if(!(search.getDatumOd().isAfter(as.getDatumOd()) && search.getDatumDo().isBefore(as.getDatumDo()))){
+                    LOGGER.info("Datum2");
                     ret.remove(as);
                 }
 
 
-            }
-            LOGGER.debug("LISTA nakon for petlje za repliku: " + ret);
+            
+            LOGGER.info("LISTA nakon for petlje za repliku: " + ret.toString());
         }
 
-        LOGGER.debug("#####################");
-        LOGGER.debug("LISTA REPLIKA KOJE SU ISPUNILE USLOVE " + ret);
+        LOGGER.info("#####################");
+        LOGGER.info("LISTA REPLIKA KOJE SU ISPUNILE USLOVE " + ret.toString());
 
         List<Long> returnIds = new ArrayList<>();
 
@@ -205,7 +226,7 @@ public class AdvancedSearchServiceImpl implements AdvancedSearchService {
             returnIds.add(as.getIdVozila());
 
         }
-        LOGGER.debug("LISTA ID-eva VOZILA: " + returnIds);
+        LOGGER.info("LISTA ID-eva VOZILA: " + returnIds.toString());
 
         return returnIds;
     }
