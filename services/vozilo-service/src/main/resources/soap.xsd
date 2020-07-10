@@ -156,4 +156,21 @@
     </xs:simpleType>
 
 
+    <xs:element name="postKomentarRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="komentar" type="tns:Komentar"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="postKomentarResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
 </xs:schema>

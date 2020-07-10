@@ -305,4 +305,34 @@ public class Endpoint {
     }
 
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "postKomentarRequest")
+    @ResponsePayload
+    public PostKomentarResponse postKomentarResponse(@RequestPayload PostKomentarRequest request) {
+        logger.info("---Izvrsava u Endpoint(u mikroservisu) za postKomentarRequest!\nKomentar: -->" + request.getKomentar().getKomentar() + ", " + request.getKomentar().getStanje());
+        PostKomentarResponse response = new PostKomentarResponse();
+
+        com.example.voziloservice.model.Komentar komentar = new com.example.voziloservice.model.Komentar();
+
+        Komentar komentarXSD = request.getKomentar();
+
+        komentar.setIdVozila(komentarXSD.getIdVozila());
+        komentar.setKomentar(komentarXSD.getKomentar());
+        komentar.setStanje(com.example.voziloservice.model.StanjeKomentara.ODOBREN);
+
+        Vozilo vozilo = voziloService.findByPomId(komentarXSD.getIdVozila());
+
+        komentar.setIdVozila(vozilo.getId());
+
+        komentar = komentarService.createAG(komentar);
+
+        if (komentar != null) {
+            response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
+        }
+        return response;
+
+    }
+
+
 }

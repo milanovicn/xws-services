@@ -16,4 +16,6 @@ public interface KomentarService {
     public void odobri(Long id);
     public Collection<Komentar> findApprovedByIdVozila(Long id);
     public Collection<Komentar> findApprovedByIdVozilaSoap(Long id);
+
+    Komentar createAG(Komentar komentar); // kada agent pravi vozilo odma je odobren
 }

@@ -111,6 +111,17 @@ public class KomentarServiceImpl implements KomentarService {
         return temp;
     }
 
+    @Override
+    public Komentar createAG(Komentar komentar) {
+
+        Komentar k = new Komentar();
+        k.setIdVozila(komentar.getIdVozila());
+        k.setStanje(komentar.getStanje());
+        k.setKomentar(komentar.getKomentar());
+        k = komentrRepository.save(k);
+        return k;
+    }
+
 //    private boolean checkForAgent(Long idVozila) {
 //        Vozilo v = voziloService.findById(idVozila);
 //        if (v.getPomId().equals(0L)) {
