@@ -37,7 +37,7 @@ public class WebServisConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setSchema(soapSchema);
         definition.setLocationUri("/ws");
-        definition.setPortTypeName("SoapPort");
+        definition.setPortTypeName("ChatPort");
         definition.setTargetNamespace("http://example.com/adninservice/xsd");
         return definition;
     }
