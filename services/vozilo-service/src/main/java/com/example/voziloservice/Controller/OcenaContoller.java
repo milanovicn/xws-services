@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OcenaContoller {
 
     @Autowired

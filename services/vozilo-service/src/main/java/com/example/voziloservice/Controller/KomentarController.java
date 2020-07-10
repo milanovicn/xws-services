@@ -15,6 +15,7 @@ import java.text.MessageFormat;
 import java.util.Collection;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
 public class KomentarController {
 
