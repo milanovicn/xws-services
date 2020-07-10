@@ -11,6 +11,7 @@ public interface ZahtevService {
     List<Zahtev> findByPodnosilac(Long id);
     List<Zahtev> findByIzdavac(Long id);
     List<Zahtev> findByIzdavacMail(String mail);
+    String findPodnosilacEmail(Long id);
     List<Zahtev> findAll();
     void prihvatiZahtev(Long id) throws Exception;
     void otkaziZahtev(Long id);

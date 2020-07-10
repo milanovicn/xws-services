@@ -15,11 +15,19 @@ insert into tip_goriva(id, naziv) values (3, 'Gas')
 
 insert into marka(id, naziv) values (1, 'BMW')
 insert into marka(id, naziv) values (2, 'Renault')
+insert into marka(id, naziv) values (3, 'Fiat')
+insert into marka(id, naziv) values (4, 'Citroen')
 
 insert into model(id, naziv,marka) values (1,'BMW120', 'BMW')
 insert into model(id, naziv,marka) values (2, 'Laguna','Renault')
+insert into model(id, naziv,marka) values (3, 'C2','Citroen')
+insert into model(id, naziv,marka) values (4, 'C3','Citroen')
+insert into model(id, naziv,marka) values (5, 'Siecento','Fiat')
+insert into model(id, naziv,marka) values (6, 'Panda','Fiat')
 
 insert into tip_menjaca(id, naziv) values (1, 'Manuelni')
+insert into tip_menjaca(id, naziv) values (2, 'Automatski')
+insert into tip_menjaca(id, naziv) values (3, 'Poluautomatski')
 
 
 insert into cenovnik(id, naziv,cena_dan, cena_prekoraceni_km, cenacdw, popust_procenat, autor) values (1, 'c1',35,10,40,30,1)

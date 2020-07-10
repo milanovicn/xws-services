@@ -1,6 +1,7 @@
 package com.example.voziloservice.Service;
 
 
+import com.example.voziloservice.Client.UserClient;
 import com.example.voziloservice.Repository.ZahtevRepository;
 import com.example.voziloservice.model.Stanje;
 import com.example.voziloservice.model.Vozilo;
@@ -20,6 +21,9 @@ public class ZahtevServiceImpl implements ZahtevService {
 
     @Autowired
     private ZahtevRepository zahtevRepository;
+
+    @Autowired
+    private UserClient userClient;
 
     @Override
     public Zahtev create(Zahtev zahtev) {
@@ -58,6 +62,11 @@ public class ZahtevServiceImpl implements ZahtevService {
     @Override
     public List<Zahtev> findByIzdavacMail(String mail) {
         return zahtevRepository.findByIzdavacMail(mail);
+    }
+
+    @Override
+    public String findPodnosilacEmail(Long id) {
+        return userClient.getMailKorisnika(id);
     }
 
     @Override

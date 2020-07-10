@@ -260,6 +260,23 @@ public class Endpoint {
 
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getMailPodnosiocaRequest")
+    @ResponsePayload
+    public GetMailPodnosiocaResponse getMailPodnosiocaResponse(@RequestPayload GetMailPodnosiocaRequest request) {
+        //logger.info("---Izvrsava u Endpoint(u mikroservisu) za getMailUlogovanogAgentaRequest!");
+
+
+        String mejl = userClient.getMailKorisnika(request.getIdPodnosilac());
+
+       // logger.info("---Izvrsava u Endpoint(u mikroservisu) za getMailUlogovanogAgentaRequest >> od userClient-a dobio mejl: " + mejl);
+
+        GetMailPodnosiocaResponse response = new GetMailPodnosiocaResponse();
+        response.setVraceniMejl(mejl);
+
+        return response;
+
+    }
+
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getKomentareByIdVozilaRequest")
     @ResponsePayload
@@ -333,6 +350,7 @@ public class Endpoint {
         return response;
 
     }
+
 
 
 }

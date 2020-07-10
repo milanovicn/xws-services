@@ -108,7 +108,20 @@ public class SearchDTO {
         this.CDWProtection = CDWProtection;
     }
 
-
+    @Override
+    public String toString() {
+        return "SearchDTO{" +
+                "mesto='" + mesto + '\'' +
+                ", datumOd=" + datumOd +
+                ", datumDo=" + datumDo +
+                ", marka='" + marka + '\'' +
+                ", tipMenjaca='" + tipMenjaca + '\'' +
+                ", model='" + model + '\'' +
+                ", tipGoriva='" + tipGoriva + '\'' +
+                ", brojSedistaZaDecu=" + brojSedistaZaDecu +
+                ", CDWProtection='" + CDWProtection + '\'' +
+                '}';
+    }
 
     public SearchDTO() {
     }

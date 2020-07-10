@@ -43,11 +43,17 @@ export class ListaKorisnikaComponent implements OnInit {
   }
 
   blokiraj(korisnik: Korisnik) {
-    // TODO: asdadsad
+   
+    this.korisniciServis.blockUser(korisnik.id).subscribe();
+  }
+
+  
+  odblokiraj(korisnik: Korisnik) {
+    this.korisniciServis.unblockUser(korisnik.id).subscribe();
   }
 
   ukloni(korisnik: Korisnik) {
-    // TODO: asdadsad
+    this.korisniciServis.removeUser(korisnik.id).subscribe();
   }
 
 }

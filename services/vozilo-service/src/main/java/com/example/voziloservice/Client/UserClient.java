@@ -23,4 +23,7 @@ public interface UserClient {
     @GetMapping("/user/cenovnik/naziv/{naziv}")
     double getCenovnikByNaziv(@PathVariable("naziv") String naziv);
 
+    @GetMapping("/email/{id}")
+    String getMailKorisnika(@PathVariable("id") Long id);
+
 }
