@@ -21,8 +21,12 @@
             <td>{{ user.ime }}</td>
             <td>{{ user.prezime }}</td>
             <td>{{ user.email}}</td>
-            <td><button class="btn btn-info"
+            <td><button *ngif='!user.blokiran'
+                      class="btn btn-info"
                       (click)='blokiraj(user)'>Blokiraj korisnika</button></td>
+            <td><button *ngif='user.blokiran'
+                      class="btn btn-info"
+                      (click)='odblokiraj(user)'>Odblokiraj korisnika</button></td>
             <td><button class="btn btn-info"
                       (click)='ukloni(user)'>Ukloni korisnika</button></td>
 

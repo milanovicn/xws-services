@@ -17,4 +17,16 @@ export class KorisnikService {
         return this._http.get<Korisnik[]>("/user/getAllClients")
     }
 
+    blockUser(id:number):Observable<Korisnik> {
+        return this._http.get<Korisnik>("/user/admin/client/block/"+id);
+    }
+
+    unblockUser(id:number):Observable<Korisnik> {
+        return this._http.get<Korisnik>("/user/admin/client/unblock/"+id);
+    }
+
+    removeUser(id:number) {
+        return this._http.delete("/user/admin/client/remove/"+id);
+    }
+
 }
