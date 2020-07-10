@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -58,15 +59,24 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void blockClient(String email) {
-        Client clint=clientRepository.findByEmail(email);
-        clint.setBlokiran(true);
-        clientRepository.save(clint);
+    public Client blockClient(Long id) {
+        List<Client> clients = clientRepository.findAll();
 
+        for(Client c : clients){
+            if(id == c.getId()){
+                c.setBlokiran(true);
+                clientRepository.save(c);
+                return c;
+            }
+        }
+
+        return null;
     }
+
 
     @Override
     public void removeClient(Long id) {
+
         clientRepository.deleteById(id);
     }
 
@@ -84,5 +94,20 @@ public class ClientServiceImpl implements ClientService {
         Client client=clientRepository.findById(id).orElse(null);
         client.setBrojObjavljenihOglasa(client.getBrojObjavljenihOglasa()+1);
         clientRepository.save(client);
+    }
+
+    @Override
+    public Client unblockClient(Long id) {
+        List<Client> clients = clientRepository.findAll();
+
+        for(Client c : clients){
+            if(id == c.getId()){
+                c.setBlokiran(false);
+                clientRepository.save(c);
+                return c;
+            }
+        }
+
+        return null;
     }
 }

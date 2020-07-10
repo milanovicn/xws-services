@@ -2,6 +2,7 @@ package com.example.adninservice.contoller;
 
 
 import com.example.adninservice.model.*;
+import com.example.adninservice.service.ClientService;
 import com.example.adninservice.service.SifrarnikService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,52 @@ public class AdminController {
     Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
     @Autowired
     private SifrarnikService sifrarnikService;
+
+    @Autowired
+    private ClientService clientService;
+
+    @DeleteMapping(value = "admin/client/remove/{id}")
+    public ResponseEntity<?> removeClient(@PathVariable("id") Long id) throws Exception {
+
+        clientService.removeClient(id);
+
+        if(id!=null) {
+            LOGGER.info("CLIENT:{0}-deleted");
+        } else {
+            LOGGER.error("CLIENT:{0}-not deleted ");
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "admin/client/block/{id}")
+    public ResponseEntity<?> blockClient(@PathVariable("id") Long id) throws Exception {
+
+        Client ret = clientService.blockClient(id);
+
+        if(id!=null) {
+            LOGGER.info("CLIENT:{0}-blocked" + ret);
+        } else {
+            LOGGER.error("CLIENT:{0}-not blocked " + ret);
+        }
+
+        return new ResponseEntity<>( ret, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "admin/client/unblock/{id}")
+    public ResponseEntity<?> unblockClient(@PathVariable("id") Long id) throws Exception {
+
+        Client ret = clientService.unblockClient(id);
+
+        if(id!=null) {
+            LOGGER.info("CLIENT:{0}-unblocked" + ret);
+        } else {
+            LOGGER.error("CLIENT:{0}-not unblocked " + ret);
+        }
+
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
+
 
     @PostMapping( value = "/addMarka")
     public void addMarka(@RequestBody Marka marka) throws Exception {
