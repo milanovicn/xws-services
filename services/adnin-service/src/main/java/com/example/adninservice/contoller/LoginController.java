@@ -72,13 +72,13 @@ public class LoginController {
         if (ak != null) {
             //String zahtevPass = zahtev.getPassword().concat(ak.getSaltValue());
             if (zahtev.getPassword().equals(ak.getPassword())) {
-                //if (zahtev.getPassword().equals(ak.getPassword())) {
-                HttpSession session = request.getSession();
-                session.setAttribute("client", ak);
-                if (ak != null) {
+                if (!ak.isBlokiran()) {
+                    //if (zahtev.getPassword().equals(ak.getPassword())) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("client", ak);
                     LOGGER.info(MessageFormat.format("CLIENT SESSION: CLIEN-ID:{0}-session created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail()));
                 } else {
-                    LOGGER.error(MessageFormat.format("CLIENT SESSION: CLIENT-ID{0}-session not created, CLIENT-EMAIL:{1}", ak.getId(), ak.getEmail()));
+                    LOGGER.error(MessageFormat.format("Ovaj nalog je blokiran! ", ak.getId(), ak.getEmail()));
                 }
                 return new ResponseEntity<Client>(ak, HttpStatus.CREATED);
             }

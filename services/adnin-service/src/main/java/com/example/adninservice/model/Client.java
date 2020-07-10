@@ -54,6 +54,22 @@ public class Client  {
     }
 */
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", rola='" + rola + '\'' +
+                ", brojTelefona='" + brojTelefona + '\'' +
+                ", brojObjavljenihOglasa=" + brojObjavljenihOglasa +
+                ", blokiran=" + blokiran +
+                ", brojOtkazanihOglasa=" + brojOtkazanihOglasa +
+                '}';
+    }
+
     public String getBrojTelefona() {
         return brojTelefona;
     }
