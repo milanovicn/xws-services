@@ -25,7 +25,7 @@ import java.util.List;
 public class Endpoint {
 
     final static Logger logger = LoggerFactory.getLogger(Endpoint.class);
-    public static final String NAMESPACE_URI = "http://example.com/voziloservice/xsd";
+    public static final String NAMESPACE_URI = "http://example.com/adninservice/xsd";
 
     @Autowired
     ChatService chatService;
@@ -35,23 +35,23 @@ public class Endpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "postChatRequest")
     @ResponsePayload
-    public PostChatResponse postVoziloResponse(@RequestPayload PostChatRequest request) throws Exception {
+    public PostChatResponse postChatResponse(@RequestPayload PostChatRequest request) throws Exception {
         //logger.info("---Izvrsava u Endpoint(u mikroservisu) za postVoziloRequest!\nVOZILO: -->" + request.getVozilo().getMarkaAutomobila() + ", " + request.getVozilo().getModelAutomobila());
         PostChatResponse response = new PostChatResponse();
 
         Chat vozilo = new Chat();
         com.example.adninservice.xsd.Chat chatXSD = request.getChat();
 
-        vozilo.setId(chatXSD.getId());
+       // vozilo.setId(chatXSD.getId());
         vozilo.setUser1(chatXSD.getUser1());
         vozilo.setUser2(chatXSD.getUser2());
 
        // logger.info("---!Pre addVozilo() : " + vozilo.getMarka() + ", " + vozilo.getModel());
-// logger.info("---!Pre addVozilo(), ispis VOZILA: " + vozilo.toString());
+  logger.info("---!Pre addChat(), ispis VOZILA: " + vozilo.toString());
 
         vozilo = chatService.kreirajCet(vozilo); //TODO: Proveri vamo dal se prosledjuje string
 
-       // logger.info("---!Posle addVozilo(), ispis VOZILA: " + vozilo.toString());
+        logger.info("---!Posle addChat(), ispis VOZILA: " + vozilo.toString());
 
        // logger.info("---!Prosao addVozilo() i vratio vozilo: " + vozilo.getMarka() + ", " + vozilo.getModel());
 
@@ -65,7 +65,7 @@ public class Endpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "postMessageRequest")
     @ResponsePayload
-    public PostMessageResponse postVoziloResponse(@RequestPayload PostMessageRequest request) throws Exception {
+    public PostMessageResponse postMessageResponse(@RequestPayload PostMessageRequest request) throws Exception {
         //logger.info("---Izvrsava u Endpoint(u mikroservisu) za postVoziloRequest!\nVOZILO: -->" + request.getVozilo().getMarkaAutomobila() + ", " + request.getVozilo().getModelAutomobila());
         PostMessageResponse response = new PostMessageResponse();
 
