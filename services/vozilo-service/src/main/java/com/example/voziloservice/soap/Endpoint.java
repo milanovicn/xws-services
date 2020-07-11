@@ -2,6 +2,7 @@ package com.example.voziloservice.soap;
 
 import com.example.voziloservice.Client.UserClient;
 import com.example.voziloservice.Service.KomentarService;
+import com.example.voziloservice.Service.OcenaService;
 import com.example.voziloservice.Service.VoziloService;
 import com.example.voziloservice.Service.ZahtevService;
 import com.example.voziloservice.model.Vozilo;
@@ -39,6 +40,9 @@ public class Endpoint {
 
     @Autowired
     KomentarService komentarService;
+
+    @Autowired
+    private OcenaService ocenaService;
 
     @Autowired
     UserClient userClient;
@@ -349,6 +353,26 @@ public class Endpoint {
         }
         return response;
 
+    }
+
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getOceneByIdVozilaRequest")
+    @ResponsePayload
+    public GetOceneByIdVozilaResponse getKomentareByIdVozila(@RequestPayload GetOceneByIdVozilaRequest request) {
+        logger.info("---Izvrsava u Endpoint(u mikroservisu) za getOceneByIdVozilaRequest! IDvozila: " + request.getIdVozila());
+
+        GetOceneByIdVozilaResponse response = new GetOceneByIdVozilaResponse();
+
+        Long idVozila = request.getIdVozila();
+
+        double prosecnaOcena = ocenaService.findAverageRateAG(idVozila);
+        //Collection<com.example.voziloservice.model.Komentar> komentari = komentarService.findApprovedByIdVozilaSoap(idVozila);
+
+        logger.info("###ENDPOINT > GetOceneByIdVozilaResponse > posle ocenaService.findAverageRateAG()..\nI vratio ocenu:: " + prosecnaOcena);
+
+        response.setOcena(prosecnaOcena);
+
+        return response;
     }
 
 

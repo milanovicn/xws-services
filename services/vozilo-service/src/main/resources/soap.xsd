@@ -191,4 +191,21 @@
     </xs:element>
 
 
+    <xs:element name="getOceneByIdVozilaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idVozila" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOceneByIdVozilaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ocena" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
 </xs:schema>

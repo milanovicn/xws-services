@@ -12,4 +12,5 @@ public interface OcenaService {
     public Ocena findById(Long id);
     public Ocena create(Long idVozila, int ocena) throws Exception;
     public double findAverageRate(Long id);
+    public double findAverageRateAG(Long id);
 }
