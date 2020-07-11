@@ -1,17 +1,16 @@
 package com.example.adninservice.contoller;
 
 
-import com.example.adninservice.model.Admin;
-import com.example.adninservice.model.Agent;
-import com.example.adninservice.model.Client;
-import com.example.adninservice.model.LoginZahtev;
+import com.example.adninservice.model.*;
 import com.example.adninservice.service.AdminService;
 import com.example.adninservice.service.AgentService;
+import com.example.adninservice.service.ChatService;
 import com.example.adninservice.service.ClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +26,8 @@ import java.util.Collection;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping( produces =  MediaType.APPLICATION_JSON_VALUE)
 public class LoginController {
 
   /*  @Autowired
@@ -40,6 +41,9 @@ public class LoginController {
 
     @Autowired
     private AgentService agentService;
+
+    @Autowired
+    ChatService chatService;
 
     Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
 
@@ -227,5 +231,13 @@ public class LoginController {
 
 
         return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping(value = "/autorAG")
+    public Collection<Chat> vratiChatovePoKorisniku() {
+
+        Collection<Chat> chats = chatService.findAllByAuthorEmail(mejlUlogovanogAgenta);
+
+        return chats;
     }
 }

@@ -31,6 +31,7 @@ public class OcenaServiceImpl implements OcenaService {
     @Override
     public Ocena create(Long idVozila, int ocena) throws Exception {
         Ocena o=new Ocena(idVozila,ocena);
+        o=ocenaRepository.save(o);
         return o;
     }
 }

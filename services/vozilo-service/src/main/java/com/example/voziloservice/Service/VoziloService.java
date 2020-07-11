@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface VoziloService {
     Vozilo addVozilo(Vozilo vozilo,String rola);
+    Vozilo updateKilometraza(Long id,double kilometraza);
     List<Vozilo> getAll();
     List<Vozilo> sortiraj(List<Vozilo> vozila,String sortBy);
     List<Vozilo> findByIznajmljivacId(Long id);
