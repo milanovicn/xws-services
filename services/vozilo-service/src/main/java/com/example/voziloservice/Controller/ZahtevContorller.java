@@ -158,7 +158,7 @@ public class ZahtevContorller {
     public void otkaziZahtev(@PathVariable("idZahteva") Long idZahteva) throws Exception {
 
 
-        zahtevService.obrisiZahtev(idZahteva);
+        zahtevService.otkaziZahtev(idZahteva);
 
         LOGGER.info(MessageFormat.format("ZAHTEV: otkazan, ZAHTEVI-ID:{0}", idZahteva ));
 
