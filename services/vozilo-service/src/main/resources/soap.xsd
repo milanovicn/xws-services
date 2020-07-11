@@ -139,6 +139,40 @@
         </xs:complexType>
     </xs:element>
 
+
+    <xs:element name="getKomentareByIdVozilaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idVozila" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getKomentareByIdVozilaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="komentari" type="tns:Komentar" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Komentar">
+        <xs:sequence>
+            <xs:element name="idVozila" type="xs:long"/>
+            <xs:element name="komentar" type="xs:string"/>
+            <xs:element name="stanje" type="tns:StanjeKomentara"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="StanjeKomentara">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OBJAVLJEN"/>
+            <xs:enumeration value="ODBIJEN"/>
+            <xs:enumeration value="ODOBREN"/>
+            <xs:enumeration value="ODGOVOREN"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:element name="getMailPodnosiocaRequest">
         <xs:complexType>
             <xs:sequence>
@@ -241,6 +275,39 @@
         </xs:complexType>
     </xs:element>
 
+
+    <xs:element name="postKomentarRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="komentar" type="tns:Komentar"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="postKomentarResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="getOceneByIdVozilaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idVozila" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOceneByIdVozilaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ocena" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 
 </xs:schema>

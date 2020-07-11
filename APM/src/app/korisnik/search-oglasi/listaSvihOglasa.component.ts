@@ -107,7 +107,9 @@ export class SearchComponent implements OnInit {
     this.izabranaMarka.naziv = "sve";
     this.izabraniMenjac.naziv = "sve";
     this.izabraniModel.naziv = "sve";
-
+    this.pretraga.CDWProtection = "ne";
+    this.protection = false;
+    this.pretraga.brojSedistaZaDecu =0;
 
   }
 
@@ -265,6 +267,7 @@ export class SearchComponent implements OnInit {
       this.pretraga.CDWProtection = "da";
     else
       this.pretraga.CDWProtection = "ne";
+
     console.log(this.pretraga);
     this.vozila = [];
     this.searchService.pretrazi(this.pretraga).subscribe({

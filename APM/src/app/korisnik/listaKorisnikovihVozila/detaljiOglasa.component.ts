@@ -6,7 +6,7 @@ import { Vozilo } from '../vozilo/Vozilo';
 import { VoziloSerivces } from '../vozilo/vozilo.services';
 
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import {Komentar} from 'src/app/admin/komentari/Komentar';
+import { Komentar } from 'src/app/admin/komentari/Komentar';
 import { KomentariService } from 'src/app/admin/komentari/komentari.services';
 import { ZahtevRezervacije } from '../search-oglasi/ZahtevRezervacije';
 import { ZahtevSerivces } from '../search-oglasi/zahtev.service';
@@ -27,7 +27,7 @@ export class DetaljiOglasaComponent implements OnInit {
   prikazanKomentre: boolean = false;
   zauzmiVozilo: boolean = false;
   zauzece: ZahtevRezervacije;
-  korisnik:Korisnik;
+  korisnik: Korisnik;
 
 
   selectedFile: File;
@@ -35,8 +35,8 @@ export class DetaljiOglasaComponent implements OnInit {
   base64Data: any;
   retrieveResonse: any;
   message: string;
-
-  komentari: Komentar[]=[];
+  ocenaVozila: number;
+  komentari: Komentar[] = [];
 
 
   get zauzmiOd(): Date {
@@ -55,26 +55,28 @@ export class DetaljiOglasaComponent implements OnInit {
     this._zauzmiDo = value;
   }
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, 
-    private router: Router, private voziloService: VoziloSerivces, 
-    private komentariService: KomentariService,private login:KorisnikService,private zahtevService:ZahtevSerivces) {
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute,
+    private router: Router, private voziloService: VoziloSerivces,
+    private komentariService: KomentariService, private login: KorisnikService, private zahtevService: ZahtevSerivces) {
 
     this.vozilo = new Vozilo();
     this.zauzece = new ZahtevRezervacije();
-    this.korisnik=new Korisnik();
+    this.korisnik = new Korisnik();
   }
 
 
   ngOnInit() {
     this.login.getKorisnika().subscribe({
-      next: korisnik=>{this.korisnik=korisnik;}
+      next: korisnik => { this.korisnik = korisnik; }
     });
-      const param = this.route.snapshot.paramMap.get('id');
+    const param = this.route.snapshot.paramMap.get('id');
     if (param) {
       this.id = +param;
       this.getProduct(this.id);
-    }
 
+
+
+    }
 
   }
 
@@ -93,8 +95,14 @@ export class DetaljiOglasaComponent implements OnInit {
         }
 
       );
-      
-      this.listaKomentara();
+
+    this.voziloService.getOcena(this.id).subscribe({
+      next: ocenaVozila => {
+        this.ocenaVozila = ocenaVozila;
+      }
+    });
+
+    this.listaKomentara();
   }
 
 
@@ -105,8 +113,8 @@ export class DetaljiOglasaComponent implements OnInit {
     this.zauzece.datumOd = this.zauzmiOd;
     this.zauzece.datumDo = this.zauzmiDo;
     this.zauzece.vozila.push(this.vozilo);
-    this.zauzece.izdavac=this.korisnik.id;
-    this.zauzece.podnosilac=this.korisnik.id;
+    this.zauzece.izdavac = this.korisnik.id;
+    this.zauzece.podnosilac = this.korisnik.id;
     this.zahtevService.napraviZahtev(this.zauzece).subscribe();
 
   }

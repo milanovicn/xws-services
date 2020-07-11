@@ -24,6 +24,15 @@ public class Ocena {
         this.ocena = ocena;
     }
 
+    @Override
+    public String toString() {
+        return "Ocena{" +
+                "id=" + id +
+                ", idVozila=" + idVozila +
+                ", ocena=" + ocena +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

@@ -19,13 +19,13 @@
   <tr>
     <td>Marka vozila:</td>
     <td> <select name="MarkaAutomobila" #MarkaAutomobila="ngModel" [(ngModel)]="izabranaMarka">
-        <option value="sve" selected="selected">sve</option>
+        
         <option *ngFor='let mar of markeVozila' [ngValue]="mar">{{mar.naziv}}</option>
 
       </select></td>
     <td>Model vozila:</td>
     <td><select name="ModelAutomobila" #ModelAutomobila="ngModel" [(ngModel)]="izabraniModel">
-        <option value="sve" selected="selected">sve</option>
+        
         <option *ngFor='let mod of modeliVozila' [ngValue]="mod">{{mod.naziv}}</option>
 
       </select></td>
@@ -34,14 +34,14 @@
   <tr>
     <td>Tip goriva:</td>
     <td><select name="TipGoriva" #TipGoriva="ngModel" [(ngModel)]="izabranoGorivo">
-        <option value="sve" selected="selected">sve</option>
+        
         <option *ngFor='let ngorivo of tipoviGoriva' [ngValue]="ngorivo">{{ngorivo.naziv}}</option>
 
       </select></td>
     <td>Tip menjaca:</td>
     <td><select name="TipMenjaca" #TipMenjaca="ngModel" [(ngModel)]="izabraniMenjac">
         <option *ngFor='let nmenjac of tipoviMenjaca' [ngValue]="nmenjac">{{nmenjac.naziv}}</option>
-        <option [ngValue]="sve" selected="selected">sve</option>
+        
       </select></td>
   </tr>
 
@@ -66,14 +66,14 @@
       <thead>
         <tr>
           <th>Marka</th>
-          <th>MOdel</th>
+          <th>Model</th>
           <th>Klasa</th>
 
         </tr>
       </thead>
       <tbody>
         <tr *ngFor='let ser of vozila'>
-          <td>{{ser.marka}}</td>
+          <td><a [routerLink]="[ser.id]">{{ser.marka}}</a></td>
           <td>{{ser.model}}</td>
           <td>{{ser.klasaVozila}}</td>
           <td><button class="btn btn-info" (click)='dodajUkorpu(ser.id)'>Korpa</button></td>
@@ -103,7 +103,7 @@
     <thead>
       <tr>
         <th>Marka</th>
-        <th>MOdel</th>
+        <th>Model</th>
         <th>Izdavac</th>
 
       </tr>

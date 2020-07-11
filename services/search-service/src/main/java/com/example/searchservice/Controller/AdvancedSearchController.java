@@ -39,8 +39,8 @@ public class AdvancedSearchController {
     public ResponseEntity<?> searchCar(@RequestBody SearchDTO sDTO) throws Exception {
 
         LOGGER.debug("####################");
-        LOGGER.debug("PretragaDTO po kojoj se pretrazuje: " + sDTO);
-
+        LOGGER.debug("PretragaDTO po kojoj se pretrazuje: " + sDTO.toString());
+	sDTO.setCDWProtection("ne");
         List<Long> ids = advancedSearchService.find(sDTO);
 
         if(!ids.isEmpty()) {

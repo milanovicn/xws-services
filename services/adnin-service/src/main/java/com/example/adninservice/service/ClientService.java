@@ -10,9 +10,10 @@ public interface ClientService {
     List<Client> getAll();
     Client findById(Long id);
     Client findByEmail(String email);
-    void blockClient(String emaail);
+    Client blockClient(Long id);
     void removeClient(Long id);
     boolean proveriBrojOglasa(Long id);
     void povecajBrojOglasa(Long id);
 
+    Client unblockClient(Long id);
 }

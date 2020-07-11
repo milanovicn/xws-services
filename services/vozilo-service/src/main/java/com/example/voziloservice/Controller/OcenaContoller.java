@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OcenaContoller {
 
     @Autowired
@@ -24,7 +25,7 @@ public class OcenaContoller {
     @Autowired
     private OcenaService ocenaService;
 
-    //dodavanje komentara
+
     @PostMapping( value = "/ocena/{idVozila}")
     public ResponseEntity<?> addOcena(@PathVariable("idVozila") Long idVozila, @RequestBody int ocena) throws Exception {
 
@@ -67,5 +68,14 @@ public class OcenaContoller {
 
 
         return ocenaService.findByIdVozila(idVozila);
+    }
+
+
+    //vraca prosecnu ocenu na osnovu id vozila
+    @GetMapping(value = "/ocena/{idVozila}")
+    public double getAverageRate(@PathVariable Long idVozila) {
+
+
+        return ocenaService.findAverageRate(idVozila);
     }
 }

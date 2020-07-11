@@ -12,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
 public class KomentarController {
 
@@ -67,10 +69,12 @@ public class KomentarController {
 
     //vraca odobrene komentare na osnovu id vozila
     @GetMapping(value = "/comment/{idVozila}")
-    public Collection<Komentar> vratiKometareVozila(@PathVariable Long idVozila) {
+    public  ResponseEntity<?> vratiKometareVozila(@PathVariable Long idVozila) {
+        if(komentarService.findApprovedByIdVozila(idVozila)!= null || komentarService.findApprovedByIdVozila(idVozila).size()==0)
+            return new ResponseEntity<>(komentarService.findApprovedByIdVozila(idVozila), HttpStatus.NO_CONTENT);
+        else
+            return new  ResponseEntity<>("nema odobrenih komentara", HttpStatus.NO_CONTENT);
 
-
-        return komentarService.findApprovedByIdVozila(idVozila);
     }
 
 

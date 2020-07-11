@@ -26,7 +26,10 @@ public class VoziloServiceImpl implements VoziloService {
     @Autowired
     private OcenaService ocenaService;
 
-   /* @Autowired
+
+
+    /* @Autowired
+
     private SearchClient searchClient;*/
 	final static Logger logger = LoggerFactory.getLogger(VoziloServiceImpl.class);
 
@@ -94,6 +97,7 @@ public class VoziloServiceImpl implements VoziloService {
             return vozila;
         }
         else if(sortBy.equals("OCENA")){
+
             HashMap<Long,Double> oceneVozila=new HashMap<>();
             Collection<Ocena> ocene=new ArrayList<>();
 
@@ -114,6 +118,10 @@ public class VoziloServiceImpl implements VoziloService {
                 ret.add(findById(key));
             }
             return ret;
+
+
+         
+
         }
         else if(sortBy.equals("CENA")){
             Vozilo temp = new Vozilo() ;
@@ -170,5 +178,11 @@ public class VoziloServiceImpl implements VoziloService {
     @Override
     public Vozilo findById(Long id) {
         return voziloRepository.findById(id).orElse(null);
+    }
+
+
+    @Override
+    public Vozilo findByPomId(Long id) {
+        return voziloRepository.findByPomId(id);
     }
 }

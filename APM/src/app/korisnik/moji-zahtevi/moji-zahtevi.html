@@ -1,3 +1,34 @@
+<h2 style="margin-top: 70px; margin-bottom: 50px;">Podneti zahtevi, cekaju odobrenje</h2>
+<div class="zahteviPodneti">
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Vazi od</th>
+          <th>Vazi do</th>
+          <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let ser of zahteviPodneti'>
+          <td>{{ser.datumOd}}</td>
+          <td>{{ser.datumDo}}</td>
+          <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+
 <h2 style="margin-top: 70px;">Odobreni zahtevi, cekaju na placanje </h2>
 <div class="zahteviZaPlacanje">
   <div class='table-responsive'>
@@ -6,21 +37,22 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
-          <th>Stanje zahteva</th>
 
+          <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor='let ser of zahteviZaPlacanje'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td  *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+
           <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
           <td><button class="btn btn-info"
                     (click)='plati(ser)'>Plati</button></td>
           <td><button class="btn btn-info"
-                      (click)='otkazi(ser)'>Otkazi</button></td>
+                    (click)='otkazi(ser)'>Otkazi</button></td>
 
         </tr>
       </tbody>
@@ -29,7 +61,7 @@
   </div>
 </div>
 
-<h2 style="margin-top: 70px; margin-bottom: 50px;">Zahtevi koji cekaju na komentar</h2>
+<h2 style="margin-top: 70px; margin-bottom: 50px;">Zahtevi koji cekaju na ocenu i komentar</h2>
 <div class="zahteviZaPlacanje">
   <div class='table-responsive'>
     <table class='table'>
@@ -37,8 +69,9 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th >Za vozilo</th>
           <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
 
         </tr>
       </thead>
@@ -46,12 +79,12 @@
         <tr *ngFor='let ser of zahteviZaKomentar'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
           <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
           <td><button class="btn btn-info"
                     (click)='ostaviKomentar(ser)'>Postavi komentar</button></td>
-                <td><button class="btn btn-info"
-                      (click)='oceni(ser)'>Postavi ocenu</button></td>
+          <td><button class="btn btn-info"
+                    (click)='oceni(ser)'>Postavi ocenu</button></td>
 
         </tr>
 
@@ -59,15 +92,72 @@
     </table>
     Tekst komentara:
     <input type="text"
-           name="TekstKomentara" 
+           name="TekstKomentara"
            #TekstKomentara="ngModel"
-           [(ngModel)]="tekstKomentara"/>
+           [(ngModel)]="tekstKomentara" />
 
     Ocena:
-           <input type="number"
-                  name="Ocena" 
-                  #Ocena="ngModel"
-                  [(ngModel)]="ocena"/>
+    <input type="number"
+           name="Ocena"
+           #Ocena="ngModel"
+           [(ngModel)]="ocena" />
   </div>
+</div>
 
+<h2 style="margin-top: 70px; margin-bottom: 50px;">Zavrseni zahtevi</h2>
+<div class="zahteviZavrseni">
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Vazi od</th>
+          <th>Vazi do</th>
+          <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let ser of zahteviZavrseni'>
+          <td>{{ser.datumOd}}</td>
+          <td>{{ser.datumDo}}</td>
+
+          <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<h2 style="margin-top: 70px; margin-bottom: 50px;">Ponisteni zahtevi</h2>
+<div class="zahteviPonisteni">
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Vazi od</th>
+          <th>Vazi do</th>
+          <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let ser of zahteviPonisteni'>
+          <td>{{ser.datumOd}}</td>
+          <td>{{ser.datumDo}}</td>
+
+          <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
 </div>
