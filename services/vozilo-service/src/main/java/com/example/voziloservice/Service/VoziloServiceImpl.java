@@ -24,7 +24,11 @@ public class VoziloServiceImpl implements VoziloService {
     @Autowired
     private UserClient userClient;
 
-   /* @Autowired
+    @Autowired
+    private OcenaService ocenaService;
+
+
+    /* @Autowired
     private SearchClient searchClient;*/
 	final static Logger logger = LoggerFactory.getLogger(VoziloServiceImpl.class);
 
@@ -85,7 +89,16 @@ public class VoziloServiceImpl implements VoziloService {
         }
         else if(sortBy.equals("OCENA")){
 
-           // vozila.sort(Comparator.comparingInt(Vozilo :: getOcena));
+            Vozilo temp = new Vozilo() ;
+            for (int i = 0; i < vozila.size()-1; i++) {
+                for (int j = i+1; j < vozila.size(); j++) {
+                    if(ocenaService.findAverageRate(vozila.get(i).getId()) > ocenaService.findAverageRate(vozila.get(j).getId())) {
+                        temp = vozila.get(i);
+                        vozila.set(i,vozila.get(j));
+                        vozila.set(j,temp);
+                    }
+                }
+            }
             return vozila;
         }
         else if(sortBy.equals("CENA")){
@@ -118,6 +131,7 @@ public class VoziloServiceImpl implements VoziloService {
     public Vozilo findById(Long id) {
         return voziloRepository.findById(id).orElse(null);
     }
+
 
     @Override
     public Vozilo findByPomId(Long id) {

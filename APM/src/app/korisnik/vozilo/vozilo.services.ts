@@ -72,6 +72,11 @@ public platiZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
   public oceni(ocena:number, idVozila: number) {
     return this.http.post<string>("/car/ocena/"+idVozila, ocena);
   }
+
+  public getOcena(idVozila: number): Observable<number> {
+    return this.http.get<number>("/car/ocena/"+idVozila);
+  }
+
 }
 
 

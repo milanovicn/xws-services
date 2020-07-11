@@ -14,6 +14,7 @@
             <th>Ime korisnika</th>
             <th>Prezime korisnika</th>
             <th>Email korisnika</th>
+            <th>Broj otkazanih oglasa</th>
           </tr>
         </thead>
         <tbody>
@@ -21,10 +22,11 @@
             <td>{{ user.ime }}</td>
             <td>{{ user.prezime }}</td>
             <td>{{ user.email}}</td>
-            <td><button *ngif='!user.blokiran'
+            <td>{{ user.brojOtkazanihOglasa}}</td>
+            <td><button *ngIf='!user.blokiran'
                       class="btn btn-info"
                       (click)='blokiraj(user)'>Blokiraj korisnika</button></td>
-            <td><button *ngif='user.blokiran'
+            <td><button *ngIf='user.blokiran'
                       class="btn btn-info"
                       (click)='odblokiraj(user)'>Odblokiraj korisnika</button></td>
             <td><button class="btn btn-info"
