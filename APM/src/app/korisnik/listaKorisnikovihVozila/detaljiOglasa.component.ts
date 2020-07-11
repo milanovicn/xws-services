@@ -74,11 +74,7 @@ export class DetaljiOglasaComponent implements OnInit {
       this.id = +param;
       this.getProduct(this.id);
 
-      this.voziloService.getOcena(this.id).subscribe({
-        next: ocenaVozila => {
-          this.ocenaVozila = ocenaVozila;
-        }
-      });
+
 
     }
 
@@ -99,6 +95,12 @@ export class DetaljiOglasaComponent implements OnInit {
         }
 
       );
+
+    this.voziloService.getOcena(this.id).subscribe({
+      next: ocenaVozila => {
+        this.ocenaVozila = ocenaVozila;
+      }
+    });
 
     this.listaKomentara();
   }

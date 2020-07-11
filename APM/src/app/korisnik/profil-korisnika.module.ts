@@ -57,7 +57,10 @@ import { ChatComponent } from './chat/chat.component';
       { path: 'korisnik/cenovnik', component: ListaCenovnikaComponent },
       { path: 'korisnik/mojiOglasi/:id', component: DetaljiOglasaComponent },
       { path: 'korisnik/chat/:id', component: ChatComponent },
-      { path: 'korisnik/chat', component: ListaMojihChatovaComponent }
+      { path: 'korisnik/chat', component: ListaMojihChatovaComponent },
+      { path: 'korisnik/search/:id', component: DetaljiOglasaComponent }
+
+     
      
 
       //{ path: 'admin/korisnici', component: ListaKorisnikaComponent },
