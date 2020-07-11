@@ -5,6 +5,8 @@ import com.example.adninservice.model.Message;
 import com.example.adninservice.repository.ChatRepository;
 import com.example.adninservice.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,6 +52,9 @@ public class ChatServiceImpl implements ChatService {
         return ret;
     }
 
+    @Autowired
+    private JavaMailSender javaMailSender;
+
     @Override
     public Message kreirajPoruku(Message message) {
         Message ret = new Message();
@@ -59,6 +64,23 @@ public class ChatServiceImpl implements ChatService {
         ret.setTimestamp(message.getTimestamp());
 
         ret = messageRepository.save(ret);
+
+       /* String newClient ="";
+        Chat c = chatRepository.findById(message.getChatId()).orElseGet(null);
+        if(c.getUser1().equals(message.getSenderEmail())){
+            newClient=c.getUser2();
+        }else{
+            newClient=c.getUser1();
+        }
+
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo(newClient);
+        mail.setFrom("isaPSW1@gmail.com");
+        mail.setSubject("Nova poruka sa sajta Rent-a-Car");
+        mail.setText("OD: "+ message.getSenderEmail() + ",\nPORUKA: " + message.getContent());
+        javaMailSender.send(mail);*/
+
+
         return ret;
     }
 

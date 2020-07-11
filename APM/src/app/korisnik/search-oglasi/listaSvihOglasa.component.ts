@@ -109,6 +109,7 @@ export class SearchComponent implements OnInit {
     this.izabraniModel.naziv = "sve";
     this.pretraga.CDWProtection = "ne";
     this.protection = false;
+    this.pretraga.brojSedistaZaDecu =0;
 
   }
 

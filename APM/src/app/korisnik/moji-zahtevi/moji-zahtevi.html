@@ -6,8 +6,9 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
           <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
 
         </tr>
       </thead>
@@ -15,8 +16,9 @@
         <tr *ngFor='let ser of zahteviPodneti'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
           <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+
         </tr>
 
       </tbody>
@@ -35,19 +37,22 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
-          <th>Stanje zahteva</th>
 
+          <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor='let ser of zahteviZaPlacanje'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+
           <td>{{ser.stanje}}</td>
-          <td><button class="btn btn-info" (click)='plati(ser)'>Plati</button></td>
-          <td><button class="btn btn-info" (click)='otkazi(ser)'>Otkazi</button></td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+          <td><button class="btn btn-info"
+                    (click)='plati(ser)'>Plati</button></td>
+          <td><button class="btn btn-info"
+                    (click)='otkazi(ser)'>Otkazi</button></td>
 
         </tr>
       </tbody>
@@ -64,8 +69,9 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
           <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
 
         </tr>
       </thead>
@@ -73,20 +79,28 @@
         <tr *ngFor='let ser of zahteviZaKomentar'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
           <td>{{ser.stanje}}</td>
-          <td><button class="btn btn-info" (click)='ostaviKomentar(ser)'>Postavi komentar</button></td>
-          <td><button class="btn btn-info" (click)='oceni(ser)'>Postavi ocenu</button></td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+          <td><button class="btn btn-info"
+                    (click)='ostaviKomentar(ser)'>Postavi komentar</button></td>
+          <td><button class="btn btn-info"
+                    (click)='oceni(ser)'>Postavi ocenu</button></td>
 
         </tr>
 
       </tbody>
     </table>
     Tekst komentara:
-    <input type="text" name="TekstKomentara" #TekstKomentara="ngModel" [(ngModel)]="tekstKomentara" />
+    <input type="text"
+           name="TekstKomentara"
+           #TekstKomentara="ngModel"
+           [(ngModel)]="tekstKomentara" />
 
     Ocena:
-    <input type="number" name="Ocena" #Ocena="ngModel" [(ngModel)]="ocena" />
+    <input type="number"
+           name="Ocena"
+           #Ocena="ngModel"
+           [(ngModel)]="ocena" />
   </div>
 </div>
 
@@ -98,8 +112,9 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
           <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
 
         </tr>
       </thead>
@@ -107,8 +122,9 @@
         <tr *ngFor='let ser of zahteviZavrseni'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+
           <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
         </tr>
 
       </tbody>
@@ -125,8 +141,9 @@
         <tr>
           <th>Vazi od</th>
           <th>Vazi do</th>
-          <th>Za vozilo</th>
           <th>Stanje zahteva</th>
+          <th>Za vozilo</th>
+
 
         </tr>
       </thead>
@@ -134,8 +151,9 @@
         <tr *ngFor='let ser of zahteviPonisteni'>
           <td>{{ser.datumOd}}</td>
           <td>{{ser.datumDo}}</td>
-          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
+
           <td>{{ser.stanje}}</td>
+          <td *ngFor='let v of ser.vozila'>{{v.marka}}</td>
         </tr>
 
       </tbody>
