@@ -3,17 +3,16 @@ package com.example.voziloservice.Service;
 import com.example.voziloservice.Client.UserClient;
 
 import com.example.voziloservice.Repository.VoziloRepository;
+import com.example.voziloservice.model.Ocena;
 import com.example.voziloservice.model.Vozilo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.Comparator;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 @Service
 public class VoziloServiceImpl implements VoziloService {
@@ -28,7 +27,9 @@ public class VoziloServiceImpl implements VoziloService {
     private OcenaService ocenaService;
 
 
+
     /* @Autowired
+
     private SearchClient searchClient;*/
 	final static Logger logger = LoggerFactory.getLogger(VoziloServiceImpl.class);
 
@@ -76,6 +77,14 @@ public class VoziloServiceImpl implements VoziloService {
     }
 
     @Override
+    public Vozilo updateKilometraza(Long id, double kilometraza) {
+        Vozilo v=voziloRepository.findByPomId(id);
+        v.setRedjenaKilometraza(kilometraza);
+        voziloRepository.save(v);
+        return v;
+    }
+
+    @Override
     public List<Vozilo> getAll() {
         return voziloRepository.findAll();
     }
@@ -89,17 +98,30 @@ public class VoziloServiceImpl implements VoziloService {
         }
         else if(sortBy.equals("OCENA")){
 
-            Vozilo temp = new Vozilo() ;
-            for (int i = 0; i < vozila.size()-1; i++) {
-                for (int j = i+1; j < vozila.size(); j++) {
-                    if(ocenaService.findAverageRate(vozila.get(i).getId()) > ocenaService.findAverageRate(vozila.get(j).getId())) {
-                        temp = vozila.get(i);
-                        vozila.set(i,vozila.get(j));
-                        vozila.set(j,temp);
-                    }
+            HashMap<Long,Double> oceneVozila=new HashMap<>();
+            Collection<Ocena> ocene=new ArrayList<>();
+
+            for(Vozilo v:vozila){
+                ocene=ocenaService.findByIdVozila(v.getId());
+                double srednja=0;
+                double zbir=0;
+                for(Ocena o:ocene){
+                    zbir+=o.getOcena();
                 }
+                srednja=zbir/ocene.size();
+                oceneVozila.put(v.getId(),srednja);
             }
-            return vozila;
+            Map<Long,Double> sortiraneOCene=sortByComparator(oceneVozila);
+           // vozila.sort(Comparator.comparingInt(Vozilo :: getOcena));
+            List<Vozilo>ret=new ArrayList<>();
+            for(Long key:sortiraneOCene.keySet()){
+                ret.add(findById(key));
+            }
+            return ret;
+
+
+         
+
         }
         else if(sortBy.equals("CENA")){
             Vozilo temp = new Vozilo() ;
@@ -117,6 +139,32 @@ public class VoziloServiceImpl implements VoziloService {
         return null;
     }
 
+    private static Map<Long, Double> sortByComparator(Map<Long, Double> unsortMap)
+    {
+
+        List<Map.Entry<Long, Double>> list = new LinkedList<Map.Entry<Long, Double>>(unsortMap.entrySet());
+
+        // Sorting the list based on values
+        Collections.sort(list, new Comparator<Map.Entry<Long, Double>>()
+        {
+            public int compare(Map.Entry<Long, Double> o1,
+                               Map.Entry<Long, Double> o2)
+            {
+
+                    return o1.getValue().compareTo(o2.getValue());
+
+            }
+        });
+
+        // Maintaining insertion order with the help of LinkedList
+        Map<Long, Double> sortedMap = new LinkedHashMap<Long, Double>();
+        for (Map.Entry<Long, Double> entry : list)
+        {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+
+        return sortedMap;
+    }
     @Override
     public List<Vozilo> findByIznajmljivacId(Long id) {
         return voziloRepository.findByIznajmljivacId(id);

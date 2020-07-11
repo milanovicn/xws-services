@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface VoziloRepository extends JpaRepository<Vozilo,Long> {
     List<Vozilo> findByIznajmljivacId(Long id);
     List<Vozilo> findByIznajmljivacMail(String mail);
+    Vozilo findByPomId(Long id);
 
     Vozilo findByPomId(Long id);
 }

@@ -282,6 +282,26 @@ public class Endpoint {
     }
 
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateVoziloRequest")
+    @ResponsePayload
+    public UpdateVoziloResponse updateVozilo(@RequestPayload UpdateVoziloRequset request) {
+        //logger.info("---Izvrsava u Endpoint(u mikroservisu) za getMailUlogovanogAgentaRequest!");
+
+
+        Long idVozilo = request.getIdVozilo();
+        double kilometraza=request.getPredjenaKilometraza();
+
+        // logger.info("---Izvrsava u Endpoint(u mikroservisu) za getMailUlogovanogAgentaRequest >> od userClient-a dobio mejl: " + mejl);
+
+        Vozilo vozilo=voziloService.updateKilometraza(idVozilo,kilometraza);
+        UpdateVoziloResponse response = new UpdateVoziloResponse();
+
+        if (vozilo != null) {
+            response.setUspesno(true);
+        } else {
+            response.setUspesno(false);
+
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getKomentareByIdVozilaRequest")
     @ResponsePayload
     public GetKomentareByIdVozilaResponse getKomentareByIdVozila(@RequestPayload GetKomentareByIdVozilaRequest request) {
@@ -350,10 +370,13 @@ public class Endpoint {
             response.setSuccess(true);
         } else {
             response.setSuccess(false);
+
         }
         return response;
 
     }
+
+
 
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getOceneByIdVozilaRequest")
@@ -374,6 +397,7 @@ public class Endpoint {
 
         return response;
     }
+
 
 
 

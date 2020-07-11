@@ -3,7 +3,9 @@ package com.example.adninservice.soap;
 import com.example.adninservice.model.Chat;
 import com.example.adninservice.model.Message;
 import com.example.adninservice.service.ChatService;
+
 import com.example.adninservice.xsd.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,7 +159,7 @@ public class Endpoint {
     }
 
     private com.example.adninservice.xsd.Message napraviMessageXSD(Message message) throws DatatypeConfigurationException {
-        com.example.adninservice.xsd.Message messageXSD = new com.example.adninservice.xsd.Message();
+       com.example.adninservice.xsd.Message messageXSD = new com.example.adninservice.xsd.Message();
 
         LocalDateTime dateTimestamp = message.getTimestamp();
         GregorianCalendar gcalTimestamp = GregorianCalendar.from(dateTimestamp.atZone(ZoneId.systemDefault()));
