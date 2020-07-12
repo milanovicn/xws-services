@@ -3,6 +3,7 @@ package com.example.voziloservice.Service;
 
 import com.example.voziloservice.Client.UserClient;
 import com.example.voziloservice.Repository.ZahtevRepository;
+import com.example.voziloservice.model.PretragaZauzecaDTO;
 import com.example.voziloservice.model.Stanje;
 import com.example.voziloservice.model.Vozilo;
 import com.example.voziloservice.model.Zahtev;
@@ -156,6 +157,27 @@ public class ZahtevServiceImpl implements ZahtevService {
         zahtevRepository.save(zaIzemnu);
 
     }
+
+    @Override
+    public List<Long> checkAvailability(PretragaZauzecaDTO pzDTO) {
+        LocalDateTime pretragaOd = pzDTO.getDatumOd();
+        LocalDateTime pretragaDo = pzDTO.getDatumDo();
+        ArrayList<Long> ids = pzDTO.getIds();
+        ArrayList<Long> ret = pzDTO.getIds();
+        for ( Long id:ids) {
+            List<Zahtev> zahtevi = zahtevRepository.findByIdVozila(id);
+            for (Zahtev z : zahtevi) {
+                if((z.getStanje() == Stanje.RESERVED) || (z.getStanje() == Stanje.PAID)) {
+                    if (z.getDatumOd().isBefore(pretragaDo) && pretragaOd.isBefore(z.getDatumDo())) {
+                        ret.remove(id);
+                    }
+                }
+            }
+        }
+    return ret;
+
+    }
+
     @Scheduled(initialDelayString = "3000", fixedDelayString = "30000")
     public void zavrsenoIznajmljivanje() throws Exception {
         List<Zahtev> zahtevi=zahtevRepository.findAll();

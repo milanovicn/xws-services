@@ -150,6 +150,9 @@ export class MojiZahteviComponent implements OnInit {
       // });
       //dodavanje komentara za vozilo u vozilo service
     }
+
+    this.voziloService.komentarisi(zahtev).subscribe();
+
   }
   oceni(zahtev: ZahtevRezervacije) {
     //promena statusa zahteva u zahtev service

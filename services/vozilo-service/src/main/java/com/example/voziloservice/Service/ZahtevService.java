@@ -2,6 +2,7 @@ package com.example.voziloservice.Service;
 
 
 
+import com.example.voziloservice.model.PretragaZauzecaDTO;
 import com.example.voziloservice.model.Zahtev;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface ZahtevService {
     void obrisiZahtev(Long id);
     void platiZahtev(Long id);
     void komentarisiZahtev(Long id);
+    List<Long> checkAvailability(PretragaZauzecaDTO pzDTO);
 }

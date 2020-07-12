@@ -300,6 +300,9 @@ public class Endpoint {
             response.setUspesno(true);
         } else {
             response.setUspesno(false);
+        }
+         return response;
+    }
 
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getKomentareByIdVozilaRequest")

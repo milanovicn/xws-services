@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Vozilo } from "./Vozilo";
 import { Zauzece } from '../listaKorisnikovihVozila/Zauzece';
 import { ZahtevRezervacije } from '../search-oglasi/ZahtevRezervacije';
+import { PretragaZauzecaDTO } from '../search-oglasi/PretragaZauzecaDTO';
 
 
 
@@ -75,6 +76,14 @@ public platiZahtev(zahtev:ZahtevRezervacije):Observable<ZahtevRezervacije>{
 
   public getOcena(idVozila: number): Observable<number> {
     return this.http.get<number>("/car/ocena/"+idVozila);
+  }
+
+  public checkAvailability(pzDTO: PretragaZauzecaDTO): Observable<number[]> {
+    return this.http.post<number[]>("/car/checkAvailability/", pzDTO);
+  }
+
+  public komentarisi(zahtev: ZahtevRezervacije): Observable<ZahtevRezervacije> {
+    return this.http.post<ZahtevRezervacije>("/car/komentarisi/" + zahtev.id, zahtev);
   }
 
 }

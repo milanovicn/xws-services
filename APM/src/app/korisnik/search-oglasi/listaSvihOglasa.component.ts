@@ -13,6 +13,7 @@ import { TipGoriva } from 'src/app/admin/sifrarnici/TipGoriva';
 import { TipMenjaca } from 'src/app/admin/sifrarnici/TipMenjaca';
 import { Pretraga } from './Pretraga';
 import { SearchSerivces } from './search.service';
+import { PretragaZauzecaDTO } from './PretragaZauzecaDTO';
 
 
 
@@ -64,6 +65,7 @@ export class SearchComponent implements OnInit {
   izabranaMarka: Marka;
   izabraniModel: Model;
   sve: string = "sve";
+  pzDTO: PretragaZauzecaDTO;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private voziloService: VoziloSerivces, private login: KorisnikService,
@@ -77,7 +79,7 @@ export class SearchComponent implements OnInit {
     this.izabraniMenjac = new TipMenjaca();
     this.izabraniModel = new Model();
     this.izabranaMarka = new Marka();
-
+    this.pzDTO = new PretragaZauzecaDTO();
 
   }
 
@@ -109,7 +111,7 @@ export class SearchComponent implements OnInit {
     this.izabraniModel.naziv = "sve";
     this.pretraga.CDWProtection = "ne";
     this.protection = false;
-    this.pretraga.brojSedistaZaDecu =0;
+    this.pretraga.brojSedistaZaDecu = 0;
 
   }
 
@@ -227,11 +229,12 @@ export class SearchComponent implements OnInit {
     this.zahtev.vozila.push(pomocna);
     this.voziloService.zahtevNapravi(this.zahtev).subscribe();
   }
-  
+
   pretrazi() {
     this.pretraga.datumOd = this.zauzmiOd;
     this.pretraga.datumDo = this.zauzmiDo;
-
+    this.pzDTO.datumOd = this.zauzmiOd;
+    this.pzDTO.datumDo = this.zauzmiDo;
     // if(this.izabranaMarka==undefined){
     //   this.pretraga.marka="sve";
     // }else{
@@ -273,15 +276,24 @@ export class SearchComponent implements OnInit {
     this.searchService.pretrazi(this.pretraga).subscribe({
       next: idovi => {
         this.idVozila = idovi;
-        for (let id of this.idVozila)
-          this.voziloService.vratiVozilo(id).subscribe({
-            next: idovi => {
-              this.vracenoVozilo = idovi;
-              this.vozila.push(this.vracenoVozilo);
-              console.log(this.vozila);
-            }
+        this.pzDTO.ids = idovi;
+        this.voziloService.checkAvailability(this.pzDTO).subscribe({
+          next: idovi => {
+            this.idVozila = idovi;
+            for (let id of this.idVozila)
+              this.voziloService.vratiVozilo(id).subscribe({
+                next: idovi => {
+                  this.vracenoVozilo = idovi;
+                  this.vozila.push(this.vracenoVozilo);
+                  console.log(this.vozila);
+                }
 
-          })
+              });
+          }
+         });
+
+
+
       }
     });
   }

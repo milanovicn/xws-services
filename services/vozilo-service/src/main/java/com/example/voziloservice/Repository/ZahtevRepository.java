@@ -18,6 +18,6 @@ public interface ZahtevRepository extends JpaRepository<Zahtev,Long> {
     @Query("SELECT z FROM Zahtev z WHERE z.izdavacMail = :mail")
     List<Zahtev> findByIzdavacMail(@Param("mail") String mail);
 
-   // List<Zahtev> findByIdVozila(Long id);
+   List<Zahtev> findByIdVozila(Long id);
 
 }

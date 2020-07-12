@@ -4,6 +4,7 @@ package com.example.voziloservice.Controller;
 
 import com.example.voziloservice.Client.UserClient;
 import com.example.voziloservice.Service.ZahtevService;
+import com.example.voziloservice.model.PretragaZauzecaDTO;
 import com.example.voziloservice.model.Zahtev;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -186,4 +187,22 @@ public class ZahtevContorller {
 
 
     }
+
+    @PostMapping(value = "/checkAvailability/")
+    public ResponseEntity<?> checkAvailability(@RequestBody PretragaZauzecaDTO pzDTO) throws Exception {
+
+
+        List<Long> ids = zahtevService.checkAvailability(pzDTO);
+
+
+        if(!ids.isEmpty()) {
+            return new ResponseEntity<>(ids, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Nista nije pronadjeno :(", HttpStatus.CREATED);
+        }
+
+
+    }
+
+
 }
